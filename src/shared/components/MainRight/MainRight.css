@@ -1,0 +1,41 @@
+.conteiner {
+  width: 100%;
+}
+.title {
+  box-sizing: border-box;
+  max-height: 70px;
+  height: 100%;
+  margin: 0;
+  padding-top: 15px;
+  text-align: center;
+  border-bottom: 3px solid rgb(122, 122, 122);
+  font-size: 33px;
+  font-weight: 700;
+}
+.lists {
+  box-sizing: border-box;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-auto-rows: 300px;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 150px);
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  text-align: center;
+  padding: 0 15px 30px;
+}
+.lists::-webkit-scrollbar {
+  width: 12px;
+}
+
+.lists::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+
+.lists::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border: 4px solid #2f2f37;
+  border-radius: 6px;
+}
