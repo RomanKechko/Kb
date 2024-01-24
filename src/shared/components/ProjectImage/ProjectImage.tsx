@@ -1,73 +1,73 @@
-/* import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { hot } from "react-hot-loader/root";
 import style from "./ProjectImage.css";
+import { Controls } from "../Controls";
 
+type Image = null | number;
 export function ProjectImageComponent({ ingredient }: any) {
-  console.log(ingredient);
+  const [currentImage, setCurrentImage] = useState<Image>(null);
+  const [autoSlide, setAutoSlide] = useState(true); // Добавлено состояние для автоматического перелистывания
 
-  const { image_large, image_mobile, image } = ingredient;
-  const [data, setdata] = useState([image_large, image_mobile, image]);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  return (
-    <>
-      <div className={style.container__image}>
-        {ingredient && <img src={image_large} alt="" className={style.image} />}
-        <div>
-          <img src={image_mobile} alt="" />
-          <img src={image} alt="" />
-        </div>
-      </div>
-    </>
-  );
-}
-export const ProjectImage = hot(ProjectImageComponent); */
-
-/* import React, { useState, useEffect } from "react";
-import { hot } from "react-hot-loader/root";
-import style from "./ProjectImage.css";
-
-export function ProjectImageComponent({ ingredient }: any) {
-  const [data, setData] = useState([
-    ingredient.image_large,
-    ingredient.image_mobile,
-    ingredient.image,
-  ]);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalImages = ingredient.length;
+  const countTracker = (count: number) => setCurrentImage(count);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      // Переход к следующей картинке
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
-    }, 4000); // Интервал 2 секунды (настраивайте по необходимости)
+    // Запуск автоматического перелистывания при монтировании компонента
+    startAutoSlide();
 
-    // Очистка интервала при размонтировании компонента
-    return () => clearInterval(interval);
-  }, [currentIndex, data]);
+    return () => clearInterval(intervalRef.current!);
+  }, []);
+
+  useEffect(() => {
+    // Обработка изменения состояния текущего слайда
+    if (autoSlide && currentImage !== null) {
+      startAutoSlide();
+    }
+  }, [currentImage, autoSlide]);
+
+  const startAutoSlide = () => {
+    // Запуск автоматического перелистывания с интервалом в 2000 миллисекунд
+    clearInterval(intervalRef.current!);
+    intervalRef.current = setInterval(() => {
+      setAutoSlide(false); // Отключение автоматического перелистывания при взаимодействии пользователя
+      handleIncrement();
+    }, 2000);
+  };
+
+  const handleIncrement = () => {
+    setAutoSlide(false);
+    setCurrentImage((prevCount) =>
+      prevCount === null || prevCount === ingredient.length - 1
+        ? 0
+        : prevCount + 1
+    );
+  };
 
   return (
-    <>
-      <div className={style.container__image}>
-        {ingredient && (
-          <img src={data[currentIndex]} alt="" className={style.image} />
-        )}
-        <div>
-          <img src={data[(currentIndex + 1) % data.length]} alt="" />
-          <img src={data[(currentIndex + 2) % data.length]} alt="" />
-        </div>
-      </div>
-    </>
+    <div className={style.container__image}>
+      {currentImage !== null && (
+        <img
+          className={style.image}
+          src={ingredient[currentImage]}
+          alt="кот"
+          onMouseEnter={() => setAutoSlide(false)} // Отключение автоматического перелистывания при наведении курсора
+          onMouseLeave={() => setAutoSlide(true)} // Включение автоматического перелистывания при уходе курсора
+        />
+      )}
+      <Controls
+        Count={countTracker}
+        totalImages={totalImages}
+        currentImage={currentImage}
+        data={ingredient}
+      />
+    </div>
   );
 }
 
-export const ProjectImage = hot(ProjectImageComponent); */
-
-import React, { useState, useEffect } from "react";
-import { hot } from "react-hot-loader/root";
-import style from "./ProjectImage.css";
-
-export function ProjectImageComponent({ ingredient }: any) {
-  const data = [
+export const ProjectImage = hot(ProjectImageComponent);
+/*   const data = [
     ingredient.image_large,
     ingredient.image_mobile,
     ingredient.image,
@@ -101,7 +101,4 @@ export function ProjectImageComponent({ ingredient }: any) {
         </div>
       </div>
     </>
-  );
-}
-
-export const ProjectImage = hot(ProjectImageComponent);
+  ); */
