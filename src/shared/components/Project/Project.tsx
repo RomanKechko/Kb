@@ -5,7 +5,7 @@ import { data } from "../../data";
 import { hot } from "react-hot-loader/root";
 import left from "../../images/left.png";
 import right from "../../images/right.png";
-import { ProjectImage } from "../ProjectImage/ProjectImage";
+import { Swipers } from "../Swipers";
 
 function ProjectComponent() {
   const { id } = useParams();
@@ -60,7 +60,7 @@ function ProjectComponent() {
         <button onClick={previous} className={style.button}>
           <img src={left} alt="asd" className={style.direction_left} />
         </button>
-        <ProjectImage ingredient={ingredient} />
+        <Swipers />
 
         <button onClick={next} className={style.button}>
           <img src={right} alt="sad" className={style.direction_right} />

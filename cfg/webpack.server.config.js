@@ -1,5 +1,5 @@
-const path = require("path");
-const nodeExternals = require("webpack-node-externals");
+const path = require("fix-esm").require("path");
+const nodeExternals = require("fix-esm").require("webpack-node-externals");
 
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 const NODE_ENV = process.env.NODE_ENV;
@@ -9,7 +9,11 @@ module.exports = {
   target: "node",
   mode: NODE_ENV ? NODE_ENV : "development",
   entry: path.resolve(__dirname, "../src/server/server.js"),
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals({
+      allowlist: [/swiper/],
+    }),
+  ],
   module: {
     rules: [
       {
