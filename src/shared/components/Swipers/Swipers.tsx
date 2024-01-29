@@ -1,17 +1,24 @@
-import React, { useCallback, useState } from "react";
+import "./Swipers.global.css";
+import React, { FC, useCallback, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+
 import { Navigation, Autoplay, FreeMode, Thumbs } from "swiper/modules";
 
 import { hot } from "react-hot-loader/root";
 
-import { data } from "../../data";
 import { Modal } from "../Modal";
+import { Ingredient } from "../../utils/type";
 
-function SwiperComponent() {
+type SwiperProps = {
+  ingredient?: Ingredient | undefined;
+  currentIndex?: number;
+};
+
+const SwiperComponent: FC<SwiperProps> = ({ ingredient, currentIndex }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<
@@ -38,7 +45,7 @@ function SwiperComponent() {
 
   return (
     <>
-      <div className="container ">
+      <div className="container">
         <Swiper
           spaceBetween={10}
           navigation={false}
@@ -53,78 +60,72 @@ function SwiperComponent() {
             pauseOnMouseEnter: true,
           }}
         >
-          {data.map((item, index) => (
-            <>
-              <SwiperSlide key={index}>
-                <img
-                  src={item.image}
-                  alt="slider 1"
-                  style={{ width: "100%" }}
-                  onClick={() => openModal(item.image)}
-                />
-              </SwiperSlide>
-              <SwiperSlide key={index}>
-                <img
-                  src={item.image_mobile}
-                  alt="slider 2"
-                  style={{ width: "100%" }}
-                  onClick={() => openModal(item.image_mobile)}
-                />
-              </SwiperSlide>
-              <SwiperSlide key={index}>
-                <img
-                  src={item.image_large}
-                  alt="slider 3"
-                  style={{ width: "100%" }}
-                  onClick={() => openModal(item.image_large)}
-                />
-              </SwiperSlide>
-            </>
-          ))}
+          <SwiperSlide>
+            <img
+              src={ingredient && ingredient.image}
+              alt="slider 1"
+              style={{ width: "100%" }}
+              onClick={() => openModal(ingredient!.image)}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src={ingredient && ingredient.image_mobile}
+              alt="slider 2"
+              style={{ width: "100%" }}
+              onClick={() => openModal(ingredient!.image_mobile)}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src={ingredient && ingredient.image_large}
+              alt="slider 3"
+              style={{ width: "100%" }}
+              onClick={() => openModal(ingredient!.image_large)}
+            />
+          </SwiperSlide>
         </Swiper>
 
         <Swiper
           onSwiper={onThumbsSwiper}
           spaceBetween={10}
-          slidesPerView={4}
+          slidesPerView={3}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
           className="mySwiper"
         >
-          {data.map((item, index) => (
-            <>
-              <SwiperSlide key={index}>
-                <img
-                  src={item.image}
-                  alt="slider 1"
-                  style={{ width: "100%" }}
-                />
-              </SwiperSlide>
-              <SwiperSlide key={index}>
-                <img
-                  src={item.image_mobile}
-                  alt="slider 2"
-                  style={{ width: "100%" }}
-                />
-              </SwiperSlide>
-              <SwiperSlide key={index}>
-                <img
-                  src={item.image_large}
-                  alt="slider 3"
-                  style={{ width: "100%" }}
-                />
-              </SwiperSlide>
-            </>
-          ))}
+          <>
+            <SwiperSlide>
+              <img
+                src={ingredient && ingredient.image}
+                alt="slider 1"
+                style={{ width: "100%" }}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src={ingredient && ingredient.image_mobile}
+                alt="slider 2"
+                style={{ width: "100%" }}
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src={ingredient && ingredient.image_large}
+                alt="slider 3"
+                style={{ width: "100%" }}
+              />
+            </SwiperSlide>
+          </>
         </Swiper>
-        {isModalOpen && (
-          <Modal closeModal={closeModal}>
-            <img src={selectedImage!} alt="modal" style={{ width: "100%" }} />
-          </Modal>
-        )}
       </div>
+      {/*     {isModalOpen && (
+        <Modal closeModal={closeModal}>
+          <img src={selectedImage!} alt="modal" style={{ width: "100%" }} />
+        </Modal>
+      )} */}
     </>
   );
-}
+};
 export const Swipers = hot(SwiperComponent);

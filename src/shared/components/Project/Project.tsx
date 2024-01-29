@@ -3,8 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import style from "./Project.css";
 import { data } from "../../data";
 import { hot } from "react-hot-loader/root";
-import left from "../../images/left.png";
-import right from "../../images/right.png";
+
+import left from "/../../images/left.png";
+
+import right from "/../../images/right.png";
 import { Swipers } from "../Swipers";
 
 function ProjectComponent() {
@@ -58,12 +60,12 @@ function ProjectComponent() {
           </p>
         </article>
         <button onClick={previous} className={style.button}>
-          <img src={left} alt="asd" className={style.direction_left} />
+          <img src={left} alt="sad" />
         </button>
-        <Swipers />
+        <Swipers ingredient={ingredient} currentIndex={currentIndex} />
 
         <button onClick={next} className={style.button}>
-          <img src={right} alt="sad" className={style.direction_right} />
+          <img src={right} alt="asd" />
         </button>
       </section>
     </>

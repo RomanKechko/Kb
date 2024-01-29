@@ -42,13 +42,12 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-
         use: [
           {
             loader: "file-loader",
             options: {
-              /*     name: "[name][hash].[ext]", */
-              publicPath: "static/images/",
+              name: "[name].[hash][ext]",
+              publicPath: auto,
               outputPath: "images",
             },
           },

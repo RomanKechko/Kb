@@ -1,5 +1,6 @@
 @import "~normalize.css";
 @import "./fonts/fonts.css";
+
 .body {
   height: 100vh;
   font-family: "Inter";
