@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import style from "./Project.css";
 import { data } from "../../data";
 import { hot } from "react-hot-loader/root";
 
-import left from "/../../images/left.png";
-
-import right from "/../../images/right.png";
+import left from "../../images/left.png";
+import right from "../../images/right.png";
 import { Swipers } from "../Swipers";
+import { SwiperRef } from "swiper/react";
 
 function ProjectComponent() {
+  const sliderRef = useRef<SwiperRef>(null);
+  const [myIndex, setMyIndex] = useState(0);
+
+  if (sliderRef.current) {
+    sliderRef.current.swiper.slideTo(myIndex);
+  }
+
   const { id } = useParams();
   const initialIndex = Number(id);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
@@ -21,6 +28,8 @@ function ProjectComponent() {
     const nextIndex = (currentIndex + 1) % data.length;
     setCurrentIndex(nextIndex);
     navigate(`/product/${nextIndex}`);
+
+    setMyIndex(0);
   }
   function previous() {
     const nextIndex = currentIndex - 1 < 0 ? data.length - 1 : currentIndex - 1;
@@ -28,6 +37,7 @@ function ProjectComponent() {
     setCurrentIndex(nextIndex);
 
     navigate(`/product/${nextIndex}`);
+    setMyIndex(0);
   }
   useEffect(() => {
     const handlePopState = () => {
@@ -60,12 +70,12 @@ function ProjectComponent() {
           </p>
         </article>
         <button onClick={previous} className={style.button}>
-          <img src={left} alt="sad" />
+          <img src={left} alt="стрелка влево" className={style.direction} />
         </button>
-        <Swipers ingredient={ingredient} currentIndex={currentIndex} />
+        <Swipers ingredient={ingredient} sliderRef={sliderRef} />
 
         <button onClick={next} className={style.button}>
-          <img src={right} alt="asd" />
+          <img src={right} alt="стрелка вправо" className={style.direction} />
         </button>
       </section>
     </>

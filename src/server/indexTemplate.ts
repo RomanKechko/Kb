@@ -7,9 +7,11 @@ export const indexTemplate = (content: string): string => `
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>test</title>
   <script src="/static/client.js" type="application/javascript"></script>
+  <base href="/"/>
 </head>
 <body class="body">
 <div id="root">${content}</div>
+<div id="modal"></div>
 </body>
 </html>
 `;

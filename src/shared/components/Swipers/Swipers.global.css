@@ -10,6 +10,11 @@
   width: 100%;
   height: calc(100vh - 80px);
   box-sizing: border-box;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .swiper {
@@ -21,7 +26,7 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background-color: rgb(160, 174, 205);
 
   /* Center slide text vertically */
   display: flex;
@@ -51,6 +56,11 @@
 .mySwiper2 {
   height: 60%;
   width: 60%;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .mySwiper {
@@ -82,4 +92,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.slide_image {
+  width: 100%;
+  cursor: pointer;
+}
+.modal__image {
+  width: 100%;
 }

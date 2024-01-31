@@ -1,7 +1,6 @@
 import React from "react";
 import { hot } from "react-hot-loader/root";
 import style from "./MainLeft.css";
-import left from "../../images/1.png";
 
 function MainLeftComponent() {
   return (
@@ -25,8 +24,6 @@ function MainLeftComponent() {
         <p className={style.contacts}>
           Контакты: <span>89133242322</span>
         </p>
-        {/* 
-        <img src={left} alt="sad" /> */}
       </section>
     </>
   );

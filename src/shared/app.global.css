@@ -4,4 +4,6 @@
 .body {
   height: 100vh;
   font-family: "Inter";
+  background-color: rgb(160, 174, 205);
+  color: rgb(0, 0, 0);
 }
