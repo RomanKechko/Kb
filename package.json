@@ -1,43 +1,47 @@
 {
-    "name": "smartcompletion",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "env NODE_ENV=production node ./bin/dev.js",
-        "start-dev": "env NODE_ENV=development node ./bin/dev.js",
-        "dev": "env NODE_ENV=development webpack --config webpack.config.js",
-        "build": "env NODE_ENV=production webpack --config webpack.config.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "@types/react-dom": "^18.2.18",
-        "@types/webpack": "^5.28.5",
-        "@types/webpack-hot-middleware": "^2.25.9",
-        "css-loader": "^6.8.1",
-        "file-loader": "^6.2.0",
-        "ignore-loader": "^0.1.2",
-        "style-loader": "^3.3.3",
-        "ts-loader": "^9.5.1",
-        "typescript": "^5.3.3",
-        "webpack": "^5.89.0",
-        "webpack-cli": "^5.1.4",
-        "webpack-hot-middleware": "^2.26.0"
-    },
-    "dependencies": {
-        "@hot-loader/react-dom": "^17.0.2",
-        "@reduxjs/toolkit": "^2.0.1",
-        "express": "^4.18.2",
-        "nodemon": "^3.0.2",
-        "normalize.css": "^8.0.1",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-hot-loader": "^4.13.1",
-        "react-redux": "^8.1.3",
-        "react-router-dom": "^6.21.1",
-        "redux": "^5.0.1",
-        "webpack-dev-middleware": "^7.0.0",
-        "webpack-node-externals": "^3.0.0"
-    }
+  "name": "smartcompletion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "env NODE_ENV=production node ./bin/dev.js",
+    "start-dev": "env NODE_ENV=development node ./bin/dev.js",
+    "dev": "env NODE_ENV=development webpack --config webpack.config.js",
+    "build": "env NODE_ENV=production webpack --config webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-modules": "^0.1.6",
+    "@types/react-dom": "^18.2.18",
+    "@types/webpack": "^5.28.5",
+    "@types/webpack-hot-middleware": "^2.25.9",
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
+    "ignore-loader": "^0.1.2",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-hot-middleware": "^2.26.0"
+  },
+  "dependencies": {
+    "@hot-loader/react-dom": "^17.0.2",
+    "@reduxjs/toolkit": "^2.0.1",
+    "express": "^4.18.2",
+    "fix-esm": "^1.0.1",
+    "nodemon": "^3.0.2",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.2",
+    "react-alice-carousel": "^2.8.0",
+    "react-dom": "^17.0.2",
+    "react-hot-loader": "^4.13.1",
+    "react-redux": "^8.1.3",
+    "react-router-dom": "^6.21.1",
+    "redux": "^5.0.1",
+    "swiper": "^11.0.5",
+    "webpack-dev-middleware": "^7.0.0",
+    "webpack-node-externals": "^3.0.0"
+  }
 }

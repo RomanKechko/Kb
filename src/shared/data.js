@@ -99,7 +99,7 @@ export const data = [
   },
   {
     _id: "60666c42cc7b410027a1a9bc",
-    name: "Плоды Фалленианского дерева",
+    name: "Плоды Фаланского дерева",
     type: "main",
     proteins: 20,
     fat: 5,
@@ -169,20 +169,7 @@ export const data = [
     image_large: "https://code.s3.yandex.net/react/code/salad-large.png",
     __v: 0,
   },
-  {
-    _id: "60666c42cc7b410027a1a9b3",
-    name: "Филе Люминесцентного тетраодонтимформа",
-    type: "main",
-    proteins: 44,
-    fat: 26,
-    carbohydrates: 85,
-    calories: 643,
-    price: 988,
-    image: "https://code.s3.yandex.net/react/code/meat-03.png",
-    image_mobile: "https://code.s3.yandex.net/react/code/meat-03-mobile.png",
-    image_large: "https://code.s3.yandex.net/react/code/meat-03-large.png",
-    __v: 0,
-  },
+
   {
     _id: "60666c42cc7b410027a1a9bf",
     name: "Сыр с астероидной плесенью",

@@ -8,14 +8,15 @@ import { NotFound } from "./pages/NotFound";
 import { Header } from "./components/Header";
 import { MainRight } from "./components/MainRight";
 import { Project } from "./components/Project";
+import { Swipers } from "./components/Swipers";
 
 function AppComponent() {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
         <Route index element={<MainPage />} />
-        <Route path="*" element={<NotFound />} />
         <Route path="/product/:id" element={<Project />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { hot } from "react-hot-loader/root";
-
+import logo from "../../images/logo.png";
 import styles from "./Header.css";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -13,7 +13,9 @@ function HeaderComponent() {
       <header>
         <nav className={styles.nav}>
           <div className={styles.conteiner}>
-            <p className={styles.title}>КБ ГЛОБАЛ</p>
+            <p className={styles.title}>
+              <img src={logo} alt="" />
+            </p>
             <div className={styles.link__row}>
               <NavLink to="/" className={setNavStyle}>
                 Портфолио

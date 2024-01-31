@@ -1,6 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader/root";
 import style from "./MainLeft.css";
+
 function MainLeftComponent() {
   return (
     <>
