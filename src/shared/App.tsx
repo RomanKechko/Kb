@@ -7,6 +7,7 @@ import { MainPage } from "./pages/MainPage";
 import { NotFound } from "./pages/NotFound";
 import { Header } from "./components/Header";
 import { Project } from "./components/Project";
+import { Swipers } from "./components/Swipers";
 
 const AppComponent: FC = () => {
   return (

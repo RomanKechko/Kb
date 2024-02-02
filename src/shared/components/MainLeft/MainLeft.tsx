@@ -2,7 +2,9 @@ import React, { FC } from "react";
 import { hot } from "react-hot-loader/root";
 import style from "./MainLeft.css";
 
+
 const MainLeftComponent: FC = () => {
+
   return (
     <>
       <section className={style.section}>

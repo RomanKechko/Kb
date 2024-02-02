@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect, useRef, FC } from "react";
+
 import { useParams, useNavigate } from "react-router-dom";
 import style from "./Project.css";
 import { data } from "../../data";
@@ -9,7 +11,9 @@ import right from "../../images/right.png";
 import { Swipers } from "../Swipers";
 import { SwiperRef } from "swiper/react";
 
+
 const ProjectComponent: FC = () => {
+
   const { id } = useParams();
   const initialIndex = Number(id);
   const navigate = useNavigate();
@@ -46,6 +50,7 @@ const ProjectComponent: FC = () => {
     const nextIndex = (currentIndex + 1) % data.length;
     setCurrentIndex(nextIndex);
     navigate(`/product/${nextIndex}`);
+
     setMyIndex(0);
   }
   function previous() {
@@ -88,12 +93,14 @@ const ProjectComponent: FC = () => {
         <button onClick={previous} className={style.button}>
           <img src={left} alt="стрелка влево" className={style.direction} />
         </button>
+
         <Swipers
           ingredient={ingredient}
           slideRef={slideRef}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
         />
+
 
         <button onClick={next} className={style.button}>
           <img src={right} alt="стрелка вправо" className={style.direction} />
