@@ -1,5 +1,7 @@
 import "./Swipers.global.css";
-import React, { FC, useCallback, useEffect, useState } from "react";
+
+import React, { FC, useCallback, useState } from "react";
+
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -12,33 +14,37 @@ import { hot } from "react-hot-loader/root";
 import { Modal } from "../Modal";
 import { Ingredient } from "../../utils/type";
 import { Swiper as SwiperInterface } from "swiper";
-import { Link } from "react-router-dom";
+
 
 type SwiperProps = {
   ingredient?: Ingredient | undefined;
-  sliderRef: React.RefObject<SwiperRef>;
+  slideRef: React.RefObject<SwiperRef>;
+  setIsModalOpen: (isOpen: boolean) => void;
+  isModalOpen: boolean;
 };
 
-const SwiperComponent: FC<SwiperProps> = ({ ingredient, sliderRef }) => {
+const SwiperComponent: FC<SwiperProps> = ({
+  ingredient,
+  slideRef,
+  isModalOpen,
+  setIsModalOpen,
+}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(
     null
   );
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<
-    string | null | undefined
-  >();
-  const [state, setState] = useState({
-    delay: 3000,
-    disableOnInteraction: false,
-    pauseOnMouseEnter: true,
-  });
+  const [selectedImage, setSelectedImage] = useState<string | null | undefined>(
+    null
+  );
+
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImage(null);
 
-    if (sliderRef.current) {
-      sliderRef.current.swiper.autoplay.start();
+
+    if (slideRef.current) {
+      slideRef.current.swiper.autoplay.start();
+
     }
   };
 
@@ -46,8 +52,10 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, sliderRef }) => {
     setSelectedImage(image);
     setIsModalOpen(true);
 
-    if (sliderRef.current) {
-      sliderRef.current.swiper.autoplay.stop();
+
+    if (slideRef.current) {
+      slideRef.current.swiper.autoplay.stop();
+
     }
   };
   const onThumbsSwiper = useCallback(
@@ -63,7 +71,9 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, sliderRef }) => {
     <>
       <div className="container">
         <Swiper
-          ref={sliderRef}
+
+          ref={slideRef}
+
           spaceBetween={10}
           navigation={false}
           thumbs={{
@@ -71,7 +81,13 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, sliderRef }) => {
           }}
           modules={[FreeMode, Navigation, Autoplay, Thumbs]}
           className="mySwiper2"
-          autoplay={state}
+
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+
         >
           <SwiperSlide>
             <img

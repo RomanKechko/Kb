@@ -1,9 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { hot } from "react-hot-loader/root";
 import style from "./Product.css";
 import { Link } from "react-router-dom";
 import { data } from "../../data.js";
-function ProductComponent() {
+
+const ProductComponent: FC = () => {
   return (
     <>
       {data.map((item: any, index: number) => (
@@ -16,6 +17,6 @@ function ProductComponent() {
       ))}
     </>
   );
-}
+};
 
 export const Product = hot(ProductComponent);

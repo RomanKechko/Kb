@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
 
@@ -6,11 +6,10 @@ import "./app.global.css";
 import { MainPage } from "./pages/MainPage";
 import { NotFound } from "./pages/NotFound";
 import { Header } from "./components/Header";
-import { MainRight } from "./components/MainRight";
 import { Project } from "./components/Project";
 import { Swipers } from "./components/Swipers";
 
-function AppComponent() {
+const AppComponent: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
@@ -20,6 +19,6 @@ function AppComponent() {
       </Route>
     </Routes>
   );
-}
+};
 
 export const App = hot(AppComponent);

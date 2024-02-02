@@ -4,7 +4,7 @@ import logo from "../../images/logo.png";
 import styles from "./Header.css";
 import { NavLink, Outlet } from "react-router-dom";
 
-function HeaderComponent() {
+const HeaderComponent: FC = () => {
   const setNavStyle = ({ isActive }: { isActive: boolean }) => {
     return isActive ? styles.active_link : styles.link;
   };
@@ -30,6 +30,6 @@ function HeaderComponent() {
       <Outlet />
     </>
   );
-}
+};
 
 export const Header = hot(HeaderComponent);
