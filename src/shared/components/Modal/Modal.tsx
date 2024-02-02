@@ -5,6 +5,7 @@ import { hot } from "react-hot-loader/root";
 import style from "./Modal.css";
 import { ModalOverlay } from "../ModalOverlay";
 import cross from "../../images/cross.png";
+
 interface ModalProps {
   children?: ReactNode;
   closeModal: () => void;

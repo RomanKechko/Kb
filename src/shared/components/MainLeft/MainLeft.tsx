@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { hot } from "react-hot-loader/root";
 import style from "./MainLeft.css";
 
-function MainLeftComponent() {
+const MainLeftComponent: FC = () => {
   return (
     <>
       <section className={style.section}>
@@ -27,6 +27,6 @@ function MainLeftComponent() {
       </section>
     </>
   );
-}
+};
 
 export const MainLeft = hot(MainLeftComponent);
