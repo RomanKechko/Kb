@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { hot } from "react-hot-loader/root";
 import style from "./MainRight.css";
 import { Product } from "../Product";
 
-function MainRightComponent() {
+const MainRightComponent: FC = () => {
   return (
     <section className={style.conteiner}>
       <h2 className={style.title}>Все проекты</h2>
@@ -12,6 +12,6 @@ function MainRightComponent() {
       </ul>
     </section>
   );
-}
+};
 
 export const MainRight = hot(MainRightComponent);

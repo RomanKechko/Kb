@@ -1,5 +1,12 @@
 import "./Swipers.global.css";
-import React, { FC, useCallback, useState } from "react";
+
+import React, {
+  FC,
+  MutableRefObject,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -108,7 +115,6 @@ const SwiperComponent: FC<SwiperProps> = ({
           spaceBetween={10}
           slidesPerView={3}
           freeMode={true}
-          watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
           className="mySwiper"
         >
