@@ -1,12 +1,7 @@
 import "./Swipers.global.css";
 
-import React, {
-  FC,
-  MutableRefObject,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
+import React, { FC, useCallback, useState } from "react";
+
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
