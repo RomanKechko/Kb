@@ -97,6 +97,9 @@
   width: 100%;
   cursor: pointer;
 }
+.link {
+  width: 100%;
+}
 .modal__image {
   width: 100%;
 }

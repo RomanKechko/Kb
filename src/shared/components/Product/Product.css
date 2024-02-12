@@ -10,7 +10,7 @@
   width: 100%;
 }
 .description {
-  max-width: 300px;
+  max-width: 100%;
   font-size: 19px;
   color: rgb(0, 0, 0);
 }

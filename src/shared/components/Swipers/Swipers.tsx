@@ -53,7 +53,7 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
         >
           {Object.keys(images).map((image: string, index: number) => (
             <SwiperSlide key={index}>
-              <Link to={`/product/${id}/${image}`}>
+              <Link to={`/product/${id}/${image}`} className="link">
                 <img
                   src={images[image as keyof typeof images]}
                   alt={image}
