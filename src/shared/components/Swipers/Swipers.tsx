@@ -3,61 +3,27 @@ import "./Swipers.global.css";
 import React, { FC, useCallback, useState } from "react";
 
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
 import { Navigation, Autoplay, FreeMode, Thumbs } from "swiper/modules";
 
 import { hot } from "react-hot-loader/root";
 
-import { Modal } from "../Modal";
 import { Ingredient } from "../../utils/type";
 import { Swiper as SwiperInterface } from "swiper";
 
+import { Link, useParams } from "react-router-dom";
 
 type SwiperProps = {
-  ingredient?: Ingredient | undefined;
+  ingredient: Ingredient;
   slideRef: React.RefObject<SwiperRef>;
-  setIsModalOpen: (isOpen: boolean) => void;
-  isModalOpen: boolean;
 };
 
-const SwiperComponent: FC<SwiperProps> = ({
-  ingredient,
-  slideRef,
-  isModalOpen,
-  setIsModalOpen,
-}) => {
+const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
+  const { id } = useParams();
+
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(
     null
   );
-  const [selectedImage, setSelectedImage] = useState<string | null | undefined>(
-    null
-  );
 
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage(null);
-
-
-    if (slideRef.current) {
-      slideRef.current.swiper.autoplay.start();
-
-    }
-  };
-
-  const openModal = (image: string) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
-
-
-    if (slideRef.current) {
-      slideRef.current.swiper.autoplay.stop();
-
-    }
-  };
   const onThumbsSwiper = useCallback(
     (swiper) => {
       if (swiper !== null) {
@@ -66,6 +32,8 @@ const SwiperComponent: FC<SwiperProps> = ({
     },
     [setThumbsSwiper]
   );
+
+  const images = ingredient.images;
 
   return (
     <>
@@ -82,6 +50,7 @@ const SwiperComponent: FC<SwiperProps> = ({
           modules={[FreeMode, Navigation, Autoplay, Thumbs]}
           className="mySwiper2"
 
+
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -89,30 +58,17 @@ const SwiperComponent: FC<SwiperProps> = ({
           }}
 
         >
-          <SwiperSlide>
-            <img
-              src={ingredient && ingredient.image}
-              alt="slider 1"
-              className="slide_image"
-              onClick={() => openModal(ingredient!.image)}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src={ingredient && ingredient.image_mobile}
-              alt="slider 2"
-              className="slide_image"
-              onClick={() => openModal(ingredient!.image_mobile)}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src={ingredient && ingredient.image_large}
-              alt="slider 3"
-              className="slide_image"
-              onClick={() => openModal(ingredient!.image_large)}
-            />
-          </SwiperSlide>
+          {Object.keys(images).map((image: string, index: number) => (
+            <SwiperSlide key={index}>
+              <Link to={`/product/${id}/${image}`} className="link">
+                <img
+                  src={images[image as keyof typeof images]}
+                  alt={image}
+                  className="slide_image"
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
         </Swiper>
 
         <Swiper
@@ -125,39 +81,23 @@ const SwiperComponent: FC<SwiperProps> = ({
           className="mySwiper"
         >
           <>
-            <SwiperSlide>
-              <img
-                src={ingredient && ingredient.image}
-                alt="slider 1"
-                style={{ width: "100%" }}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src={ingredient && ingredient.image_mobile}
-                alt="slider 2"
-                style={{ width: "100%" }}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src={ingredient && ingredient.image_large}
-                alt="slider 3"
-                style={{ width: "100%" }}
-              />
-            </SwiperSlide>
+            {Object.keys(images).map((image: string, index: number) => (
+              <SwiperSlide
+                key={index}
+                onMouseEnter={() =>
+                  slideRef.current && slideRef.current.swiper.slideTo(index)
+                }
+              >
+                <img
+                  src={images[image as keyof typeof images]}
+                  alt={image}
+                  style={{ width: "100%" }}
+                />
+              </SwiperSlide>
+            ))}
           </>
         </Swiper>
       </div>
-      {isModalOpen && (
-        <Modal closeModal={closeModal} isModalOpen={isModalOpen}>
-          <img
-            src={selectedImage!}
-            alt="modal image"
-            className="modal__image"
-          />
-        </Modal>
-      )}
     </>
   );
 };

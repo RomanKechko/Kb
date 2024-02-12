@@ -4,13 +4,20 @@ import style from "./Product.css";
 import { Link } from "react-router-dom";
 import { data } from "../../data.js";
 
+import { Ingredient } from "../../utils/type";
+
+
 const ProductComponent: FC = () => {
   return (
     <>
-      {data.map((item: any, index: number) => (
+      {data.map((item: Ingredient) => (
         <li className={style.list} key={item._id}>
-          <Link to={`/product/${index}`} className={style.link}>
-            <img src={item.image} alt="" className={style.image} />
+          <Link to={`/product/${item._id}`} className={style.link}>
+            <img
+              src={Object.values(item.images)[0] as string}
+              alt={item._id}
+              className={style.image}
+            />
             <p className={style.description}>{item.name}</p>
           </Link>
         </li>
