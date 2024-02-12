@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect, useRef, FC } from "react";
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import style from "./Project.css";
 import { data } from "../../data";
 import { hot } from "react-hot-loader/root";
@@ -11,67 +10,64 @@ import right from "../../images/right.png";
 import { Swipers } from "../Swipers";
 import { SwiperRef } from "swiper/react";
 
+interface ParamTypes {
+  id: string;
+}
 
 const ProjectComponent: FC = () => {
-
-  const { id } = useParams();
-  const initialIndex = Number(id);
+  const { id } = useParams<{ id: string }>() as ParamTypes;
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [myIndex, setMyIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const location = useLocation();
+  const [currentIndex, setCurrentIndex] = useState(
+    data.findIndex((item) => item._id === id)
+  );
 
   const articleRef = useRef<HTMLElement>(null);
   const slideRef = useRef<SwiperRef>(null);
-
   const ingredient = data[currentIndex];
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+    setCurrentIndex(data.findIndex((item) => item._id === id));
     if (slideRef.current) {
-      slideRef.current.swiper.slideTo(myIndex);
+      const slider = slideRef.current;
+      if (location.state?.modalId) {
+        slider.swiper.slideTo(
+          Object.keys(ingredient.images).findIndex(
+            (item) => item === location.state.modalId
+          ),
+          0
+        );
+      } else {
+        slider.swiper.slideTo(0, 0);
+      }
     }
-  }, [currentIndex]);
-
-  const updatyStyles = (opacity: number) => {
-    if (articleRef.current) {
-      articleRef.current.style.opacity = opacity.toString();
-    }
-  };
-
-  useEffect(() => {
-    if (isModalOpen) {
-      updatyStyles(0);
-    } else {
-      updatyStyles(1);
-    }
-  }, [isModalOpen]);
+  });
 
   function next() {
     const nextIndex = (currentIndex + 1) % data.length;
     setCurrentIndex(nextIndex);
-    navigate(`/product/${nextIndex}`);
-
-    setMyIndex(0);
+    navigate(`/product/${data[nextIndex]._id}`);
   }
   function previous() {
     const nextIndex = currentIndex - 1 < 0 ? data.length - 1 : currentIndex - 1;
     setCurrentIndex(nextIndex);
-    navigate(`/product/${nextIndex}`);
-    setMyIndex(0);
+    navigate(`/product/${data[nextIndex]._id}`);
   }
 
   useEffect(() => {
-    const handlePopState = () => {
-      const newId = Number(window.location.pathname.split("/").pop());
-      setCurrentIndex(newId);
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        navigate(`/`);
+      }
     };
 
-    window.addEventListener("popstate", handlePopState);
+    document.addEventListener("keydown", handleEsc);
 
     return () => {
-      window.removeEventListener("popstate", handlePopState);
+      document.removeEventListener("keydown", handleEsc);
     };
-  }, [setCurrentIndex]);
+  });
 
   return (
     <>
@@ -94,13 +90,7 @@ const ProjectComponent: FC = () => {
           <img src={left} alt="стрелка влево" className={style.direction} />
         </button>
 
-        <Swipers
-          ingredient={ingredient}
-          slideRef={slideRef}
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-        />
-
+        <Swipers ingredient={ingredient} slideRef={slideRef} />
 
         <button onClick={next} className={style.button}>
           <img src={right} alt="стрелка вправо" className={style.direction} />

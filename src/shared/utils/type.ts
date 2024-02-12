@@ -8,7 +8,5 @@ export type Ingredient = {
   fat: number;
   price: number;
   __v: number;
-  image: string;
-  image_large: string;
-  image_mobile: string;
+  images: Record<string, string>;
 };

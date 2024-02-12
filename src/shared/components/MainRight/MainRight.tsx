@@ -6,7 +6,7 @@ import { Product } from "../Product";
 const MainRightComponent: FC = () => {
   return (
     <section className={style.conteiner}>
-      <h2 className={style.title}>Все проекты</h2>
+      <h2 className={style.title}>Библиотека проектов</h2>
       <ul className={style.lists}>
         <Product />
       </ul>
