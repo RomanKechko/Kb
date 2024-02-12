@@ -9,6 +9,7 @@ import { hot } from "react-hot-loader/root";
 
 import { Ingredient } from "../../utils/type";
 import { Swiper as SwiperInterface } from "swiper";
+
 import { Link, useParams } from "react-router-dom";
 
 type SwiperProps = {
@@ -22,6 +23,7 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(
     null
   );
+
   const onThumbsSwiper = useCallback(
     (swiper) => {
       if (swiper !== null) {
@@ -37,7 +39,9 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
     <>
       <div className="container">
         <Swiper
+
           ref={slideRef}
+
           spaceBetween={10}
           navigation={false}
           thumbs={{
@@ -45,11 +49,14 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
           }}
           modules={[FreeMode, Navigation, Autoplay, Thumbs]}
           className="mySwiper2"
+
+
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
+
         >
           {Object.keys(images).map((image: string, index: number) => (
             <SwiperSlide key={index}>

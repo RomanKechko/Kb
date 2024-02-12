@@ -1,3 +1,4 @@
+
 import React, {FC} from "react";
 import {Route, Routes} from "react-router-dom";
 import {hot} from "react-hot-loader/root";
@@ -25,6 +26,7 @@ const AppComponent: FC = () => {
             </Route>
         </Routes>
     );
+
 };
 
 export const App = hot(AppComponent);

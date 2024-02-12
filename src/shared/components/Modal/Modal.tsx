@@ -6,11 +6,13 @@ import { hot } from "react-hot-loader/root";
 import style from "./Modal.css";
 import { ModalOverlay } from "../ModalOverlay";
 import cross from "../../images/cross.png";
+
 import { useNavigate, useParams } from "react-router-dom";
 
 interface ParamTypes {
   id: string;
   modalId: string;
+
 }
 
 const ModalComponent: FC = () => {

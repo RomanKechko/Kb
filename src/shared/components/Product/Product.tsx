@@ -3,7 +3,9 @@ import { hot } from "react-hot-loader/root";
 import style from "./Product.css";
 import { Link } from "react-router-dom";
 import { data } from "../../data.js";
+
 import { Ingredient } from "../../utils/type";
+
 
 const ProductComponent: FC = () => {
   return (

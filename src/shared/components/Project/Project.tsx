@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect, useRef, FC } from "react";
 
 import { useParams, useNavigate, useLocation } from "react-router-dom";
+
 import style from "./Project.css";
 import { data } from "../../data";
 import { hot } from "react-hot-loader/root";
@@ -9,6 +11,7 @@ import left from "../../images/left.png";
 import right from "../../images/right.png";
 import { Swipers } from "../Swipers";
 import { SwiperRef } from "swiper/react";
+
 
 interface ParamTypes {
   id: string;
@@ -22,11 +25,13 @@ const ProjectComponent: FC = () => {
     data.findIndex((item) => item._id === id)
   );
 
+
   const articleRef = useRef<HTMLElement>(null);
   const slideRef = useRef<SwiperRef>(null);
   const ingredient = data[currentIndex];
 
   useEffect(() => {
+
     window.scrollTo({ top: 0 });
     setCurrentIndex(data.findIndex((item) => item._id === id));
     if (slideRef.current) {
@@ -44,6 +49,7 @@ const ProjectComponent: FC = () => {
     }
   });
 
+
   function next() {
     const nextIndex = (currentIndex + 1) % data.length;
     setCurrentIndex(nextIndex);
@@ -52,7 +58,9 @@ const ProjectComponent: FC = () => {
   function previous() {
     const nextIndex = currentIndex - 1 < 0 ? data.length - 1 : currentIndex - 1;
     setCurrentIndex(nextIndex);
+
     navigate(`/product/${data[nextIndex]._id}`);
+
   }
 
   useEffect(() => {
@@ -91,6 +99,7 @@ const ProjectComponent: FC = () => {
         </button>
 
         <Swipers ingredient={ingredient} slideRef={slideRef} />
+
 
         <button onClick={next} className={style.button}>
           <img src={right} alt="стрелка вправо" className={style.direction} />
