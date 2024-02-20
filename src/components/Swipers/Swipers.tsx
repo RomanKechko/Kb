@@ -10,6 +10,7 @@ import { Ingredient } from "../../utils/type";
 import { Swiper as SwiperInterface } from "swiper";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 type SwiperProps = {
   ingredient: Ingredient;
@@ -56,10 +57,12 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
           {Object.keys(images).map((image: string, index: number) => (
             <SwiperSlide key={index}>
               <Link href={`/${project}/${image}`} className="link">
-                <img
+                <Image
                   src={images[image as keyof typeof images]}
                   alt={image}
                   className="slide_image"
+                  width={800}
+                  height={800}
                 />
               </Link>
             </SwiperSlide>
@@ -83,10 +86,12 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                   slideRef.current && slideRef.current.swiper.slideTo(index)
                 }
               >
-                <img
+                <Image
                   src={images[image as keyof typeof images]}
                   alt={image}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", height: 'auto' }}
+                  width={800}
+                  height={800}
                 />
               </SwiperSlide>
             ))}

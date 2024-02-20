@@ -7,8 +7,7 @@ import { data } from "@/data";
 import left from "../../images/left.png";
 import right from "../../images/right.png";
 import {
-  permanentRedirect,
-  redirect,
+  notFound,
   useParams,
   useSearchParams,
 } from "next/navigation";
@@ -50,7 +49,7 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
         slider.swiper.slideTo(0, 0);
       }
     }
-  });
+  }, []);
 
   function next() {
     const nextIndex = (currentIndex + 1) % data.length;
@@ -76,6 +75,14 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
       document.removeEventListener("keydown", handleEsc);
     };
   });
+
+  if (!ingredient) {
+    throw notFound();
+    //   без этого блока страница ломается при попытки перейти на не сушествующую страницу
+    //   тут мы проверяем найден ли ингридиент и если нет бросаем 404 ошибку
+    //   раньше это не нужно было потомучто у тебя был иначе построен роутинг по страницам,
+    //   ты изменил полностью построение ссылок и теперь ничего не работает без этой проверки))
+  }
 
   return (
     <>
