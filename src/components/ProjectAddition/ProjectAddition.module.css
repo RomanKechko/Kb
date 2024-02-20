@@ -1,0 +1,18 @@
+.conteiner {
+  width: 700px;
+  height: 70%;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 30px;
+}
+.form {
+  display: flex;
+  flex-direction: row;
+}
+.labels {
+  display: flex;
+  flex-direction: column;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
