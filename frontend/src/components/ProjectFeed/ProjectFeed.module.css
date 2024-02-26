@@ -1,31 +1,28 @@
 .conteiner_top {
-  padding-top: 10px;
-  height: 10%;
+  height: 20%;
   position: relative;
 }
 .mySwiper1 .swiper {
   width: 100%;
-  height: 35%;
+  height: 100%;
 }
 
 .mySwiper1 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background-color: rgb(160, 174, 205);
-  height: 35%;
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.mySwiper1 .swiper-slide img {
+.swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 .mySwiper1 {
-  height: 30%;
+  width: 100%;
+
   box-sizing: border-box;
   flex-wrap: nowrap;
   position: absolute;

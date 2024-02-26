@@ -55,7 +55,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
         }}
       >
         {Object.keys(images).map((image: string, index: number) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="swiperrrr">
             <Link href={`/${project}/${image}`} className="link">
               <Image
                 src={images[image as keyof typeof images]}
@@ -85,6 +85,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
               onMouseEnter={() =>
                 slideRef.current && slideRef.current.swiper.slideTo(index)
               }
+              className="swiperrrr"
             >
               <Image
                 src={images[image as keyof typeof images]}

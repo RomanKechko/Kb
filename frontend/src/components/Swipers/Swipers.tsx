@@ -5,7 +5,7 @@ import { FC } from "react";
 import { Ingredient } from "@/utils/type";
 import { SwiperRef } from "swiper/react";
 import ProjectSliderComponent from "../ProjectSlider/ProjectSlider";
-
+import style from "./Swipers.module.css";
 type SwiperProps = {
   ingredient: Ingredient;
   slideRef: React.RefObject<SwiperRef>;
@@ -14,7 +14,7 @@ type SwiperProps = {
 const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
   return (
     <>
-      <div>
+      <div className={style.block}>
         <ProjectFeedComponent />
 
         <ProjectSliderComponent ingredient={ingredient} slideRef={slideRef} />
