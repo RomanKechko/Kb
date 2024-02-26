@@ -1,15 +1,10 @@
 export const url: string = process.env.NEXT_PUBLIC_URL as string;
 
-export default async function checkResponse(res: Response) {
-  if (res.status === 404) {
-    throw "404";
-  }
-
+export default function checkResponse(res: Response) {
   if (res.ok) {
     return res.json();
+  } else {
+    console.error("Error in response:", res.status, res.statusText);
+    return res.json().then((err: any) => Promise.reject(err));
   }
-
-  console.error("Error in response:", res.status, res.statusText);
-  const err = await res.json();
-  return await Promise.reject(err);
 }

@@ -6,12 +6,10 @@ import build from "next/dist/build";
 interface IListState {
   isAuthCheck: boolean;
   isAuth: boolean;
-  dataRequest: boolean;
 }
 const initialState: IListState = {
   isAuthCheck: false,
   isAuth: false,
-  dataRequest: false,
 };
 
 export const currentUserRequest = createAsyncThunk(
@@ -79,6 +77,20 @@ export const authUserRequest = createAsyncThunk(
     return fulfillWithValue(data.ok);
   }
 );
+export const logoutUserRequest = createAsyncThunk(
+  `user/logoutUserRequest `,
+  async (_, { fulfillWithValue }) => {
+    const data = await fetch(`${url}/logout`, {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+    });
+
+    const responseData = await checkResponse(data);
+
+    return fulfillWithValue(responseData);
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
@@ -86,17 +98,32 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(authUserRequest.pending, (state) => {
-        state.dataRequest = true;
-      })
-      .addCase(authUserRequest.fulfilled, (state) => {
-        state.dataRequest = false;
-        state.isAuthCheck = true;
+      .addCase(currentUserRequest.fulfilled, (state) => {
         state.isAuth = true;
       })
-      .addCase(authUserRequest.rejected, (state) => {
-        state.dataRequest = false;
-      });
+
+      .addCase(authUserRequest.fulfilled, (state, action) => {
+        state.isAuth = action.payload;
+      })
+
+      .addCase(logoutUserRequest.fulfilled, (state) => {
+        state.isAuth = false;
+      })
+      .addMatcher(
+        (action) =>
+          action.type.endsWith("/fulfilled") && action.type.startsWith("user/"),
+        (state) => {
+          state.isAuthCheck = true;
+        }
+      )
+      .addMatcher(
+        (action) =>
+          action.type.endsWith("/rejected") && action.type.startsWith("user/"),
+        (state) => {
+          state.isAuthCheck = true;
+          state.isAuth = false;
+        }
+      );
   },
 });
 export const {} = userSlice.actions;

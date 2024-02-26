@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import style from "./Login.module.css";
 import { useAppDispatch, useAppSelector } from "@/services/hooks";
-import { authUserRequest, currentUserRequest } from "@/services/user/userSlice";
+import {
+  authUserRequest,
+  currentUserRequest,
+  logoutUserRequest,
+} from "@/services/user/userSlice";
 
 const Login = () => {
   const [userData, setUserData] = useState<{
@@ -27,7 +31,6 @@ const Login = () => {
       password: "",
     });
   }
-  
 
   function dataEntry(e: React.FormEvent<HTMLInputElement>) {
     const { name, value } = e.currentTarget;
@@ -36,6 +39,7 @@ const Login = () => {
       [name]: value,
     });
   }
+
   return (
     <>
       <div className={style.conteiner}>

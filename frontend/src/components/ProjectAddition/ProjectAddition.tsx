@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./ProjectAddition.module.css";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/services/hooks";
+import { logoutUserRequest } from "@/services/user/userSlice";
 const ProjectAddition = () => {
   const [projectData, setProjectData] = useState({
     name: "",
@@ -11,7 +14,7 @@ const ProjectAddition = () => {
     description: "",
     images: {},
   });
-
+  const dispatch = useAppDispatch();
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { name, price, deadline, complexity, description, images } =
@@ -26,6 +29,9 @@ const ProjectAddition = () => {
     ) {
       return;
     }
+  }
+  function logout() {
+    dispatch(logoutUserRequest());
   }
 
   function dataEntry(
@@ -100,6 +106,9 @@ const ProjectAddition = () => {
           Search
         </button>
       </form>
+      <button type="button" onClick={logout}>
+        ВЫХОД
+      </button>
     </div>
   );
 };
