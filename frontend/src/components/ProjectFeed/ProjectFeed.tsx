@@ -20,10 +20,10 @@ const ProjectFeedComponent: FC = () => {
         modules={[Pagination]}
         className="mySwiper1"
       >
-        {data.map((item: Ingredient) => (
-          <SwiperSlide>
+        {data.map((item: Ingredient, index: number) => (
+          <SwiperSlide key={index}>
             <Image
-              src={item.images.image}
+              src={item.images.image!}
               alt={item.name}
               style={{ width: "100%", height: "auto" }}
               width={200}

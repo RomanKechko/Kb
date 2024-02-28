@@ -15,7 +15,8 @@ import { Swiper as SwiperInterface } from "swiper";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-
+import pdf from "@/images/png.png";
+import DocumentComponent from "../DocumentComponent/DocumentComponent";
 type SwiperProps = {
   ingredient: Ingredient;
   slideRef: React.RefObject<SwiperRef>;
@@ -37,6 +38,8 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
     },
     [setThumbsSwiper]
   );
+
+  const number = Object.keys(ingredient.images).length;
   return (
     <div className="container_bottom">
       <Swiper
@@ -54,48 +57,74 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
           pauseOnMouseEnter: true,
         }}
       >
-        {Object.keys(images).map((image: string, index: number) => (
-          <SwiperSlide key={index} className="swiperrrr">
-            <Link href={`/${project}/${image}`} className="link">
-              <Image
-                src={images[image as keyof typeof images]}
-                alt={image}
-                style={{ width: "100%", height: "auto" }}
-                width={400}
-                height={400}
-              />
-            </Link>
-          </SwiperSlide>
-        ))}
+        {Object.keys(images).map((image: string, index: number) =>
+          image === "pdf" ? (
+            <SwiperSlide key={index} className="swiperrrrPdf">
+              <Link href={`/${project}/${image}`} className="link">
+                <DocumentComponent />
+              </Link>
+            </SwiperSlide>
+          ) : (
+            <SwiperSlide key={index} className="swiperrrr">
+              <Link href={`/${project}/${image}`} className="link">
+                <Image
+                  src={images[image as keyof typeof images]!}
+                  alt={image}
+                  style={{ width: "100%", height: "auto" }}
+                  width={400}
+                  height={400}
+                />
+              </Link>
+            </SwiperSlide>
+          )
+        )}
       </Swiper>
 
       <Swiper
         onSwiper={onThumbsSwiper}
         spaceBetween={10}
-        slidesPerView={3}
+        slidesPerView={number}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
         <>
-          {Object.keys(images).map((image: string, index: number) => (
-            <SwiperSlide
-              key={index}
-              onMouseEnter={() =>
-                slideRef.current && slideRef.current.swiper.slideTo(index)
-              }
-              className="swiperrrr"
-            >
-              <Image
-                src={images[image as keyof typeof images]}
-                alt={image}
-                style={{ width: "100%", height: "auto" }}
-                width={400}
-                height={400}
-              />
-            </SwiperSlide>
-          ))}
+          {Object.keys(images).map((image: string, index: number) =>
+            image === "pdf" ? (
+              <SwiperSlide
+                key={index}
+                onMouseEnter={() =>
+                  slideRef.current && slideRef.current.swiper.slideTo(index)
+                }
+                className="swiperrrr"
+              >
+                <Image
+                  src={pdf}
+                  alt={image}
+                  style={{ width: "50%", height: "auto" }}
+                  width={400}
+                  height={400}
+                />
+              </SwiperSlide>
+            ) : (
+              <SwiperSlide
+                key={index}
+                onMouseEnter={() =>
+                  slideRef.current && slideRef.current.swiper.slideTo(index)
+                }
+                className="swiperrrr"
+              >
+                <Image
+                  src={images[image as keyof typeof images]!}
+                  alt={image}
+                  style={{ width: "100%", height: "auto" }}
+                  width={400}
+                  height={400}
+                />
+              </SwiperSlide>
+            )
+          )}
         </>
       </Swiper>
     </div>

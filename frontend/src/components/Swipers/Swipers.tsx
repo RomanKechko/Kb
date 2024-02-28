@@ -16,7 +16,6 @@ const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
     <>
       <div className={style.block}>
         <ProjectFeedComponent />
-
         <ProjectSliderComponent ingredient={ingredient} slideRef={slideRef} />
       </div>
     </>

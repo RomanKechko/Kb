@@ -1,3 +1,10 @@
+export type Images = {
+  image?: string;
+  image_mobile?: string;
+  image_large?: string;
+  pdf?: string;
+};
+
 export type Ingredient = {
   _id: string;
   name: string;
@@ -8,7 +15,7 @@ export type Ingredient = {
   fat: number;
   price: number;
   __v: number;
-  images: Record<string, string>;
+  images: Images;
 };
 interface RefreshTokenPayload {
   token: string | null;

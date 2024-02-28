@@ -6,15 +6,12 @@ import { data } from "@/data";
 
 import left from "../../images/left.png";
 import right from "../../images/right.png";
-import {
-  notFound,
-  useParams,
-  useSearchParams,
-} from "next/navigation";
+import { notFound, useParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import SwiperComponent from "../Swipers/Swipers";
 import { SwiperRef } from "swiper/react";
+import { Ingredient } from "@/utils/type";
 
 interface ParamTypes {
   project: string;
@@ -32,7 +29,7 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
     data.findIndex((item) => item._id === project)
   );
   const slideRef = useRef<SwiperRef>(null);
-  const ingredient = data[currentIndex];
+  const ingredient = data[currentIndex] as Ingredient;
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
