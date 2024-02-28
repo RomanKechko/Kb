@@ -16,6 +16,8 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import pdf from "@/images/png.png";
+import videoBadge from "@/images/videoBadge.png";
+
 import DocumentComponent from "../DocumentComponent/DocumentComponent";
 type SwiperProps = {
   ingredient: Ingredient;
@@ -61,8 +63,18 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
           image === "pdf" ? (
             <SwiperSlide key={index} className="swiperrrrPdf">
               <Link href={`/${project}/${image}`} className="link">
-                <DocumentComponent />
+                <DocumentComponent
+                  image={images[image as keyof typeof images]!}
+                />
               </Link>
+            </SwiperSlide>
+          ) : image === "video" ? (
+            <SwiperSlide key={index}>
+              <iframe
+                src={images[image as keyof typeof images]!}
+                allow="fullscreen"
+                className="swiperrrrVideo"
+              ></iframe>
             </SwiperSlide>
           ) : (
             <SwiperSlide key={index} className="swiperrrr">
@@ -103,6 +115,22 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                   src={pdf}
                   alt={image}
                   style={{ width: "50%", height: "auto" }}
+                  width={400}
+                  height={400}
+                />
+              </SwiperSlide>
+            ) : image === "video" ? (
+              <SwiperSlide
+                key={index}
+                onMouseEnter={() =>
+                  slideRef.current && slideRef.current.swiper.slideTo(index)
+                }
+                className="swiperrrr"
+              >
+                <Image
+                  src={videoBadge}
+                  alt={image}
+                  style={{ width: "100%", height: "auto" }}
                   width={400}
                   height={400}
                 />

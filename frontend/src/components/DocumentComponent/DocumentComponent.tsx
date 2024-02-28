@@ -1,8 +1,13 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import style from "./DocumentComponent.module.css";
 
-const DocumentComponent = () => {
+interface IDocumentComponent {
+  image: string;
+}
+
+const DocumentComponent: FC<IDocumentComponent> = (props) => {
+  const { image } = props;
   const viewer = useRef<HTMLDivElement>(null);
   const pdf =
     "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf";
@@ -13,7 +18,7 @@ const DocumentComponent = () => {
         WebViewer(
           {
             path: "/webviewer/lib",
-            initialDoc: `${pdf}`,
+            initialDoc: `${image}`,
           },
           viewer.current
         ).then((instance) => {

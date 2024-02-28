@@ -31,10 +31,9 @@
   justify-content: center;
   align-items: end;
 }
-.wiperrrrPdf {
-  display: flex;
-  justify-content: center;
-  align-items: end;
+
+.swiperrrrVideo {
+  width: 100%;
   height: 100%;
 }
 .swiper {

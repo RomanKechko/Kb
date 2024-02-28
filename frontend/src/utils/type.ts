@@ -3,6 +3,7 @@ export type Images = {
   image_mobile?: string;
   image_large?: string;
   pdf?: string;
+  video?: string;
 };
 
 export type Ingredient = {

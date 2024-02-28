@@ -12,7 +12,7 @@ export const data = [
       image: "https://code.s3.yandex.net/react/code/bun-02.png",
       image_mobile: "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
       image_large: "https://code.s3.yandex.net/react/code/bun-02-large.png",
-      pdf: "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf",
+      video: "https://www.youtube.com/embed/ENBv2i88g6Y?si=x-kLHo5Waezag_aj",
     },
     __v: 0,
   },
@@ -28,8 +28,6 @@ export const data = [
     images: {
       image: "https://code.s3.yandex.net/react/code/meat-04.png",
       image_mobile: "https://code.s3.yandex.net/react/code/meat-04-mobile.png",
-      /*       image_large: "https://code.s3.yandex.net/react/code/meat-04-large.png",
-      pdf: "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf", */
     },
     __v: 0,
   },
@@ -46,7 +44,7 @@ export const data = [
       image: "https://code.s3.yandex.net/react/code/meat-01.png",
       image_mobile: "https://code.s3.yandex.net/react/code/meat-01-mobile.png",
       image_large: "https://code.s3.yandex.net/react/code/meat-01-large.png",
-      /* pdf: "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf", */
+      video: "https://www.youtube.com/embed/vjVkXlxsO8Q?si=fOLlY2GPg8hsrAb2",
     },
     __v: 0,
   },
@@ -62,7 +60,7 @@ export const data = [
     images: {
       image: "https://code.s3.yandex.net/react/code/sauce-02.png",
       image_mobile: "https://code.s3.yandex.net/react/code/sauce-02-mobile.png",
-      /*   image_large: "https://code.s3.yandex.net/react/code/sauce-02-large.png", */
+      video: "https://www.youtube.com/embed/4qlCC1GOwFw?si=2KVdcoAJeE9g0q8t",
       pdf: "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf",
     },
     __v: 0,
