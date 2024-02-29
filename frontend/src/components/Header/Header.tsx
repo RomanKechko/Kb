@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import Link from "next/link";
 import image from "../../images/logo.png";
