@@ -98,10 +98,11 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
         </p>
         {/* 
         <iframe src="https://www.youtube.com/embed/eJnQBXmZ7Ek?si=MI470gKtunmGXwm-"></iframe> */}
-        {/*     <iframe
+        <iframe
           src="https://www.youtube.com/embed/ENBv2i88g6Y?si=x-kLHo5Waezag_aj"
           allow="fullscreen"
-        ></iframe> */}
+          sandbox="true"
+        ></iframe>
       </article>
       <button onClick={previous} className={style.button}>
         <Image src={left} alt="стрелка влево" className={style.direction} />

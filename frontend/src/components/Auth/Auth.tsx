@@ -20,9 +20,9 @@ const Auth: FC<IAuthProps> = ({
   const auth = useAppSelector((state) => state.user.isAuth);
   const router = useRouter();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     dispatch(currentUserRequest());
-  }, []);
+  }, []); */
 
   useEffect(() => {
     if (isAuthPage === auth && isAuthCheck) {
@@ -46,9 +46,6 @@ const Auth: FC<IAuthProps> = ({
     );
   }
 
-  if (redirectUrl !== "/control" && redirectUrl !== "/project-addition") {
-    return children;
-  }
   return children;
 };
 export default Auth;

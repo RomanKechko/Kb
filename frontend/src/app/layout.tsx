@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import StoreProvider from "@/services/StoreProvider";
+import Auth from "@/components/Auth/Auth";
+import UserUpdateComponent from "@/components/UserUpdate/UserUpdate";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="body">
         <StoreProvider>
-          <Header />
-          {children}
+          <UserUpdateComponent>
+            <Header />
+            {children}
+          </UserUpdateComponent>
         </StoreProvider>
       </body>
     </html>
