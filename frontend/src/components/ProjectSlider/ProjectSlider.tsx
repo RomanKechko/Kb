@@ -51,30 +51,33 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
         thumbs={{
           swiper: thumbsSwiper,
         }}
-        modules={[FreeMode, Navigation, Autoplay, Thumbs]}
+        modules={[FreeMode, Navigation, /*  Autoplay, */ Thumbs]}
         className="mySwiper2"
-        autoplay={{
+        /*     autoplay={{
           delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
-        }}
+        }} */
       >
         {Object.keys(images).map((image: string, index: number) =>
           image === "pdf" ? (
-            <SwiperSlide key={index} className="swiperrrrPdf">
+            <SwiperSlide key={index}>
               <Link href={`/${project}/${image}`} className="link">
-                <DocumentComponent
-                  image={images[image as keyof typeof images]!}
-                />
+                <iframe
+                  src={images[image as keyof typeof images]!}
+                  className="swiper_iframe"
+                ></iframe>
               </Link>
             </SwiperSlide>
           ) : image === "video" ? (
             <SwiperSlide key={index}>
-              <iframe
-                src={images[image as keyof typeof images]!}
-                allow="fullscreen"
-                className="swiperrrrVideo"
-              ></iframe>
+              <Link href={`/${project}/${image}`} className="link">
+                <iframe
+                  src={images[image as keyof typeof images]!}
+                  allow="fullscreen"
+                  className="swiper_iframe"
+                ></iframe>
+              </Link>
             </SwiperSlide>
           ) : (
             <SwiperSlide key={index} className="swiperrrr">

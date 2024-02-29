@@ -7,12 +7,10 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Auth redirectUrl="/">
-        <main className={styles.main}>
-          <MainLeftComponent />
-          <MainRightComponent />
-        </main>
-      </Auth>
+      <main className={styles.main}>
+        <MainLeftComponent />
+        <MainRightComponent />
+      </main>
     </>
   );
 }
