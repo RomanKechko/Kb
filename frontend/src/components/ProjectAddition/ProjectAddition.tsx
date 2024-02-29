@@ -5,6 +5,7 @@ import style from "./ProjectAddition.module.css";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/services/hooks";
 import { logoutUserRequest } from "@/services/user/userSlice";
+
 const ProjectAddition = () => {
   const [projectData, setProjectData] = useState({
     name: "",
@@ -14,6 +15,7 @@ const ProjectAddition = () => {
     description: "",
     images: {},
   });
+  const router = useRouter();
   const dispatch = useAppDispatch();
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,6 +34,7 @@ const ProjectAddition = () => {
   }
   function logout() {
     dispatch(logoutUserRequest());
+    router.push("/");
   }
 
   function dataEntry(

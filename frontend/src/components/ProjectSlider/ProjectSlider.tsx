@@ -130,7 +130,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 <Image
                   src={videoBadge}
                   alt={image}
-                  style={{ width: "100%", height: "auto" }}
+                  style={{ width: "50%", height: "auto" }}
                   width={400}
                   height={400}
                 />
@@ -146,7 +146,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 <Image
                   src={images[image as keyof typeof images]!}
                   alt={image}
-                  style={{ width: "100%", height: "auto" }}
+                  style={{ width: "100%", height: "100%" }}
                   width={400}
                   height={400}
                 />

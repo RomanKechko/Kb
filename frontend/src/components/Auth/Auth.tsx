@@ -6,7 +6,7 @@ import { FC, useEffect } from "react";
 
 interface IAuthProps {
   children: any;
-  redirectUrl: string;
+  redirectUrl?: string;
   isAuthPage?: boolean;
 }
 
@@ -26,7 +26,7 @@ const Auth: FC<IAuthProps> = ({
 
   useEffect(() => {
     if (isAuthPage === auth && isAuthCheck) {
-      router.push(redirectUrl);
+      router.push(redirectUrl!);
     }
   }, [auth, isAuthCheck]);
 
@@ -44,6 +44,10 @@ const Auth: FC<IAuthProps> = ({
         loading...
       </h2>
     );
+  }
+
+  if (redirectUrl !== "/control" && redirectUrl !== "/project-addition") {
+    return children;
   }
   return children;
 };
