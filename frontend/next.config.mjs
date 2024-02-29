@@ -1,10 +1,19 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: [
-      "code.s3.yandex.net",
-      "www.youtube.com",
-      "pdftron.s3.amazonaws.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "code.s3.yandex.net",
+      },
+      {
+        protocol: "https",
+        hostname: "www.youtube.com",
+      },
+      {
+        protocol: "https",
+        hostname: "pdftron.s3.amazonaws.com",
+      },
     ],
   },
 };

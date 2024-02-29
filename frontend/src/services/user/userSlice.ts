@@ -1,17 +1,14 @@
 import checkResponse, { url } from "@/utils/chek-response";
 import { IOptions } from "@/utils/type";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import build from "next/dist/build";
 
 interface IListState {
   isAuthCheck: boolean;
   isAuth: boolean;
-  dataLoading: boolean;
 }
 const initialState: IListState = {
   isAuthCheck: false,
   isAuth: false,
-  dataLoading: false,
 };
 
 export const currentUserRequest = createAsyncThunk(
@@ -99,39 +96,33 @@ export const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(currentUserRequest.pending, (state) => {
-      state.dataLoading = true;
-    });
     builder
       .addCase(currentUserRequest.fulfilled, (state) => {
         state.isAuth = true;
-        state.dataLoading = true;
       })
 
       .addCase(authUserRequest.fulfilled, (state, action) => {
         state.isAuth = action.payload;
-        state.dataLoading = false;
       })
 
       .addCase(logoutUserRequest.fulfilled, (state) => {
         state.isAuth = false;
-        state.dataLoading = false;
       })
+
       .addMatcher(
         (action) =>
           action.type.endsWith("/fulfilled") && action.type.startsWith("user/"),
         (state) => {
           state.isAuthCheck = true;
-          state.dataLoading = false;
         }
       )
+
       .addMatcher(
         (action) =>
           action.type.endsWith("/rejected") && action.type.startsWith("user/"),
         (state) => {
           state.isAuthCheck = true;
           state.isAuth = false;
-          state.dataLoading = false;
         }
       );
   },

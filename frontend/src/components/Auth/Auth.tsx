@@ -1,6 +1,5 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/services/hooks";
-import { currentUserRequest } from "@/services/user/userSlice";
+import { useAppSelector } from "@/services/hooks";
 import { useRouter } from "next/navigation";
 import { FC, useEffect } from "react";
 
@@ -15,14 +14,9 @@ const Auth: FC<IAuthProps> = ({
   redirectUrl,
   isAuthPage = false,
 }) => {
-  const dispatch = useAppDispatch();
   const isAuthCheck = useAppSelector((state) => state.user.isAuthCheck);
   const auth = useAppSelector((state) => state.user.isAuth);
   const router = useRouter();
-
-  /*   useEffect(() => {
-    dispatch(currentUserRequest());
-  }, []); */
 
   useEffect(() => {
     if (isAuthPage === auth && isAuthCheck) {

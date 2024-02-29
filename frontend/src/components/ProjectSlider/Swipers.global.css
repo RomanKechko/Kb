@@ -27,7 +27,7 @@
 .swiperrrr {
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .swiper_iframe {

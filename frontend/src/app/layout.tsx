@@ -3,10 +3,12 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import StoreProvider from "@/services/StoreProvider";
-import Auth from "@/components/Auth/Auth";
 import UserUpdateComponent from "@/components/UserUpdate/UserUpdate";
+import React from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: 'swap'});
 
 export const metadata: Metadata = {
   title: "КБ ГЛОБАЛ",
@@ -20,14 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="body">
-        <StoreProvider>
-          <UserUpdateComponent>
-            <Header />
-            {children}
-          </UserUpdateComponent>
-        </StoreProvider>
-      </body>
+    <body className={"body " + inter.className}>
+    <StoreProvider>
+      <UserUpdateComponent>
+        <Header/>
+        {children}
+      </UserUpdateComponent>
+    </StoreProvider>
+    </body>
     </html>
-  );
+);
 }

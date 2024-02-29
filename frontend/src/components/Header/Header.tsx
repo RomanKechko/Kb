@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import styles from "./Header.module.css";
 import Link from "next/link";
 import image from "../../images/logo.png";
@@ -16,7 +16,7 @@ const HeaderComponent: FC = () => {
       <nav className={styles.nav}>
         <div className={styles.conteiner}>
           <div className={styles.title}>
-            <Image src={image} alt="КБГлобал" width={306} height={71} />
+            <Image priority={true} src={image} alt="КБГлобал" width={306} height={71} className={styles.logo}/>
           </div>
 
           <div className={styles.link__row}>
