@@ -81,12 +81,13 @@ const ModalComponent: FC = () => {
           {modalId === "pdf" ? (
             <iframe src={src!} className={style.iframe}></iframe>
           ) : modalId === "gif" ? (
-            <iframe
+            <Image
               src={src!}
-              allowFullScreen
-              className={style.iframe}
-              style={{ width: "100%", height: "auto" }}
-            ></iframe>
+              alt={modalId}
+              className={style.modal__image}
+              width={800}
+              height={800}
+            />
           ) : modalId === "video" ? (
             <iframe
               src={src!}
