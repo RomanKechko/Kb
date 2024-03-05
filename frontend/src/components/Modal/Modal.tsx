@@ -85,6 +85,7 @@ const ModalComponent: FC = () => {
               src={src!}
               allowFullScreen
               className={style.iframe}
+              style={{ width: "100%", height: "auto" }}
             ></iframe>
           ) : modalId === "video" ? (
             <iframe
