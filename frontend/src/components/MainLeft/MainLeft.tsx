@@ -1,27 +1,29 @@
+"use client";
 import { FC } from "react";
 import style from "./MainLeft.module.css";
+import Link from "next/link";
 
 const MainLeftComponent: FC = () => {
   return (
     <>
       <section className={style.section}>
-        <h1 className={style.title}>Разработка конструторской документации </h1>
+        <h1 className={style.title}>Выполняем работы по ТЗ</h1>
+        <Link
+          href="/files/Word.docx"
+          aria-disabled="true"
+          className={style.link}
+          download
+        >
+          Скачать бланк договора
+        </Link>
         <p className={style.text}>
-          Занимаемся разработкой уже 5 лет <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates,
-          officia recusandae ex deleniti excepturi quidem vero eligendi
-          laboriosam laborum adipisci libero accusantium corporis voluptas
-          praesentium, ducimus explicabo necessitatibus assumenda fugit illo
-          quam cumque dicta voluptate, modi voluptatem. Labore, maiores nam?
+          В нашем коллективе работают 2 Главных Конструктора и 2 Ведущих
+          Конструктора.
         </p>
         <p className={style.text}>
-          В среднем срок выполнения 3 недели <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ad!
-          Commodi, recusandae quam, ea qui ab quasi eum explicabo eius
-          voluptatum itaque, harum provident distinctio consequatur.
-        </p>
-        <p className={style.contacts}>
-          Контакты: <span>89133242322</span>
+          Основная специализация всех сотрудников – это машиностроение и
+          металлоконструкции. С выполненными за последние годы проектами можно
+          ознакомиться в Библиотеке проектов.
         </p>
       </section>
     </>

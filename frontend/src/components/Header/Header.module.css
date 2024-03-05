@@ -5,19 +5,28 @@
   max-width: 100vw;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .conteiner {
   width: 100%;
-
   display: flex;
+  position: relative;
 }
+
 .title {
   width: 20%;
   margin: 0;
-  padding: 8px 0 0 50px;
+  padding: 6px 0 0 50px;
   font-weight: 600;
   font-style: italic;
 }
+/* .trait {
+  width: 20px;
+  height: 100%;
+  background-color: rgb(218, 49, 49);
+  position: absolute;
+  right: 0;
+} */
 .link__row {
   width: 80%;
   display: flex;
@@ -30,21 +39,33 @@
   margin: 0;
   padding-top: 25px;
   text-decoration: none;
+  text-transform: uppercase;
+  border-left: 3px solid rgb(216, 220, 223);
+  transform: skewX(-9deg) translateX(12px);
+  transform-origin: 0 0;
+  z-index: 10;
 }
 .active_link {
   width: 50%;
   text-align: center;
   font-size: 30px;
-  color: rgb(184, 217, 241);
   margin: 0;
   padding-top: 25px;
   text-decoration: none;
-  border: 2px solid rgb(184, 217, 241);
+  background-color: rgb(128, 128, 128);
+  color: rgb(216, 220, 223);
+  border-left: 3px solid rgb(216, 220, 223);
+  position: relative;
+  text-transform: uppercase;
+  transform: skewX(-9deg) translateX(12px);
+  transform-origin: 0 0;
 }
+
 .link:hover {
-  box-shadow: 3px 3px 3px rgb(0, 255, 255), -3px 3px 3px rgb(0, 255, 255);
-  z-index: 2;
+  background-color: rgb(128, 128, 128);
 }
+
 .logo {
   width: 100%;
+  height: 100%;
 }

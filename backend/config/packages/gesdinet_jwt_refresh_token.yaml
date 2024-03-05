@@ -1,0 +1,10 @@
+gesdinet_jwt_refresh_token:
+    refresh_token_class: App\Entity\RefreshToken
+    ttl: 2592000
+    single_use: false
+    cookie:
+        enabled: true
+        http_only: true
+        same_site: none
+        secure: true
+#        partitioned: true

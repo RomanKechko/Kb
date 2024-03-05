@@ -1,34 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Login.module.css";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { sendDataUser } from "@/lib/login/loginSlice";
+import { useAppDispatch, useAppSelector } from "@/services/hooks";
+import {
+  authUserRequest,
+  currentUserRequest,
+  logoutUserRequest,
+} from "@/services/user/userSlice";
 
 const Login = () => {
   const [userData, setUserData] = useState<{
-    login: string;
+    username: string;
     password: string;
   }>({
-    login: "",
+    username: "",
     password: "",
   });
   const dispatch = useAppDispatch();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const { login, password } = userData;
-    if (!login || !password) {
+    const { username, password } = userData;
+    if (!username || !password) {
       return;
     }
-    dispatch(sendDataUser({ login, password }));
+    dispatch(authUserRequest({ username, password }));
     setUserData({
-      login: "",
+      username: "",
       password: "",
     });
   }
-  const data = useAppSelector((state: any) => state.login.data);
-  console.log(data);
+
   function dataEntry(e: React.FormEvent<HTMLInputElement>) {
     const { name, value } = e.currentTarget;
     setUserData({
@@ -36,6 +39,7 @@ const Login = () => {
       [name]: value,
     });
   }
+
   return (
     <>
       <div className={style.conteiner}>
@@ -43,8 +47,8 @@ const Login = () => {
           <label className={style.label}>
             Логин: <br />{" "}
             <input
-              name="login"
-              value={userData.login}
+              name="username"
+              value={userData.username}
               onChange={dataEntry}
               className={style.input}
             />
@@ -63,10 +67,6 @@ const Login = () => {
             Войти
           </button>
         </form>
-      </div>
-      <div>
-        Это:
-        {data && <p>{data.login}</p>}
       </div>
     </>
   );

@@ -6,15 +6,12 @@ import { data } from "@/data";
 
 import left from "../../images/left.png";
 import right from "../../images/right.png";
-import {
-  notFound,
-  useParams,
-  useSearchParams,
-} from "next/navigation";
+import { notFound, useParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import SwiperComponent from "../Swipers/Swipers";
 import { SwiperRef } from "swiper/react";
+import { Ingredient } from "@/utils/type";
 
 interface ParamTypes {
   project: string;
@@ -32,7 +29,7 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
     data.findIndex((item) => item._id === project)
   );
   const slideRef = useRef<SwiperRef>(null);
-  const ingredient = data[currentIndex];
+  const ingredient = data[currentIndex] as Ingredient;
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -86,29 +83,34 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
 
   return (
     <>
-      <article className={style.container__left}>
-        <h2 className={style.title}>{ingredient.name}</h2>
-        <p className={style.price}>Цена: {ingredient.price}</p>
-        <p className={style.text}>Срок выполнения заказа: {ingredient.fat}</p>
-        <p className={style.text}>Сложность: не сложно</p>
-        <p className={style.description}>
-          Детали выполнения заказа: <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, atque
-          itaque. Accusantium iusto perferendis nobis magnam ipsa earum
-          inventore impedit porro nostrum commodi Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Debitis quod eos placeat? Illum quod et
-          nobis cum laboriosam harum voluptates..
-        </p>
-      </article>
-      <button onClick={previous} className={style.button}>
-        <Image src={left} alt="стрелка влево" className={style.direction} />
-      </button>
+      <section className={style.container__left}>
+        <article>
+          <h2 className={style.title}>{ingredient.name}</h2>
+          <p className={style.price}>Цена: {ingredient.price}</p>
+          <p className={style.text}>Срок выполнения заказа: {ingredient.fat}</p>
+          <p className={style.text}>Сложность: не сложно</p>
+          <p className={style.description}>
+            Детали выполнения заказа: <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, atque
+            itaque. Accusantium iusto perferendis nobis magnam ipsa earum
+            inventore impedit porro nostrum commodi Lorem ipsum, dolor sit amet
+            consectetur adipisicing elit. Debitis quod eos placeat? Illum quod
+            et nobis cum laboriosam harum voluptates..
+          </p>
+        </article>
+      </section>
 
-      <SwiperComponent ingredient={ingredient} slideRef={slideRef} />
+      <section className={style.container__right}>
+        <button onClick={previous} className={style.button}>
+          <Image src={left} alt="стрелка влево" className={style.direction} />
+        </button>
 
-      <button onClick={next} className={style.button}>
-        <Image src={right} alt="стрелка вправо" className={style.direction} />
-      </button>
+        <SwiperComponent ingredient={ingredient} slideRef={slideRef} />
+
+        <button onClick={next} className={style.button}>
+          <Image src={right} alt="стрелка вправо" className={style.direction} />
+        </button>
+      </section>
     </>
   );
 };

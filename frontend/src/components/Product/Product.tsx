@@ -10,7 +10,7 @@ const ProductComponent: FC = () => {
     <>
       {data.map((item: Ingredient) => (
         <li className={style.list} key={item._id}>
-          <Link href={`/${item._id}`} className={style.link}>
+          <Link href={`/${item._id} `} className={style.link}>
             <Image
               src={Object.values(item.images)[0] as string}
               alt={item._id}

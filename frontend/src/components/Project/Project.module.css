@@ -3,7 +3,6 @@
   padding: 0 20px 0;
   max-width: 20%;
   width: 100%;
-
   margin: 0;
 }
 .title {
@@ -26,6 +25,11 @@
   padding-top: 80px;
   max-width: 300px;
   line-height: 24px;
+}
+.container__right {
+  display: flex;
+  width: 80%;
+  height: calc(100vh - 80px);
 }
 .button {
   height: calc(100vh - 80px);
