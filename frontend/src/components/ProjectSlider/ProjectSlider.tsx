@@ -51,13 +51,13 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
         thumbs={{
           swiper: thumbsSwiper,
         }}
-        modules={[FreeMode, Navigation, /*  Autoplay, */ Thumbs]}
+        modules={[FreeMode, Navigation, Autoplay, Thumbs]}
         className="mySwiper2"
-        /*   autoplay={{
+        autoplay={{
           delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
-        }} */
+        }}
       >
         {Object.keys(images).map((image: string, index: number) =>
           image === "pdf" ? (

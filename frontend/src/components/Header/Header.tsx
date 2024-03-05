@@ -27,12 +27,11 @@ const HeaderComponent: FC = () => {
           </div>
 
           <div className={styles.link__row}>
-            <span className={styles.trait}></span>
             <Link
               href="/"
               className={pathname === "/" ? styles.active_link : styles.link}
             >
-              Портфолио
+              <p>Библиотека проектов</p>
             </Link>
             <Link
               href="/price"
@@ -42,10 +41,8 @@ const HeaderComponent: FC = () => {
             >
               <p> Прайс</p>
             </Link>{" "}
-            <span className={styles.trait}></span>
             {Auth && (
               <>
-                <span className={styles.trait}></span>
                 <Link
                   href="/project-addition"
                   className={
@@ -58,6 +55,13 @@ const HeaderComponent: FC = () => {
                 </Link>
               </>
             )}
+            <span
+              className={
+                pathname === "/price" || pathname === "/project-addition"
+                  ? styles.trait
+                  : ""
+              }
+            ></span>
           </div>
         </div>
       </nav>

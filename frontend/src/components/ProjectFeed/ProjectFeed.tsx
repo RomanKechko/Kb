@@ -17,12 +17,12 @@ const ProjectFeedComponent: FC = () => {
       <Swiper
         slidesPerView={5}
         spaceBetween={30}
-        /*   modules={[Autoplay]}
+        modules={[Autoplay]}
         autoplay={{
           delay: 1500,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
-        }} */
+        }}
         className="mySwiper0"
       >
         {data.map((item: Ingredient, index: number) => (

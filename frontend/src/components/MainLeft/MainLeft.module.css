@@ -1,21 +1,44 @@
 .section {
   position: relative;
-  max-width: 20%;
+  max-width: 20.1%;
   width: 100%;
   height: calc(100vh - 80px);
   border-right: 3px solid rgb(0, 0, 0);
   margin: 0;
+  padding: 80px 20px 0;
 }
 .title {
   font-size: 30px;
   margin: 0;
-  padding: 40px 20px 0;
+  padding: 0 0 80px;
+}
+.link {
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  padding-top: 13px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #000;
+  background: linear-gradient(338deg, #324ad2, #9ceee0);
+  background-size: 200% 200%;
+
+  -webkit-animation: AnimationName 5s ease infinite;
+  -moz-animation: AnimationName 5s ease infinite;
+  animation: AnimationName 5s ease infinite;
 }
 .text {
   margin: 0;
-  padding: 40px 20px 0;
   line-height: 24px;
 }
+.text:first-of-type {
+  padding-top: 80px;
+}
+
 .contacts {
   position: absolute;
   bottom: 20px;
@@ -23,8 +46,21 @@
   margin: 0;
   padding: 0;
 }
-.button {
-  margin: 40px 20px 0;
-  cursor: pointer;
-  width: 250px;
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 90%;
+  }
+  50% {
+    background-position: 100% 11%;
+  }
+  100% {
+    background-position: 0% 90%;
+  }
+}
+@media (max-width: 1693px) {
+  .title {
+    font-size: 28px;
+    margin: 0;
+    padding: 0 0 80px;
+  }
 }
