@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "pdftron.s3.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "gifki.su",
+      },
     ],
   },
 };

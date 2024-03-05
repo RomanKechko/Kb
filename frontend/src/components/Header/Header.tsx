@@ -16,7 +16,14 @@ const HeaderComponent: FC = () => {
       <nav className={styles.nav}>
         <div className={styles.conteiner}>
           <div className={styles.title}>
-            <Image priority={true} src={image} alt="КБГлобал" width={306} height={71} className={styles.logo}/>
+            <Image
+              priority={true}
+              src={image}
+              alt="КБГлобал"
+              width={306}
+              height={71}
+              className={styles.logo}
+            />
           </div>
 
           <div className={styles.link__row}>
@@ -27,15 +34,15 @@ const HeaderComponent: FC = () => {
             >
               Портфолио
             </Link>
-            <span className={styles.trait}></span>
             <Link
               href="/price"
               className={
                 pathname === "/price" ? styles.active_link : styles.link
               }
             >
-              Прайс
-            </Link>
+              <p> Прайс</p>
+            </Link>{" "}
+            <span className={styles.trait}></span>
             {Auth && (
               <>
                 <span className={styles.trait}></span>

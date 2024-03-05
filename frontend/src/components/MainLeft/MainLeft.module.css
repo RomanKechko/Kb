@@ -23,3 +23,8 @@
   margin: 0;
   padding: 0;
 }
+.button {
+  margin: 40px 20px 0;
+  cursor: pointer;
+  width: 250px;
+}

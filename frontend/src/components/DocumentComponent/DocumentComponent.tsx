@@ -6,8 +6,8 @@ interface IDocumentComponent {
   image: string;
 }
 
-const DocumentComponent: FC<IDocumentComponent> = (props) => {
-  const { image } = props;
+const DocumentComponent: FC /* <IDocumentComponent> */ = (/* props */) => {
+  /*   const { image } = props; */
   const viewer = useRef<HTMLDivElement>(null);
   const pdf =
     "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf";
@@ -18,7 +18,7 @@ const DocumentComponent: FC<IDocumentComponent> = (props) => {
         WebViewer(
           {
             path: "/webviewer/lib",
-            initialDoc: `${image}`,
+            initialDoc: /* `${image}` */ "/doc/Word.docx",
           },
           viewer.current
         ).then((instance) => {

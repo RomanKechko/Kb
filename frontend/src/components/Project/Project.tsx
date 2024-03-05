@@ -83,29 +83,34 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
 
   return (
     <>
-      <article className={style.container__left}>
-        <h2 className={style.title}>{ingredient.name}</h2>
-        <p className={style.price}>Цена: {ingredient.price}</p>
-        <p className={style.text}>Срок выполнения заказа: {ingredient.fat}</p>
-        <p className={style.text}>Сложность: не сложно</p>
-        <p className={style.description}>
-          Детали выполнения заказа: <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, atque
-          itaque. Accusantium iusto perferendis nobis magnam ipsa earum
-          inventore impedit porro nostrum commodi Lorem ipsum, dolor sit amet
-          consectetur adipisicing elit. Debitis quod eos placeat? Illum quod et
-          nobis cum laboriosam harum voluptates..
-        </p>
-      </article>
-      <button onClick={previous} className={style.button}>
-        <Image src={left} alt="стрелка влево" className={style.direction} />
-      </button>
+      <section className={style.container__left}>
+        <article>
+          <h2 className={style.title}>{ingredient.name}</h2>
+          <p className={style.price}>Цена: {ingredient.price}</p>
+          <p className={style.text}>Срок выполнения заказа: {ingredient.fat}</p>
+          <p className={style.text}>Сложность: не сложно</p>
+          <p className={style.description}>
+            Детали выполнения заказа: <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, atque
+            itaque. Accusantium iusto perferendis nobis magnam ipsa earum
+            inventore impedit porro nostrum commodi Lorem ipsum, dolor sit amet
+            consectetur adipisicing elit. Debitis quod eos placeat? Illum quod
+            et nobis cum laboriosam harum voluptates..
+          </p>
+        </article>
+      </section>
 
-      <SwiperComponent ingredient={ingredient} slideRef={slideRef} />
+      <section className={style.container__right}>
+        <button onClick={previous} className={style.button}>
+          <Image src={left} alt="стрелка влево" className={style.direction} />
+        </button>
 
-      <button onClick={next} className={style.button}>
-        <Image src={right} alt="стрелка вправо" className={style.direction} />
-      </button>
+        <SwiperComponent ingredient={ingredient} slideRef={slideRef} />
+
+        <button onClick={next} className={style.button}>
+          <Image src={right} alt="стрелка вправо" className={style.direction} />
+        </button>
+      </section>
     </>
   );
 };

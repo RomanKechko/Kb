@@ -38,7 +38,7 @@
   text-decoration: none;
 
   border-left: 3px solid rgb(216, 220, 223);
-  transform: skewX(-10deg) translateX(12px);
+  transform: skewX(-9deg) translateX(10px);
   transform-origin: 0 0;
 }
 .active_link {
@@ -52,8 +52,13 @@
   color: rgb(216, 220, 223);
   border-left: 3px solid rgb(216, 220, 223);
 
-  transform: skewX(-10deg) translateX(12px);
+  transform: skewX(-9deg) translateX(10px);
   transform-origin: 0 0;
+}
+.active_link::after {
+  content: "";
+  width: 10px;
+  background-color: rgb(218, 49, 49);
 }
 .link:hover {
   background-color: rgb(128, 128, 128);

@@ -53,7 +53,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
         }}
         modules={[FreeMode, Navigation, /*  Autoplay, */ Thumbs]}
         className="mySwiper2"
-        /*     autoplay={{
+        /*   autoplay={{
           delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
@@ -67,6 +67,18 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                   src={images[image as keyof typeof images]!}
                   className="swiper_iframe"
                 ></iframe>
+              </Link>
+            </SwiperSlide>
+          ) : image === "gif" ? (
+            <SwiperSlide key={index}>
+              <Link href={`/${project}/${image}`} className="link">
+                <Image
+                  src={images[image as keyof typeof images]!}
+                  alt={image}
+                  width={400}
+                  height={400}
+                  style={{ width: "100%", height: "auto" }}
+                />
               </Link>
             </SwiperSlide>
           ) : image === "video" ? (
@@ -85,7 +97,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 <Image
                   src={images[image as keyof typeof images]!}
                   alt={image}
-                  style={{ width: "100%", height: "auto" }}
+                  className="slider-image"
                   width={400}
                   height={400}
                 />
@@ -102,7 +114,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
+        className="mySwiper1"
       >
         <>
           {Object.keys(images).map((image: string, index: number) =>
@@ -117,9 +129,25 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 <Image
                   src={pdf}
                   alt={image}
-                  style={{ width: "50%", height: "auto" }}
                   width={400}
                   height={400}
+                  style={{ width: "43%", height: "auto" }}
+                />
+              </SwiperSlide>
+            ) : image === "gif" ? (
+              <SwiperSlide
+                key={index}
+                onMouseEnter={() =>
+                  slideRef.current && slideRef.current.swiper.slideTo(index)
+                }
+                className="swiperrrr"
+              >
+                <Image
+                  src={images[image as keyof typeof images]!}
+                  alt={image}
+                  width={400}
+                  height={400}
+                  style={{ width: "100%", height: "auto" }}
                 />
               </SwiperSlide>
             ) : image === "video" ? (
@@ -130,13 +158,13 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 }
                 className="swiperrrr"
               >
-                <Image
-                  src={videoBadge}
-                  alt={image}
-                  style={{ width: "50%", height: "auto" }}
-                  width={400}
-                  height={400}
-                />
+                <iframe
+                  src={images[image as keyof typeof images]!}
+                  allow="fullscreen"
+                  className="swiper_iframe"
+                  width="480"
+                  height="480"
+                ></iframe>
               </SwiperSlide>
             ) : (
               <SwiperSlide
@@ -149,7 +177,6 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 <Image
                   src={images[image as keyof typeof images]!}
                   alt={image}
-                  style={{ width: "100%", height: "100%" }}
                   width={400}
                   height={400}
                 />

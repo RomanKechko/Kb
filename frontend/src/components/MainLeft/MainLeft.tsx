@@ -5,23 +5,13 @@ const MainLeftComponent: FC = () => {
   return (
     <>
       <section className={style.section}>
-        <h1 className={style.title}>Разработка конструторской документации </h1>
+        <h1 className={style.title}>Выполняем работы по ТЗ</h1>
+        <button className={style.button}>Скачать бланк договора</button>
         <p className={style.text}>
-          Занимаемся разработкой уже 5 лет <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates,
-          officia recusandae ex deleniti excepturi quidem vero eligendi
-          laboriosam laborum adipisci libero accusantium corporis voluptas
-          praesentium, ducimus explicabo necessitatibus assumenda fugit illo
-          quam cumque dicta voluptate, modi voluptatem. Labore, maiores nam?
-        </p>
-        <p className={style.text}>
-          В среднем срок выполнения 3 недели <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ad!
-          Commodi, recusandae quam, ea qui ab quasi eum explicabo eius
-          voluptatum itaque, harum provident distinctio consequatur.
-        </p>
-        <p className={style.contacts}>
-          Контакты: <span>89133242322</span>
+          В нашем коллективе работают 2 Главных Конструктора и 2 Ведущих
+          Конструктора. Основная специализация всех сотрудников – это
+          машиностроение и металлоконструкции. С выполненными за последние годы
+          проектами можно ознакомиться в Библиотеке проектов.
         </p>
       </section>
     </>

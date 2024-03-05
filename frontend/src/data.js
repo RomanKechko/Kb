@@ -43,7 +43,6 @@ export const data = [
     images: {
       image: "https://code.s3.yandex.net/react/code/meat-01.png",
       image_mobile: "https://code.s3.yandex.net/react/code/meat-01-mobile.png",
-      image_large: "https://code.s3.yandex.net/react/code/meat-01-large.png",
       video: "https://www.youtube.com/embed/vjVkXlxsO8Q?si=fOLlY2GPg8hsrAb2",
     },
     __v: 0,
@@ -62,6 +61,7 @@ export const data = [
       image_mobile: "https://code.s3.yandex.net/react/code/sauce-02-mobile.png",
       video: "https://www.youtube.com/embed/4qlCC1GOwFw?si=2KVdcoAJeE9g0q8t",
       pdf: "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf",
+      gif: "https://gifki.su/Uploads/Media/Feb20/Wed19/517/5076d85d.gif",
     },
     __v: 0,
   },

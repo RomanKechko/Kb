@@ -5,9 +5,9 @@ import ProjectComponent from "@/components/Project/Project";
 const ProjectPage: FC = () => {
   return (
     <>
-      <section className={style.container}>
+      <main className={style.container}>
         <ProjectComponent />
-      </section>
+      </main>
     </>
   );
 };
