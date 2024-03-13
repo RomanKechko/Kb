@@ -14,7 +14,7 @@ const HeaderComponent: FC = () => {
   return (
     <header>
       <nav className={styles.nav}>
-        <div className={styles.conteiner}>
+        <div className={styles.container}>
           <div className={styles.title}>
             <Image
               priority={true}

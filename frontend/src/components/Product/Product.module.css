@@ -2,6 +2,7 @@
   list-style-type: none;
   transition: all 0.5s ease;
   width: 100%;
+  position: relative;
 }
 .link {
   text-decoration: none;
@@ -18,8 +19,9 @@
 }
 .list:hover {
   background-color: rgba(0, 0, 0, 0.2);
-  transform: scale(1.199);
+  transform: scale(1.195);
 }
+
 @media (max-width: 1680px) {
   .list:hover {
     transform: scale(1.16);

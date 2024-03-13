@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <>
-      <div className={style.conteiner}>
+      <div className={style.container}>
         <form onSubmit={handleSubmit} className={style.from}>
           <label className={style.label}>
             Логин: <br />{" "}

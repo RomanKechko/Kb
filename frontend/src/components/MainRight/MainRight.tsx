@@ -4,7 +4,7 @@ import ProductComponent from "../Product/Product";
 
 const MainRightComponent: FC = () => {
   return (
-    <section className={style.conteiner}>
+    <section className={style.container}>
       <ul className={style.lists}>
         <ProductComponent />
       </ul>
