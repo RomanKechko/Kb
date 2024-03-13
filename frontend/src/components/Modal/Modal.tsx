@@ -83,11 +83,13 @@ const ModalComponent: FC = () => {
           ) : modalId === "gif" ? (
             <Image
               src={src!}
+
               alt={modalId}
               className={style.modal__image}
               width={800}
               height={800}
             />
+
           ) : modalId === "video" ? (
             <iframe
               src={src!}
