@@ -7,7 +7,7 @@
   box-sizing: border-box;
   overflow: hidden;
 }
-.conteiner {
+.container {
   width: 100%;
   display: flex;
   position: relative;
