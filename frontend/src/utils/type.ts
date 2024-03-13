@@ -18,24 +18,21 @@ export type Ingredient = {
   __v: number;
   images: Images;
 };
-interface RefreshTokenPayload {
-  token: string | null;
-}
-export interface IOptions {
-  method: string;
-  mode?: string;
-  credentials?: string;
-  headers?:
-    | {
-        [name: string]: string;
-      }
-    | {
-        Authorization: string | null;
-        "Content-Type": "application/json;charset=utf-8";
-      }
-    | {
-        Authorization: string | null;
-      };
 
-  body?: string | RefreshTokenPayload;
-}
+export type TProjectData = {
+  name: string;
+  price: string;
+  deadline: string;
+  complexity: string;
+  description: string;
+  images: Timages;
+};
+export type Timages = {
+  image_1?: object;
+  image_2?: object;
+  image_3?: object;
+  video?: object;
+  pdf?: object;
+  gif?: object;
+  word?: object;
+};

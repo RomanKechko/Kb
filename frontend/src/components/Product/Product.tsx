@@ -4,6 +4,8 @@ import { data } from "@/data.js";
 import { Ingredient } from "@/utils/type";
 import Link from "next/link";
 import Image from "next/image";
+import { useAppSelector } from "@/services/hooks";
+import UrnComponent from "../Urn/Urn";
 
 const ProductComponent: FC = () => {
   return (
@@ -20,6 +22,7 @@ const ProductComponent: FC = () => {
             />
             <p className={style.description}>{item.name}</p>
           </Link>
+          <UrnComponent />
         </li>
       ))}
     </>

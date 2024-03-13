@@ -1,49 +1,100 @@
-.conteiner {
-  width: 700px;
-  height: 70%;
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 30px;
-  margin: 100px auto 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+.container {
+  width: 100%;
+  gap: 50px;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
 }
-.form {
+.title {
+  padding: 50px 0 100px;
+  text-align: center;
+}
+
+.container_form {
+  width: 1600px;
   display: flex;
-  flex-direction: row;
+  margin: 0 auto;
+  justify-content: space-between;
 }
 .labels {
   display: flex;
   flex-direction: column;
+  gap: 28px;
+  padding: 0 20px 0 100px;
+}
+.label {
+  font-size: 22px;
+  cursor: pointer;
 }
 .inputs {
   display: flex;
   flex-direction: column;
+  padding-left: 10px;
 }
-.button {
-  background-color: rgb(138, 149, 173);
-  border: 2px solid black;
-  height: 40px;
+.input {
+  height: 32px;
+  width: 320px;
+  resize: none;
+  font-size: 16px;
+  margin-bottom: 22px;
+  outline: none;
   cursor: pointer;
 }
+.input:focus,
+.textarea:focus {
+  border: 2px solid rgb(55, 61, 61);
+  cursor: auto;
+}
+
+.input_file {
+  margin-bottom: 28px;
+  font-size: 17px;
+  cursor: pointer;
+}
+.textarea {
+  height: 190px;
+  font-size: 16px;
+  width: 320px;
+  resize: none;
+  margin-bottom: 20px;
+  outline: none;
+  cursor: pointer;
+}
+.button {
+  width: 400px;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgb(138, 149, 173);
+  border: 2px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  bottom: -20%;
+  transform: translate(-50%);
+}
+
 .button_exit {
   width: 200px;
   height: 80px;
   font-size: 20px;
-  background-color: rgb(160, 174, 205);
+  background-color: rgb(138, 149, 173);
   border: 2px solid black;
   cursor: pointer;
   border-radius: 8px;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
 }
+
+.button:hover,
 .button_exit:hover {
   background-color: rgba(0, 0, 0, 0.4);
-}
-.office {
-  position: absolute;
-  top: 45%;
-  left: 36%;
-  font-size: 72px;
-  color: red;
-  transform: rotate(-15deg);
+  color: rgb(255, 255, 255);
+  box-shadow: 7px 5px 5px rgb(0, 0, 0);
 }
