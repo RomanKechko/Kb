@@ -1,0 +1,33 @@
+.button {
+    width: 400px;
+    height: 40px;
+    font-size: 20px;
+    background-color: rgb(138, 149, 173);
+    border: 2px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    bottom: -20%;
+    transform: translate(-50%);
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgb(255, 255, 255);
+    box-shadow: 7px 5px 5px rgb(0, 0, 0);
+}
+
+.container_form {
+    width: 1600px;
+    max-width: 90%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.form__inputs {
+    list-style: none;
+    counter-reset: list-number;
+}

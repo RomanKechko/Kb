@@ -1,0 +1,31 @@
+.form__inputs {
+    list-style: none;
+    counter-reset: list-number;
+    width: 40%;
+}
+
+.form__item {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.form_label {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.form_label:before {
+    counter-increment: list-number;
+    content: counter(list-number)'. ';
+}
+
+.form__input {
+    height: 32px;
+    width: 320px;
+    resize: none;
+    font-size: 16px;
+    margin-bottom: 22px;
+    outline: none;
+    cursor: pointer;
+}

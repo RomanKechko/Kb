@@ -1,0 +1,30 @@
+.form__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    gap: 50px;
+    overflow: hidden;
+}
+
+.form_label {
+    font-size: 22px;
+    cursor: pointer;
+    min-width: 0;
+}
+
+.form_label:not(.stopCount):before {
+    counter-increment: list-number;
+    content: counter(list-number)'. ';
+}
+
+.stopCount:before {
+    content: counter(list-number)'. ';
+}
+
+.form__input {
+    margin-bottom: 28px;
+    font-size: 17px;
+    cursor: pointer;
+    justify-self: start;
+    width: 100%;
+}

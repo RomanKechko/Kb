@@ -1,5 +1,5 @@
 import checkResponse, { url } from "@/utils/chek-response";
-import { IOptions } from "@/utils/type";
+import { IOptions } from "@/utils/interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface IListState {
@@ -78,7 +78,8 @@ export const authUserRequest = createAsyncThunk(
 );
 export const logoutUserRequest = createAsyncThunk(
   `user/logoutUserRequest `,
-  async (_, { fulfillWithValue }) => {
+  async (_, { fulfillWithValue, dispatch }) => {
+    dispatch(startAuthCheck())
     const data = await fetch(`${url}/logout`, {
       method: "POST",
       mode: "cors",
@@ -94,7 +95,11 @@ export const logoutUserRequest = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    startAuthCheck: (state) => {
+      state.isAuthCheck = false;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(currentUserRequest.fulfilled, (state) => {
@@ -127,5 +132,7 @@ export const userSlice = createSlice({
       );
   },
 });
-export const {} = userSlice.actions;
+export const {
+  startAuthCheck
+} = userSlice.actions;
 export default userSlice.reducer;
