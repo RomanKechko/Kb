@@ -1,5 +1,5 @@
-import style from "./FormFileInput.module.css";
-import React from "react";
+import style from './FormFileInput.module.css'
+import React, { FC } from 'react'
 
 interface IFormFileInputProps {
   title: string;
@@ -10,19 +10,19 @@ interface IFormFileInputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export default function FormFileInput({
+const FormFileInput: FC<IFormFileInputProps> = ({
   title,
   id,
   name,
   accept,
   stopCount,
   onChange,
-}: IFormFileInputProps) {
+}) => {
   return (
     <li className={style.form__item}>
       <label
         htmlFor={id}
-        className={`${style.form_label} ${stopCount ? style.stopCount : ""}`}
+        className={`${style.form_label} ${stopCount ? style.stopCount : ''}`}
       >
         {title}:
       </label>
@@ -35,5 +35,7 @@ export default function FormFileInput({
         className={style.form__input}
       />
     </li>
-  );
+  )
 }
+
+export default FormFileInput

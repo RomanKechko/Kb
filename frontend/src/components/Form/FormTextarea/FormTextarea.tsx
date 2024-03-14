@@ -1,5 +1,5 @@
 import style from './FormTextarea.module.css'
-import React from 'react'
+import React, { FC } from 'react'
 
 interface IFormTextareaProps {
   title: string
@@ -9,13 +9,13 @@ interface IFormTextareaProps {
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>
 }
 
-export default function FormTextarea ({
+const FormTextarea: FC<IFormTextareaProps> = ({
   title,
   id,
   name,
   value,
   onChange
-}: IFormTextareaProps) {
+}) => {
   return (
     <li className={style.form__item}>
       <label htmlFor={id} className={style.form_label}>
@@ -33,3 +33,5 @@ export default function FormTextarea ({
     </li>
   )
 }
+
+export default FormTextarea

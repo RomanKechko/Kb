@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import FormInput from '@/components/Form/FormInput/FormInput'
 import FormTextarea from '@/components/Form/FormTextarea/FormTextarea'
 import { TProjectData } from '@/utils/type'
@@ -8,10 +8,10 @@ interface IFormFileInputProps {
   dataEntry: React.ChangeEventHandler
 }
 
-export default function FormTextInputs ({
+const FormTextInputs: FC<IFormFileInputProps> = ({
   dataEntry,
   projectData
-}: IFormFileInputProps) {
+}) => {
   return (
     <>
       <FormInput
@@ -52,3 +52,5 @@ export default function FormTextInputs ({
     </>
   )
 }
+
+export default FormTextInputs

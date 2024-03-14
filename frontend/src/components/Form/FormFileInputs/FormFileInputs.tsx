@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
 import FormFileInput from '@/components/Form/FormFileInput/FormFileInput'
 
 interface IFormFileInputProps {
   handleFileInput: (key: string)=> (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function FormFileInputs ({
+const FormFileInputs: FC<IFormFileInputProps> = ({
   handleFileInput,
-}: IFormFileInputProps) {
+}) => {
   return (
     <>
       <FormFileInput
@@ -51,7 +51,6 @@ export default function FormFileInputs ({
         name={'gif-image'}
         accept={'image/*'}
         onChange={handleFileInput('gif-image')}
-        stopCount={true}
       />
       <FormFileInput
         title={'Добавить pdf'}
@@ -70,3 +69,5 @@ export default function FormFileInputs ({
     </>
   )
 }
+
+export default FormFileInputs;

@@ -1,10 +1,14 @@
 import style from './Form.module.css'
-import React, { useState } from 'react'
+import React, { FC, useRef, useState } from 'react'
 import { TProjectData } from '@/utils/type'
 import FormTextInputs from '@/components/Form/FormTextInputs/FormTextInputs'
 import FormFileInputs from '@/components/Form/FormFileInputs/FormFileInputs'
+import { useAppDispatch } from '@/services/hooks'
+import { setProject } from '@/services/projectManagement/projectManagement'
 
-export default function Form () {
+const Form: FC = () => {
+  const dispatch = useAppDispatch();
+  const formRef = useRef<HTMLFormElement>(null);
   const [projectData, setProjectData] = useState<TProjectData>({
     name: '',
     price: '',
@@ -36,7 +40,9 @@ export default function Form () {
       console.log('Отсутствует gif или картинка для gif')
       return
     }
-    console.log(projectData)
+    if (formRef.current) {
+      dispatch(setProject(formRef.current))
+    }
   }
 
   function dataEntry (
@@ -62,7 +68,7 @@ export default function Form () {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
+    <form onSubmit={handleSubmit} className={style.form} ref={formRef}>
       <div className={style.container_form}>
         <ul className={style.form__inputs}>
           <FormTextInputs projectData={projectData} dataEntry={dataEntry}/>
@@ -82,3 +88,5 @@ export default function Form () {
     </form>
   )
 }
+
+export default Form
