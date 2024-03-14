@@ -1,20 +1,20 @@
-import style from './FormInput.module.css'
-import React from 'react'
+import style from "./FormInput.module.css";
+import React from "react";
 
 interface IFormInputProps {
-  title: string
-  id: string
-  name: string
-  value: string
-  onChange: React.ChangeEventHandler<HTMLInputElement>
+  title: string;
+  id: string;
+  name: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export default function FormInput ({
+export default function FormInput({
   title,
   id,
   name,
   value,
-  onChange
+  onChange,
 }: IFormInputProps) {
   return (
     <li className={style.form__item}>
@@ -31,5 +31,5 @@ export default function FormInput ({
         required={true}
       />
     </li>
-  )
+  );
 }
