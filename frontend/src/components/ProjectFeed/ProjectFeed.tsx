@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 const ProjectFeedComponent: FC = () => {
   const pathname = usePathname();
   return (
-    <div className="conteiner_top">
+    <div className="container_top">
       <Swiper slidesPerView={5} spaceBetween={30} className="mySwiper0">
         {data.map((item: Ingredient, index: number) => (
           <SwiperSlide key={index} className="div-swipper">
