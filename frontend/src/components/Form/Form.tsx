@@ -1,23 +1,27 @@
-import style from './Form.module.css'
-import React, { useState } from 'react'
-import { TProjectData } from '@/utils/type'
-import FormTextInputs from '@/components/Form/FormTextInputs/FormTextInputs'
-import FormFileInputs from '@/components/Form/FormFileInputs/FormFileInputs'
+import style from "./Form.module.css";
+import React, { FC, useState } from "react";
+import { TProjectData } from "@/utils/type";
+import FormTextInputs from "@/components/Form/FormTextInputs/FormTextInputs";
+import FormFileInputs from "@/components/Form/FormFileInputs/FormFileInputs";
+import Buttons from "./Buttons/Buttons";
 
-export default function Form () {
+interface IForm {
+  logout: () => void;
+}
+const Form: FC<IForm> = ({ logout }) => {
   const [projectData, setProjectData] = useState<TProjectData>({
-    name: '',
-    price: '',
-    deadline: '',
-    complexity: '',
-    description: '',
+    name: "",
+    price: "",
+    deadline: "",
+    complexity: "",
+    description: "",
     images: {},
-  })
+  });
 
-  function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     const { name, price, deadline, complexity, description, images } =
-      projectData
+      projectData;
     if (
       !name ||
       !price ||
@@ -26,59 +30,62 @@ export default function Form () {
       !description ||
       !images
     ) {
-      return
+      return;
     }
     if (Object.values(images).length === 0) {
-      console.log('Необходимо загрузить хотябы один файл')
-      return
+      console.log("Необходимо загрузить хотябы один файл");
+      return;
     }
-    if (Object.keys(images).includes('gif-image') !== Object.keys(images).includes('gif')) {
-      console.log('Отсутствует gif или картинка для gif')
-      return
+    if (
+      Object.keys(images).includes("gif-image") !==
+      Object.keys(images).includes("gif")
+    ) {
+      console.log("Отсутствует gif или картинка для gif");
+      return;
     }
-    console.log(projectData)
+    console.log(projectData);
   }
 
-  function dataEntry (
+  function dataEntry(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    const { name, value } = e.currentTarget
+    const { name, value } = e.currentTarget;
     setProjectData({
       ...projectData,
       [name]: value,
-    })
+    });
   }
 
-  function handleFileInput (key: string) {
+  function handleFileInput(key: string) {
     return function (e: React.ChangeEvent<HTMLInputElement>) {
-      const file = e.target.files?.[0]
+      const file = e.target.files?.[0];
       if (file) {
         setProjectData((prevState) => ({
           ...prevState,
           images: { ...prevState.images, [key]: file },
-        }))
+        }));
       }
-    }
+    };
   }
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <div className={style.container_form}>
         <ul className={style.form__inputs}>
-          <FormTextInputs projectData={projectData} dataEntry={dataEntry}/>
+          <FormTextInputs projectData={projectData} dataEntry={dataEntry} />
         </ul>
         <ul
           className={style.form__inputs}
           style={{
-            counterReset: `list-number 5`
+            counterReset: `list-number 5`,
           }}
         >
-          <FormFileInputs handleFileInput={handleFileInput}/>
+          <FormFileInputs handleFileInput={handleFileInput} />
         </ul>
       </div>
-      <button type="submit" className={style.button}>
-        Отправить данные
-      </button>
+      <Buttons logout={logout} />
     </form>
-  )
-}
+  );
+};
+
+export default Form;

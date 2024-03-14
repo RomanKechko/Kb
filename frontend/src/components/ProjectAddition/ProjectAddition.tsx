@@ -20,11 +20,8 @@ const ProjectAddition: FC = () => {
     <>
       <div className={style.container}>
         <h1 className={style.title}>Внести новый проект</h1>
-        <Form />
+        <Form logout={logout} />
       </div>
-      <button type="button" onClick={logout} className={style.button_exit}>
-        ВЫЙТИ ИЗ КАБИНЕТА
-      </button>
     </>
   );
 };

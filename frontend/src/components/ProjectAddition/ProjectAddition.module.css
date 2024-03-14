@@ -15,22 +15,3 @@
   padding: 50px 0 100px;
   text-align: center;
 }
-
-.button_exit {
-  width: 200px;
-  height: 80px;
-  font-size: 20px;
-  background-color: rgb(138, 149, 173);
-  border: 2px solid black;
-  cursor: pointer;
-  border-radius: 8px;
-  position: absolute;
-  right: 50px;
-  bottom: 50px;
-}
-
-.button_exit:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-  color: rgb(255, 255, 255);
-  box-shadow: 7px 5px 5px rgb(0, 0, 0);
-}

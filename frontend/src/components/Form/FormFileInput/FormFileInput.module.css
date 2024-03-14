@@ -17,10 +17,6 @@
   content: counter(list-number) ". ";
 }
 
-.stopCount:before {
-  content: counter(list-number) ". ";
-}
-
 .form__input {
   margin-bottom: 28px;
   font-size: 17px;

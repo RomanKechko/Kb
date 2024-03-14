@@ -6,7 +6,6 @@ interface IFormFileInputProps {
   id: string;
   name: string;
   accept: string;
-  stopCount?: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -15,15 +14,11 @@ export default function FormFileInput({
   id,
   name,
   accept,
-  stopCount,
   onChange,
 }: IFormFileInputProps) {
   return (
     <li className={style.form__item}>
-      <label
-        htmlFor={id}
-        className={`${style.form_label} ${stopCount ? style.stopCount : ""}`}
-      >
+      <label htmlFor={id} className={`${style.form_label}`}>
         {title}:
       </label>
       <input
