@@ -1,5 +1,5 @@
 import checkResponse, { url } from "@/utils/chek-response";
-import { IOptions } from "@/utils/type";
+import { IOptions } from "@/utils/interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface IListState {

@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useState } from "react";
 import style from "./ProjectAddition.module.css";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/services/hooks";

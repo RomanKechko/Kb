@@ -14,17 +14,7 @@ const ProjectFeedComponent: FC = () => {
   const pathname = usePathname();
   return (
     <div className="container_top">
-      <Swiper
-        slidesPerView={5}
-        spaceBetween={30}
-        modules={[Autoplay]}
-        autoplay={{
-          delay: 1500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        className="mySwiper0"
-      >
+      <Swiper slidesPerView={5} spaceBetween={30} className="mySwiper0">
         {data.map((item: Ingredient, index: number) => (
           <SwiperSlide key={index} className="div-swipper">
             <Link

@@ -29,7 +29,7 @@ const Auth: FC<IAuthProps> = ({
       <h2
         style={{
           width: "100%",
-          height: "100%",
+          height: "100% - 80px",
           alignItems: "center",
           justifyContent: "center",
           display: "flex",
