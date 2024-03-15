@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import FormFileInput from "@/components/Form/FormFileInput/FormFileInput";
 
 interface IFormFileInputProps {
@@ -7,9 +7,7 @@ interface IFormFileInputProps {
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function FormFileInputs({
-  handleFileInput,
-}: IFormFileInputProps) {
+const FormFileInputs: FC<IFormFileInputProps> = ({ handleFileInput }) => {
   return (
     <>
       <FormFileInput
@@ -70,4 +68,6 @@ export default function FormFileInputs({
       />
     </>
   );
-}
+};
+
+export default FormFileInputs;
