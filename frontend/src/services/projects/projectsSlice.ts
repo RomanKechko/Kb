@@ -1,10 +1,10 @@
 import checkResponse from "@/utils/chek-response";
-import { IProject, IdataProject } from "@/utils/interface";
+import { IdataProject } from "@/utils/interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { url } from "../../utils/chek-response";
+import { url } from '@/utils/chek-response';
 
 interface IListState {
-  dataProjects: IdataProject | null;
+  dataProjects: IdataProject[] | null;
   isDataCheck: boolean;
   downloadError: boolean;
 }
@@ -15,12 +15,21 @@ const initialState: IListState = {
 };
 
 export const getProjects = createAsyncThunk(
-  "rojects/getProjects",
+  "projects/getProjects",
   async (_, { fulfillWithValue }) => {
-    const res = await fetch(`${url}
-      `);
-    const responseData = (await checkResponse(res)) as IdataProject;
-    return fulfillWithValue(responseData);
+    const res = await fetch(`${url}/get_projects`, {
+      method: "GET",
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    });
+
+    const data: IdataProject[] = await checkResponse(res)
+    console.log(data)
+    return fulfillWithValue(data);
   }
 );
 

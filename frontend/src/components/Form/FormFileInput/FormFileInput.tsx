@@ -1,6 +1,6 @@
 import { TProjectData } from "@/utils/type";
 import style from "./FormFileInput.module.css";
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 interface IFormFileInputProps {
   title: string;
@@ -10,13 +10,13 @@ interface IFormFileInputProps {
   setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>;
 }
 
-export default function FormFileInput({
+const FormFileInput: FC<IFormFileInputProps> = ({
   title,
   name,
   accept,
   id,
   setProjectData,
-}: IFormFileInputProps) {
+}: IFormFileInputProps) => {
   const [dragActive, setDragActive] = useState(false);
   const [formatError, setFormatError] = useState(false);
   const [typeFile, setTypeFile] = useState("");
@@ -140,4 +140,6 @@ export default function FormFileInput({
       </label>
     </li>
   );
-}
+};
+
+export default FormFileInput;

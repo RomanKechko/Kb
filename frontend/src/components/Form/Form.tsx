@@ -1,14 +1,19 @@
 import style from "./Form.module.css";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { TProjectData } from "@/utils/type";
 import FormTextInputs from "@/components/Form/FormTextInputs/FormTextInputs";
 import FormFileInputs from "@/components/Form/FormFileInputs/FormFileInputs";
+import { useAppDispatch } from "@/services/hooks";
+import { setProject } from "@/services/projectManagement/projectManagement";
 import Buttons from "./Buttons/Buttons";
 
-interface IForm {
+interface IFromProps {
   logout: () => void;
 }
-const Form: FC<IForm> = ({ logout }) => {
+
+const Form: FC<IFromProps> = ({ logout }) => {
+  const dispatch = useAppDispatch();
+  const formRef = useRef<HTMLFormElement>(null);
   const [projectData, setProjectData] = useState<TProjectData>({
     name: "",
     price: "",
@@ -19,7 +24,7 @@ const Form: FC<IForm> = ({ logout }) => {
   });
   const [missingGif, setMissingGif] = useState(false);
   const [missingFile, setMissingFile] = useState(false);
-
+  console.log(projectData);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { name, price, deadline, complexity, description, images } =
@@ -45,18 +50,10 @@ const Form: FC<IForm> = ({ logout }) => {
       setMissingGif(true);
       return;
     }
-    console.log(123);
+    if (formRef.current) {
+      dispatch(setProject(formRef.current));
+    }
   }
-  useEffect(() => {
-    let timerId: ReturnType<typeof setTimeout>;
-    if (missingGif) {
-      timerId = setTimeout(() => setMissingGif(false), 2000);
-    }
-    if (missingFile) {
-      timerId = setTimeout(() => setMissingFile(false), 2000);
-    }
-    return () => clearTimeout(timerId);
-  }, [missingGif, missingFile]);
 
   function dataEntry(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -68,8 +65,19 @@ const Form: FC<IForm> = ({ logout }) => {
     });
   }
 
+  useEffect(() => {
+    let timerId: ReturnType<typeof setTimeout>;
+    if (missingGif) {
+      timerId = setTimeout(() => setMissingGif(false), 2000);
+    }
+    if (missingFile) {
+      timerId = setTimeout(() => setMissingFile(false), 2000);
+    }
+    return () => clearTimeout(timerId);
+  }, [missingGif, missingFile]);
+
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
+    <form onSubmit={handleSubmit} className={style.form} ref={formRef}>
       <div className={style.container_form}>
         <ul className={style.form__inputs}>
           <FormTextInputs projectData={projectData} dataEntry={dataEntry} />

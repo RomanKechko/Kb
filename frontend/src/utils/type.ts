@@ -27,13 +27,14 @@ export type TProjectData = {
   description: string;
   images: Timages;
 };
+
 export type Timages = {
-  image_1?: object;
-  image_2?: object;
-  image_3?: object;
-  video?: object;
-  pdf?: object;
-  gif?: object;
-  'gif-image'?: object
-  word?: object;
+  image_1?: File;
+  image_2?: File;
+  image_3?: File;
+  video?: File;
+  pdf?: File;
+  gif?: File;
+  'gif-image'?: File
+  word?: File;
 };

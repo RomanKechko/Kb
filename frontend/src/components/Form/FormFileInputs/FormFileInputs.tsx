@@ -1,14 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import FormFileInput from "@/components/Form/FormFileInput/FormFileInput";
 import { TProjectData } from "@/utils/type";
 
 interface IFormFileInputProps {
   setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>;
 }
-
-export default function FormFileInputs({
-  setProjectData,
-}: IFormFileInputProps) {
+const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
   return (
     <>
       <FormFileInput
@@ -57,7 +54,7 @@ export default function FormFileInputs({
         title={"Добавить pdf"}
         id={"pdf"}
         name={"pdf"}
-        accept={".pdf"}
+        accept={".jpeg, .pdf"}
         setProjectData={setProjectData}
       />
       <FormFileInput
@@ -69,4 +66,5 @@ export default function FormFileInputs({
       />
     </>
   );
-}
+};
+export default FormFileInputs;
