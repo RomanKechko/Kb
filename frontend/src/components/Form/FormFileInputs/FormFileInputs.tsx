@@ -12,7 +12,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         title={"Добавить видео"}
         id={"video"}
         name={"video"}
-        accept={".mp4, avi"}
+        accept={".mp4, .avi"}
         setProjectData={setProjectData}
       />
       <FormFileInput
