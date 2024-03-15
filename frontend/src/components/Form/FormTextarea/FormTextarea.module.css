@@ -1,30 +1,32 @@
 .form__inputs {
-    list-style: none;
-    counter-reset: list-number;
-    width: 40%;
+  list-style: none;
+  counter-reset: list-number;
+  width: 40%;
 }
 
 .form__item {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .form_label {
-    font-size: 22px;
-    cursor: pointer;
+  height: 62px;
+  padding-top: 15px;
+  font-size: 22px;
+  cursor: pointer;
 }
 
 .form_label:before {
-    counter-increment: list-number;
-    content: counter(list-number)'. ';
+  counter-increment: list-number;
+  content: counter(list-number) ". ";
 }
 
 .form__input {
-    height: 190px;
-    font-size: 16px;
-    width: 320px;
-    resize: none;
-    margin-bottom: 20px;
-    outline: none;
-    cursor: pointer;
+  margin-top: 15px;
+  height: 215px;
+  font-size: 18px;
+  width: 320px;
+  resize: none;
+  outline: none;
+  cursor: pointer;
 }

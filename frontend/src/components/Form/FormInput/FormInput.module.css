@@ -11,6 +11,8 @@
 }
 
 .form_label {
+  height: 62px;
+  padding-top: 15px;
   font-size: 22px;
   cursor: pointer;
 }
@@ -22,10 +24,10 @@
 
 .form__input {
   height: 32px;
+  margin-top: 15px;
   width: 320px;
   resize: none;
   font-size: 16px;
-  margin-bottom: 22px;
   outline: none;
   cursor: pointer;
 }

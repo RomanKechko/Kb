@@ -1,5 +1,5 @@
 import style from "./Form.module.css";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { TProjectData } from "@/utils/type";
 import FormTextInputs from "@/components/Form/FormTextInputs/FormTextInputs";
 import FormFileInputs from "@/components/Form/FormFileInputs/FormFileInputs";
@@ -17,6 +17,8 @@ const Form: FC<IForm> = ({ logout }) => {
     description: "",
     images: {},
   });
+  const [missingGif, setMissingGif] = useState(false);
+  const [missingFile, setMissingFile] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,18 +35,28 @@ const Form: FC<IForm> = ({ logout }) => {
       return;
     }
     if (Object.values(images).length === 0) {
-      console.log("Необходимо загрузить хотябы один файл");
+      setMissingFile(true);
       return;
     }
     if (
       Object.keys(images).includes("gif-image") !==
       Object.keys(images).includes("gif")
     ) {
-      console.log("Отсутствует gif или картинка для gif");
+      setMissingGif(true);
       return;
     }
-    console.log(projectData);
+    console.log(123);
   }
+  useEffect(() => {
+    let timerId: ReturnType<typeof setTimeout>;
+    if (missingGif) {
+      timerId = setTimeout(() => setMissingGif(false), 2000);
+    }
+    if (missingFile) {
+      timerId = setTimeout(() => setMissingFile(false), 2000);
+    }
+    return () => clearTimeout(timerId);
+  }, [missingGif, missingFile]);
 
   function dataEntry(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -54,18 +66,6 @@ const Form: FC<IForm> = ({ logout }) => {
       ...projectData,
       [name]: value,
     });
-  }
-
-  function handleFileInput(key: string) {
-    return function (e: React.ChangeEvent<HTMLInputElement>) {
-      const file = e.target.files?.[0];
-      if (file) {
-        setProjectData((prevState) => ({
-          ...prevState,
-          images: { ...prevState.images, [key]: file },
-        }));
-      }
-    };
   }
 
   return (
@@ -80,10 +80,14 @@ const Form: FC<IForm> = ({ logout }) => {
             counterReset: `list-number 5`,
           }}
         >
-          <FormFileInputs handleFileInput={handleFileInput} />
+          <FormFileInputs setProjectData={setProjectData} />
         </ul>
       </div>
-      <Buttons logout={logout} />
+      <Buttons
+        logout={logout}
+        missingGif={missingGif}
+        missingFile={missingFile}
+      />
     </form>
   );
 };

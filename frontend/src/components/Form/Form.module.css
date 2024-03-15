@@ -1,5 +1,5 @@
 .form {
-  height: calc(100% - 80px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,4 +16,6 @@
 .form__inputs {
   list-style: none;
   counter-reset: list-number;
+  display: flex;
+  flex-direction: column;
 }
