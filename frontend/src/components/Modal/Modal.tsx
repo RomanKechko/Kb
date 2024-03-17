@@ -25,7 +25,6 @@ const ModalComponent: FC = () => {
   const ingredientId = data.findIndex((item) => item._id === project);
   const [images, setImages] = useState(data[ingredientId].images);
   const [src, setSrc] = useState(images[modalId as keyof typeof images]);
-  console.log(images);
   useEffect(() => {
     const ingredient = data[ingredientId];
     setImages(ingredient.images);
@@ -38,7 +37,6 @@ const ModalComponent: FC = () => {
 
   function next() {
     const imagesKeys = Object.keys(images);
-    console.log(imagesKeys);
     let nextIndex = (imagesKeys.indexOf(modalId) + 1) % imagesKeys.length;
     router.push(`/${project}/${imagesKeys[nextIndex]}`);
   }
