@@ -35,6 +35,6 @@ export type Timages = {
   video?: File;
   pdf?: File;
   gif?: File;
-  'gif-image'?: File
+  "gif-image"?: File;
   word?: File;
 };

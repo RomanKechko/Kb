@@ -14,6 +14,7 @@ interface IFromProps {
 const Form: FC<IFromProps> = ({ logout }) => {
   const dispatch = useAppDispatch();
   const formRef = useRef<HTMLFormElement>(null);
+  console.log(formRef.current);
   const [projectData, setProjectData] = useState<TProjectData>({
     name: "",
     price: "",
@@ -22,9 +23,9 @@ const Form: FC<IFromProps> = ({ logout }) => {
     description: "",
     images: {},
   });
-  const [missingGif, setMissingGif] = useState(false);
   const [missingFile, setMissingFile] = useState(false);
-  console.log(projectData);
+  const [missingGif, setMissingGif] = useState(false);
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { name, price, deadline, complexity, description, images } =
@@ -67,14 +68,14 @@ const Form: FC<IFromProps> = ({ logout }) => {
 
   useEffect(() => {
     let timerId: ReturnType<typeof setTimeout>;
-    if (missingGif) {
-      timerId = setTimeout(() => setMissingGif(false), 2000);
-    }
     if (missingFile) {
       timerId = setTimeout(() => setMissingFile(false), 2000);
     }
+    if (missingGif) {
+      timerId = setTimeout(() => setMissingGif(false), 2000);
+    }
     return () => clearTimeout(timerId);
-  }, [missingGif, missingFile]);
+  }, [missingFile, missingGif]);
 
   return (
     <form onSubmit={handleSubmit} className={style.form} ref={formRef}>
@@ -88,13 +89,17 @@ const Form: FC<IFromProps> = ({ logout }) => {
             counterReset: `list-number 5`,
           }}
         >
-          <FormFileInputs setProjectData={setProjectData} />
+          <FormFileInputs
+            setProjectData={setProjectData}
+            projectData={projectData}
+            formRef={formRef}
+          />
         </ul>
       </div>
       <Buttons
         logout={logout}
-        missingGif={missingGif}
         missingFile={missingFile}
+        missingGif={missingGif}
       />
     </form>
   );

@@ -4,8 +4,14 @@ import { TProjectData } from "@/utils/type";
 
 interface IFormFileInputProps {
   setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>;
+  projectData: TProjectData;
+  formRef: any;
 }
-const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
+const FormFileInputs: FC<IFormFileInputProps> = ({
+  setProjectData,
+  projectData,
+  formRef,
+}) => {
   return (
     <>
       <FormFileInput
@@ -14,6 +20,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"video"}
         accept={".mp4, .avi"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
       <FormFileInput
         title={"Добавить первое изображение"}
@@ -21,6 +29,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"image_1"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
       <FormFileInput
         title={"Добавить второе изображение"}
@@ -28,6 +38,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"image_2"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
       <FormFileInput
         title={"Добавить третье изображение"}
@@ -35,6 +47,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"image_3"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
       <FormFileInput
         title={"Добавить gif"}
@@ -42,6 +56,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"gif"}
         accept={".gif"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
       <FormFileInput
         title={"Добавить картинку гифки"}
@@ -49,6 +65,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"gif-image"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
       <FormFileInput
         title={"Добавить pdf"}
@@ -56,6 +74,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"pdf"}
         accept={".jpeg, .pdf"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
       <FormFileInput
         title={"Добавить word"}
@@ -63,6 +83,8 @@ const FormFileInputs: FC<IFormFileInputProps> = ({ setProjectData }) => {
         name={"word"}
         accept={".doc, .docx"}
         setProjectData={setProjectData}
+        projectData={projectData}
+        formRef={formRef}
       />
     </>
   );

@@ -1,13 +1,15 @@
-import { TProjectData } from "@/utils/type";
+import { TProjectData, Timages } from "@/utils/type";
 import style from "./FormFileInput.module.css";
 import React, { FC, useEffect, useState } from "react";
 
 interface IFormFileInputProps {
   title: string;
   id: string;
-  name: string;
+  name: keyof Timages;
   accept: string;
   setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>;
+  projectData: TProjectData;
+  formRef: any;
 }
 
 const FormFileInput: FC<IFormFileInputProps> = ({
@@ -16,15 +18,18 @@ const FormFileInput: FC<IFormFileInputProps> = ({
   accept,
   id,
   setProjectData,
+  projectData,
+  formRef,
 }: IFormFileInputProps) => {
   const [dragActive, setDragActive] = useState(false);
   const [formatError, setFormatError] = useState(false);
   const [typeFile, setTypeFile] = useState("");
 
   function handleFileInput(key: string) {
+    console.log(123);
     return function (e: React.ChangeEvent<HTMLInputElement>) {
       const file = e.target.files?.[0];
-      console.log(file);
+
       if (file) {
         setProjectData((prevState) => ({
           ...prevState,
@@ -129,6 +134,7 @@ const FormFileInput: FC<IFormFileInputProps> = ({
             name={name}
             type="file"
             accept={accept}
+            value={projectData.images[name]?.name || ""}
             onChange={handleFileInput(name)}
             className={style.form__input}
           />
