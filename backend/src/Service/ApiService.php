@@ -117,7 +117,8 @@ class ApiService
 
         foreach ($files as $type => $file) {
             if ($file['size'] > 0) {
-                $url = $folder.$projectName.'/'.str_replace(' ', '_', $file['name']);
+                $name = pathinfo($file['name'])['filename'].uniqid().'.'.pathinfo($file['name'])['extension'];
+                $url = $folder.$projectName.'/'.str_replace(' ', '_', $name);
                 move_uploaded_file(
                     $file['tmp_name'],
                     $url
