@@ -53,7 +53,7 @@ class ApiService
         $filesToCheck = ['image_1', 'image_2', 'image_3', 'video', 'pdf', 'gif', 'gif-image', 'word'];
 
         foreach ($filesToCheck as $file) {
-            if ($files[$file]['size'] > 0) {
+            if (isset($files[$file]) && $files[$file]['size'] > 0) {
                 $validFiles[] = $file;
             }
         }
@@ -62,7 +62,7 @@ class ApiService
             throw new BadRequestHttpException('require at lest one file');
         }
 
-        if (!$files['gif']['size'] !== !$files['gif-image']['size']) {
+        if ((isset($files['gif']) && isset($files['gif-image'])) && !$files['gif']['size'] !== !$files['gif-image']['size']) {
             throw new BadRequestHttpException('gif require gif-image/gif-image require gif');
         }
     }

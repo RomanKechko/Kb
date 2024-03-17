@@ -25,10 +25,10 @@ export type TProjectData = {
   deadline: string;
   complexity: string;
   description: string;
-  images: Timages;
+  images: TImages;
 };
 
-export type Timages = {
+export type TImages = {
   image_1?: File;
   image_2?: File;
   image_3?: File;

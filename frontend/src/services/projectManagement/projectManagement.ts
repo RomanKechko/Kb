@@ -1,6 +1,7 @@
 import { IStatusSetProject } from "@/utils/interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { url } from "@/utils/chek-response";
+import { TProjectData } from '@/utils/type'
 
 interface IListState {
   status: IStatusSetProject | null;
@@ -11,26 +12,32 @@ const initialState: IListState = {
   status: null,
   loading: false,
 };
+
 export const setProject = createAsyncThunk(
-  "projectManagement/setProject",
-  async (dataProject: HTMLFormElement) => {
-    let formData = new FormData(dataProject);
+  'projectManagement/setProject',
+  async (dataProject: TProjectData) => {
+    let formData = new FormData()
+    for (const [key, value] of Object.entries(dataProject)) {
+      if (typeof value === 'string') {
+        formData.set(key, value);
+      } else {
+        for (const [key, file] of Object.entries(value)) {
+          formData.set(key, file, file.name);
+        }
+      }
+    }
 
     let xhrPost = new XMLHttpRequest();
     xhrPost.withCredentials = true;
     xhrPost.responseType = "json";
-    xhrPost.open("POST", `${url}/set_project`);
-    xhrPost.onload = function () {
+    xhrPost.open('POST', `${url}/set_project`);
+    xhrPost.onload  = function() {
       const jsonResponse = xhrPost.response;
-      console.log(jsonResponse);
-      //здесь можешь вызвать dispatch и применить ответ с сервера как нибудь,
-      //с XMLHttpRequest к сожалению fulfillWithValue использовать не возможно(ну или я не понял как),
-      //потомучто response доступен только в функции onload, но зато в будущем можно следить за прогрессом
-      //загрузки файла
+      console.log(jsonResponse)
     };
-    xhrPost.send(formData);
+    xhrPost.send(formData)
   }
-);
+)
 
 export const projectManagementSlice = createSlice({
   name: "projectManagement",
