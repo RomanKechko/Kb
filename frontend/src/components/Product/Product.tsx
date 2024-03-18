@@ -1,21 +1,24 @@
+"use client";
+
 import { FC } from "react";
 import style from "./Product.module.css";
-import { data } from "@/data.js";
-import { Ingredient } from "@/utils/type";
 import Link from "next/link";
-import Image from "next/image";
 import { useAppSelector } from "@/services/hooks";
 import UrnComponent from "../Urn/Urn";
+import { IData } from "@/utils/interface";
 
 const ProductComponent: FC = () => {
+  const data = useAppSelector((state) => state.projects.projectsData);
+  console.log(data);
+
   return (
     <>
-      {data.map((item: Ingredient) => (
+      {data?.map((item: IData) => (
         <li className={style.list} key={item._id}>
           <Link href={`/${item._id} `} className={style.link}>
-            <Image
-              src={Object.values(item.images)[0] as string}
-              alt={item._id}
+            <img
+              src={item.images.image_1}
+              alt={item.name}
               className={style.image}
               width={800}
               height={800}

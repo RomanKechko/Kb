@@ -1,4 +1,5 @@
 export interface IProject {
+  id: number;
   _id: string;
   name: string;
   price: string;
@@ -44,4 +45,23 @@ export interface IOptions {
       };
 
   body?: string | RefreshTokenPayload;
+}
+export interface IData {
+  id: number;
+  _id: string;
+  name: string;
+  price: string;
+  deadline: string;
+  complexity: string;
+  description: string;
+  images: {
+    video?: "";
+    image_1?: "";
+    image_2?: "";
+    image_3?: "";
+    gif?: "";
+    gif_image?: "";
+    pdf?: "";
+    word?: "";
+  };
 }

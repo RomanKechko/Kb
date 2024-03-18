@@ -1,34 +1,22 @@
 import React, { FC, useCallback, useState } from "react";
-
 import "./Swipers.global.css";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Autoplay,
-  FreeMode,
-  Thumbs,
-  Pagination,
-} from "swiper/modules";
-
-import { Ingredient } from "../../utils/type";
+import { Navigation, Autoplay, FreeMode, Thumbs } from "swiper/modules";
 import { Swiper as SwiperInterface } from "swiper";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
-import pdf from "@/images/png.png";
-import videoBadge from "@/images/videoBadge.png";
+import { IData } from "@/utils/interface";
 
-import DocumentComponent from "../DocumentComponent/DocumentComponent";
 type SwiperProps = {
-  ingredient: Ingredient;
+  projectData: IData;
   slideRef: React.RefObject<SwiperRef>;
 };
 interface ParamTypes {
   project: string;
 }
-const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
+const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
   const { project } = useParams<{ project: string }>() as ParamTypes;
-  const images = ingredient.images;
+  const images = projectData.images;
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(
     null
   );
@@ -41,7 +29,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
     [setThumbsSwiper]
   );
 
-  const number = Object.keys(ingredient.images).length;
+  const number = Object.keys(projectData.images).length;
   return (
     <div className="container_bottom">
       <Swiper
@@ -59,33 +47,33 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
           pauseOnMouseEnter: true,
         }}
       >
-        {Object.keys(images).map((image: string, index: number) =>
-          image === "pdf" ? (
+        {Object.keys(images).map((item: string, index: number) =>
+          item === "pdf" ? (
             <SwiperSlide key={index}>
-              <Link href={`/${project}/${image}`} className="link">
+              <Link href={`/${project}/${item}`} className="link">
                 <iframe
-                  src={images[image as keyof typeof images]!}
+                  src={`http://${images[item as keyof typeof images]!}`}
                   className="swiper_iframe"
                 ></iframe>
               </Link>
             </SwiperSlide>
-          ) : image === "gif" ? (
+          ) : item === "gif" ? (
             <SwiperSlide key={index}>
-              <Link href={`/${project}/${image}`} className="link">
-                <Image
-                  src={images[image as keyof typeof images]!}
-                  alt={image}
+              <Link href={`/${project}/${item}`} className="link">
+                <img
+                  src={`http://${images[item as keyof typeof images]!}`}
+                  alt={item}
                   width={400}
                   height={400}
                   style={{ width: "100%", height: "auto" }}
                 />
               </Link>
             </SwiperSlide>
-          ) : image === "video" ? (
+          ) : item === "video" ? (
             <SwiperSlide key={index}>
-              <Link href={`/${project}/${image}`} className="link">
+              <Link href={`/${project}/${item}`} className="link">
                 <iframe
-                  src={images[image as keyof typeof images]!}
+                  src={`http://${images[item as keyof typeof images]!}`}
                   allow="fullscreen"
                   className="swiper_iframe"
                 ></iframe>
@@ -93,10 +81,10 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
             </SwiperSlide>
           ) : (
             <SwiperSlide key={index} className="swiperrrr">
-              <Link href={`/${project}/${image}`} className="link">
-                <Image
-                  src={images[image as keyof typeof images]!}
-                  alt={image}
+              <Link href={`/${project}/${item}`} className="link">
+                <img
+                  src={`http://${images[item as keyof typeof images]!}`}
+                  alt={item}
                   className="slider-image"
                   width={400}
                   height={400}
@@ -117,8 +105,8 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
         className="mySwiper1"
       >
         <>
-          {Object.keys(images).map((image: string, index: number) =>
-            image === "pdf" ? (
+          {Object.keys(images).map((item: string, index: number) =>
+            item === "pdf" ? (
               <SwiperSlide
                 key={index}
                 onMouseEnter={() =>
@@ -126,15 +114,15 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 }
                 className="swiperrrr"
               >
-                <Image
-                  src={pdf}
-                  alt={image}
+                <img
+                  src={`http://${images[item as keyof typeof images]!}`}
+                  alt={item}
                   width={400}
                   height={400}
                   style={{ width: "43%", height: "auto" }}
                 />
               </SwiperSlide>
-            ) : image === "gif" ? (
+            ) : item === "gif" ? (
               <SwiperSlide
                 key={index}
                 onMouseEnter={() =>
@@ -142,15 +130,15 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 }
                 className="swiperrrr"
               >
-                <Image
-                  src={images[image as keyof typeof images]!}
-                  alt={image}
+                <img
+                  src={`http://${images[item as keyof typeof images]!}`}
+                  alt={item}
                   width={400}
                   height={400}
                   style={{ width: "100%", height: "auto" }}
                 />
               </SwiperSlide>
-            ) : image === "video" ? (
+            ) : item === "video" ? (
               <SwiperSlide
                 key={index}
                 onMouseEnter={() =>
@@ -159,7 +147,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 className="swiperrrr"
               >
                 <iframe
-                  src={images[image as keyof typeof images]!}
+                  src={`http://${images[item as keyof typeof images]!}`}
                   allow="fullscreen"
                   className="swiper_iframe"
                   width="480"
@@ -174,9 +162,9 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
                 }
                 className="swiperrrr"
               >
-                <Image
-                  src={images[image as keyof typeof images]!}
-                  alt={image}
+                <img
+                  src={`http://${images[item as keyof typeof images]!}`}
+                  alt={item}
                   width={400}
                   height={400}
                 />

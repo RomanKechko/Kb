@@ -79,7 +79,7 @@ export const authUserRequest = createAsyncThunk(
 export const logoutUserRequest = createAsyncThunk(
   `user/logoutUserRequest `,
   async (_, { fulfillWithValue, dispatch }) => {
-    dispatch(startAuthCheck())
+    dispatch(startAuthCheck());
     const data = await fetch(`${url}/logout`, {
       method: "POST",
       mode: "cors",
@@ -98,7 +98,7 @@ export const userSlice = createSlice({
   reducers: {
     startAuthCheck: (state) => {
       state.isAuthCheck = false;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -132,7 +132,5 @@ export const userSlice = createSlice({
       );
   },
 });
-export const {
-  startAuthCheck
-} = userSlice.actions;
+export const { startAuthCheck } = userSlice.actions;
 export default userSlice.reducer;

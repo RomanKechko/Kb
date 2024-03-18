@@ -6,17 +6,18 @@ import { Ingredient } from "@/utils/type";
 import { SwiperRef } from "swiper/react";
 import ProjectSliderComponent from "../ProjectSlider/ProjectSlider";
 import style from "./Swipers.module.css";
+import { IData } from "@/utils/interface";
 type SwiperProps = {
-  ingredient: Ingredient;
+  projectData: IData;
   slideRef: React.RefObject<SwiperRef>;
 };
 
-const SwiperComponent: FC<SwiperProps> = ({ ingredient, slideRef }) => {
+const SwiperComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
   return (
     <>
       <div className={style.block}>
         <ProjectFeedComponent />
-        <ProjectSliderComponent ingredient={ingredient} slideRef={slideRef} />
+        <ProjectSliderComponent projectData={projectData} slideRef={slideRef} />
       </div>
     </>
   );

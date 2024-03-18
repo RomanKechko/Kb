@@ -1,9 +1,6 @@
 "use client";
 import { FC, useEffect, useRef, useState } from "react";
-
 import style from "./Project.module.css";
-import { data } from "@/data";
-
 import left from "../../images/left.png";
 import right from "../../images/right.png";
 import { notFound, useParams, useSearchParams } from "next/navigation";
@@ -11,7 +8,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import SwiperComponent from "../Swipers/Swipers";
 import { SwiperRef } from "swiper/react";
-import { Ingredient } from "@/utils/type";
+import { useAppSelector } from "@/services/hooks";
+import { IData } from "@/utils/interface";
 
 interface ParamTypes {
   project: string;
@@ -22,14 +20,20 @@ type ProjectComponentType = {
 };
 const ProjectComponent: FC<ProjectComponentType> = ({}) => {
   const { project } = useParams<{ project: string }>() as ParamTypes;
+  console.log(project);
   const router = useRouter();
   const searchParams = useSearchParams();
   const modalId = searchParams.get("modalId");
+  const data: IData[] = useAppSelector(
+    (state) => state.projects?.projectsData as IData[]
+  );
+
   const [currentIndex, setCurrentIndex] = useState(
     data.findIndex((item) => item._id === project)
   );
+
   const slideRef = useRef<SwiperRef>(null);
-  const ingredient = data[currentIndex] as Ingredient;
+  const projectData = data[currentIndex as number];
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -39,7 +43,7 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
       const slider = slideRef.current;
       if (modalId) {
         slider.swiper.slideTo(
-          Object.keys(ingredient.images).findIndex((item) => item === modalId),
+          Object.keys(projectData.images).findIndex((item) => item === modalId),
           0
         );
       } else {
@@ -73,7 +77,7 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
     };
   });
 
-  if (!ingredient) {
+  if (!projectData) {
     throw notFound();
     //   без этого блока страница ломается при попытки перейти на не сушествующую страницу
     //   тут мы проверяем найден ли ингридиент и если нет бросаем 404 ошибку
@@ -85,17 +89,15 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
     <>
       <section className={style.container__left}>
         <article>
-          <h2 className={style.title}>{ingredient.name}</h2>
-          <p className={style.price}>Цена: {ingredient.price}</p>
-          <p className={style.text}>Срок выполнения заказа: {ingredient.fat}</p>
-          <p className={style.text}>Сложность: не сложно</p>
+          <h2 className={style.title}>{projectData.name}</h2>
+          <p className={style.price}>Цена: {projectData.price}</p>
+          <p className={style.text}>
+            Срок выполнения заказа: {projectData.deadline}
+          </p>
+          <p className={style.text}>Сложность: {projectData.complexity}</p>
           <p className={style.description}>
             Детали выполнения заказа: <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, atque
-            itaque. Accusantium iusto perferendis nobis magnam ipsa earum
-            inventore impedit porro nostrum commodi Lorem ipsum, dolor sit amet
-            consectetur adipisicing elit. Debitis quod eos placeat? Illum quod
-            et nobis cum laboriosam harum voluptates..
+            {projectData.description}
           </p>
         </article>
       </section>
@@ -105,7 +107,7 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
           <Image src={left} alt="стрелка влево" className={style.direction} />
         </button>
 
-        <SwiperComponent ingredient={ingredient} slideRef={slideRef} />
+        <SwiperComponent projectData={projectData} slideRef={slideRef} />
 
         <button onClick={next} className={style.button}>
           <Image src={right} alt="стрелка вправо" className={style.direction} />

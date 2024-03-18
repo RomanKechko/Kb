@@ -5,9 +5,10 @@ import React, { FC, useEffect, useState } from "react";
 interface IFormFileInputProps {
   title: string;
   id: string;
-  name: keyof TImages;
+  name: string;
   accept: string;
   setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>;
+  projectData: TProjectData;
 }
 
 const FormFileInput: FC<IFormFileInputProps> = ({
@@ -16,10 +17,12 @@ const FormFileInput: FC<IFormFileInputProps> = ({
   accept,
   id,
   setProjectData,
+  projectData,
 }: IFormFileInputProps) => {
   const [dragActive, setDragActive] = useState(false);
   const [formatError, setFormatError] = useState(false);
   const [typeFile, setTypeFile] = useState("");
+  console.log(typeFile);
 
   function handleFileInput(key: string) {
     return function (e: React.ChangeEvent<HTMLInputElement>) {
@@ -105,8 +108,28 @@ const FormFileInput: FC<IFormFileInputProps> = ({
     return () => clearTimeout(timerId);
   }, [formatError]);
 
+  useEffect(() => {
+    if (Object.keys(projectData.images).length === 0) {
+      setTypeFile("");
+    }
+  }, [projectData]);
+
+  function handleDeleteFile() {
+    for (const key in projectData.images) {
+      if (projectData.images[key as keyof TImages]?.name === typeFile) {
+        const updatedImages = { ...projectData.images };
+        delete updatedImages[key as keyof TImages];
+        setProjectData((prevState) => ({
+          ...prevState,
+          images: updatedImages,
+        }));
+      }
+    }
+    setTypeFile("");
+  }
+
   return (
-    <li>
+    <li className={style.list}>
       <label
         htmlFor={id}
         className={`${style.form_label} ${
@@ -120,7 +143,9 @@ const FormFileInput: FC<IFormFileInputProps> = ({
         <p className={style.form_text}>{title}:</p>
         <div className={style.form_container}>
           {typeFile ? (
-            <span className={style.form_span_active}>Файл добавлен</span>
+            <>
+              <span className={style.form_span_active}>Файл добавлен</span>
+            </>
           ) : (
             <span className={style.form_span}>Загрузите файл</span>
           )}
@@ -131,13 +156,16 @@ const FormFileInput: FC<IFormFileInputProps> = ({
             accept={accept}
             onChange={handleFileInput(name)}
             className={style.form__input}
-          />
+          />{" "}
           {typeFile && <p className={style.name_file}>{typeFile}</p>}
         </div>
         {formatError && (
           <p className={style.form_error}>Данный формат не подходит</p>
         )}
       </label>
+      {typeFile && (
+        <div onClick={handleDeleteFile} className={style.form_urn}></div>
+      )}
     </li>
   );
 };

@@ -1,3 +1,7 @@
+.list {
+  position: relative;
+}
+
 .form_label {
   display: grid;
   grid-template-columns: 1fr 368px;
@@ -75,4 +79,18 @@
   position: absolute;
   transform: translateY(21px);
   font-size: 18px;
+}
+.form_urn {
+  position: absolute;
+  background-image: url("../../../images/urn.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 18px;
+  height: 19px;
+  top: 21px;
+  right: -30px;
+  cursor: pointer;
+}
+.form_urn:hover {
+  opacity: 0.6;
 }

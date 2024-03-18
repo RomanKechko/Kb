@@ -18,6 +18,9 @@ const nextConfig = {
         protocol: "https",
         hostname: "gifki.su",
       },
+      {
+        hostname: "127.0.0.1:8000",
+      },
     ],
   },
 };

@@ -4,9 +4,11 @@ import { TProjectData } from "@/utils/type";
 
 interface IFormFileInputProps {
   setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>;
+  projectData: TProjectData;
 }
 const FormFileInputs: FC<IFormFileInputProps> = ({
   setProjectData,
+  projectData,
 }) => {
   return (
     <>
@@ -16,6 +18,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         name={"video"}
         accept={".mp4, .avi"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
       <FormFileInput
         title={"Добавить первое изображение"}
@@ -23,6 +26,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         name={"image_1"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
       <FormFileInput
         title={"Добавить второе изображение"}
@@ -30,6 +34,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         name={"image_2"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
       <FormFileInput
         title={"Добавить третье изображение"}
@@ -37,6 +42,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         name={"image_3"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
       <FormFileInput
         title={"Добавить gif"}
@@ -44,6 +50,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         name={"gif"}
         accept={".gif"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
       <FormFileInput
         title={"Добавить картинку гифки"}
@@ -51,13 +58,15 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         name={"gif-image"}
         accept={".jpeg, .png"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
       <FormFileInput
         title={"Добавить pdf"}
         id={"pdf"}
         name={"pdf"}
-        accept={".jpeg, .pdf"}
+        accept={".pdf"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
       <FormFileInput
         title={"Добавить word"}
@@ -65,6 +74,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         name={"word"}
         accept={".doc, .docx"}
         setProjectData={setProjectData}
+        projectData={projectData}
       />
     </>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/services/hooks";
+import { getProjects } from "@/services/projects/projectsSlice";
 import { currentUserRequest } from "@/services/user/userSlice";
 import React, { FC, useEffect } from "react";
 
@@ -10,12 +11,14 @@ interface IAuthProps {
 const UserUpdateComponent: FC<IAuthProps> = ({ children }) => {
   const isAuthCheck = useAppSelector((state) => state.user.isAuthCheck);
   const dispatch = useAppDispatch();
+  const isDataCheck = useAppSelector((state) => state.projects.isDataCheck);
 
   useEffect(() => {
     dispatch(currentUserRequest());
+    dispatch(getProjects());
   }, []);
 
-  return !isAuthCheck ? (
+  return !isAuthCheck || !isDataCheck ? (
     <h2
       style={{
         width: "100%",
