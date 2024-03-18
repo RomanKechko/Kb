@@ -25,7 +25,7 @@ const ProductComponent: FC = () => {
             />
             <p className={style.description}>{item.name}</p>
           </Link>
-          <UrnComponent />
+          <UrnComponent  id={item.id}/>
         </li>
       ))}
     </>
