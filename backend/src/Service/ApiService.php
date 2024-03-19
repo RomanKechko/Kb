@@ -91,6 +91,7 @@ class ApiService
     public function getUniqUrlName(string $name): string
     {
         $projectName = filter_var($this->toEngSymbols($name), FILTER_SANITIZE_URL);
+        $projectName = preg_replace('/[^a-zA-Z0-9]+/', '', strtolower($projectName));
         $result = $projectName;
         $count = 1;
         while (true) {
@@ -159,7 +160,8 @@ class ApiService
 
         foreach ($files as $type => $file) {
             if ($file['size'] > 0) {
-                $name = pathinfo($file['name'])['filename'].uniqid().'.'.pathinfo($file['name'])['extension'];
+                $filename = preg_replace('/[^a-zA-Z0-9]+/', '', strtolower(pathinfo($file['name'])['filename']));
+                $name = $filename.uniqid().'.'.pathinfo($file['name'])['extension'];
                 $url = $folder.$projectName.'/'.str_replace(' ', '_', $name);
                 move_uploaded_file(
                     $file['tmp_name'],
@@ -222,7 +224,7 @@ class ApiService
      */
     public function delProject(int $id): void
     {
-        $project = $this->projectRepository->findOneBy(['id'=>$id]);
+        $project = $this->projectRepository->findOneBy(['id' => $id]);
 
         if (!$project) {
             throw new BadRequestHttpException('invalid id');
