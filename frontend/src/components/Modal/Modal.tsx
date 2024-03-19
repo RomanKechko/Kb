@@ -30,9 +30,9 @@ const ModalComponent: FC = () => {
   const projectId = data.findIndex((item) => item._id === project);
 
   const [images, setImages] = useState(data[projectId].images as IDataImage);
-  console.log(images);
+
   const [src, setSrc] = useState(images[modalId as keyof typeof images]);
-  console.log(src);
+
   useEffect(() => {
     const projectData = data[projectId];
     setImages(projectData.images);

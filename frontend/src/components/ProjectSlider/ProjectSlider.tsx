@@ -53,7 +53,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
             <SwiperSlide key={index}>
               <Link href={`/${project}/${item}`} className="link">
                 <iframe
-                  src={`http://${images[item as keyof typeof images]!}`}
+                  src={images[item as keyof typeof images]}
                   className="swiper_iframe"
                 ></iframe>
               </Link>
@@ -62,7 +62,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
             <SwiperSlide key={index}>
               <Link href={`/${project}/${item}`} className="link">
                 <img
-                  src={`http://${images[item as keyof typeof images]!}`}
+                  src={images[item as keyof typeof images]}
                   alt={item}
                   width={400}
                   height={400}
@@ -74,7 +74,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
             <SwiperSlide key={index}>
               <Link href={`/${project}/${item}`} className="link">
                 <iframe
-                  src={`http://${images[item as keyof typeof images]!}`}
+                  src={images[item as keyof typeof images]}
                   allow="fullscreen"
                   className="swiper_iframe"
                 ></iframe>
@@ -84,7 +84,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
             <SwiperSlide key={index} className="swiperrrr">
               <Link href={`/${project}/${item}`} className="link">
                 <img
-                  src={`http://${images[item as keyof typeof images]!}`}
+                  src={images[item as keyof typeof images]}
                   alt={item}
                   className="slider-image"
                   width={400}
@@ -132,7 +132,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 className="swiperrrr"
               >
                 <img
-                  src={`http://${images[item as keyof typeof images]!}`}
+                  src={images[item as keyof typeof images]}
                   alt={item}
                   width={400}
                   height={400}
@@ -148,7 +148,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 className="swiperrrr"
               >
                 <iframe
-                  src={`http://${images[item as keyof typeof images]!}`}
+                  src={images[item as keyof typeof images]}
                   allow="fullscreen"
                   className="swiper_iframe"
                   width="480"
@@ -164,7 +164,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 className="swiperrrr"
               >
                 <img
-                  src={`http://${images[item as keyof typeof images]!}`}
+                  src={images[item as keyof typeof images]}
                   alt={item}
                   width={400}
                   height={400}

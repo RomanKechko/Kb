@@ -23,7 +23,7 @@ const ProjectFeedComponent: FC = () => {
               className={pathname === `/${item._id}` ? "active_link" : "link"}
             >
               <img
-                src={`http://${item.images.image_1}`}
+                src={item.images.image_1}
                 alt={item.name}
                 width={200}
                 height={120}

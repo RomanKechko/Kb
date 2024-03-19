@@ -22,7 +22,6 @@ const FormFileInput: FC<IFormFileInputProps> = ({
   const [dragActive, setDragActive] = useState(false);
   const [formatError, setFormatError] = useState(false);
   const [typeFile, setTypeFile] = useState("");
-  console.log(typeFile);
 
   function handleFileInput(key: string) {
     return function (e: React.ChangeEvent<HTMLInputElement>) {

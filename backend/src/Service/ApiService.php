@@ -52,6 +52,10 @@ class ApiService
         $validFiles = [];
         $filesToCheck = ['image_1', 'image_2', 'image_3', 'video', 'pdf', 'gif', 'gif-image', 'word'];
 
+        if (!isset($files['image_1']) || $files['image_1']['size'] <= 0) {
+            throw new BadRequestHttpException('require first image');
+        }
+
         foreach ($filesToCheck as $file) {
             if (isset($files[$file]) && $files[$file]['size'] > 0) {
                 $validFiles[] = $file;
@@ -68,12 +72,33 @@ class ApiService
     }
 
     /**
+     * @param string $name
+     * @return string
+     */
+    public function getUniqUrlName(string $name): string
+    {
+        $projectName = filter_var($name, FILTER_SANITIZE_URL);
+        $result = $projectName;
+        $count = 1;
+        while (true) {
+            if (count($this->projectRepository->findBy(['urlName' => $result])) === 0) {
+                break;
+            } else {
+                $result = $projectName.'-'.$count;
+                $count++;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * @param array $data
-     * @param string $projectName
      * @return Project
      */
-    public function createProject(array $data, string $projectName): Project
+    public function createProject(array $data): Project
     {
+        $projectName = $this->getUniqUrlName($data['name']);
         $project = new Project;
 
         $project
@@ -106,12 +131,12 @@ class ApiService
 
     /**
      * @param array $files
-     * @param string $projectName
      * @param Project $project
      * @return void
      */
-    public function uploadProjectFiles(array $files, string $projectName, Project $project): void
+    public function uploadProjectFiles(array $files, Project $project): void
     {
+        $projectName = $project->getUrlName();
         $folder = 'api/v1/projects/';
         mkdir($folder.$projectName);
 
@@ -131,9 +156,10 @@ class ApiService
 
     /**
      * @param Project $project
+     * @param string $baseUrl
      * @return array
      */
-    public function projectToJson(Project $project): array
+    public function projectToJson(Project $project, string $baseUrl): array
     {
         $json = [];
 
@@ -147,8 +173,9 @@ class ApiService
 
         $images = [];
 
-        foreach ($project->getFiles() as $file) {
-            $images[$file->getType()] = $_SERVER['HTTP_HOST'].'/'.$file->getUrl();
+        $files = $this->em->getRepository(File::class)->findBy(['project' => $project->getId()]);
+        foreach ($files as $file) {
+            $images[$file->getType()] = $baseUrl.'/'.$file->getUrl();
         }
 
         $json['images'] = $images;
@@ -157,17 +184,42 @@ class ApiService
     }
 
     /**
+     * @param string $baseUrl
      * @return array
      */
-    public function getAllProjectLikeJson(): array
+    public function getAllProjectLikeJson(string $baseUrl): array
     {
         $data = [];
-        $projects = $this->projectRepository->findAll();
+        $projects = array_reverse($this->projectRepository->findAll());
 
         foreach ($projects as $project) {
-            $data[] = $this->projectToJson($project);
+            $data[] = $this->projectToJson($project, $baseUrl);
         }
 
         return $data;
+    }
+
+    /**
+     * @param int $id
+     * @return void
+     */
+    public function delProject(int $id): void
+    {
+        $project = $this->projectRepository->findOneBy(['id'=>$id]);
+
+        if (!$project) {
+            throw new BadRequestHttpException('invalid id');
+        }
+
+        $files = $project->getFiles();
+        foreach ($files as $file) {
+            unlink($file->getUrl());
+            $this->em->remove($file);
+        }
+
+        rmdir('api/v1/projects/'.$project->getUrlName());
+
+        $this->em->remove($project);
+        $this->em->flush();
     }
 }

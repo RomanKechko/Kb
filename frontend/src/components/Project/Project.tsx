@@ -20,7 +20,7 @@ type ProjectComponentType = {
 };
 const ProjectComponent: FC<ProjectComponentType> = ({}) => {
   const { project } = useParams<{ project: string }>() as ParamTypes;
-  console.log(project);
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const modalId = searchParams.get("modalId");
@@ -79,10 +79,6 @@ const ProjectComponent: FC<ProjectComponentType> = ({}) => {
 
   if (!projectData) {
     throw notFound();
-    //   без этого блока страница ломается при попытки перейти на не сушествующую страницу
-    //   тут мы проверяем найден ли ингридиент и если нет бросаем 404 ошибку
-    //   раньше это не нужно было потомучто у тебя был иначе построен роутинг по страницам,
-    //   ты изменил полностью построение ссылок и теперь ничего не работает без этой проверки))
   }
 
   return (

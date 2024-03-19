@@ -18,7 +18,7 @@ const ProductComponent: FC = () => {
         <li className={style.list} key={item._id}>
           <Link href={`/${item._id} `} className={style.link}>
             <img
-              src={`http://${item.images.image_1}`}
+              src={item.images.image_1}
               alt={item.name}
               className={style.image}
               width={800}
@@ -26,7 +26,7 @@ const ProductComponent: FC = () => {
             />
             <p className={style.description}>{item.name}</p>
           </Link>
-          <UrnComponent />
+          <UrnComponent id={item.id} />
         </li>
       ))}
     </>

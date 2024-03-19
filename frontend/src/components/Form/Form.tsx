@@ -6,6 +6,7 @@ import FormFileInputs from "@/components/Form/FormFileInputs/FormFileInputs";
 import { useAppDispatch } from "@/services/hooks";
 import { setProject } from "@/services/projectManagement/projectManagement";
 import Buttons from "./Buttons/Buttons";
+import { deleteState } from "@/services/projects/projectsSlice";
 
 interface IFromProps {
   logout: () => void;
@@ -43,6 +44,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
       return;
     }
     dispatch(setProject(projectData));
+
     setProjectData({
       name: "",
       price: "",

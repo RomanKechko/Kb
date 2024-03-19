@@ -1,7 +1,8 @@
 import { IStatusSetProject } from "@/utils/interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { url } from "@/utils/chek-response";
-import { TProjectData } from '@/utils/type'
+import checkResponse, { url } from "@/utils/chek-response";
+import { TProjectData } from "@/utils/type";
+import { getProjects } from "../projects/projectsSlice";
 
 interface IListState {
   status: IStatusSetProject | null;
@@ -14,11 +15,11 @@ const initialState: IListState = {
 };
 
 export const setProject = createAsyncThunk(
-  'projectManagement/setProject',
-  async (dataProject: TProjectData) => {
-    let formData = new FormData()
+  "projectManagement/setProject",
+  async (dataProject: TProjectData, { fulfillWithValue, dispatch }) => {
+    let formData = new FormData();
     for (const [key, value] of Object.entries(dataProject)) {
-      if (typeof value === 'string') {
+      if (typeof value === "string") {
         formData.set(key, value);
       } else {
         for (const [key, file] of Object.entries(value)) {
@@ -27,17 +28,42 @@ export const setProject = createAsyncThunk(
       }
     }
 
-    let xhrPost = new XMLHttpRequest();
-    xhrPost.withCredentials = true;
-    xhrPost.responseType = "json";
-    xhrPost.open('POST', `${url}/set_project`);
-    xhrPost.onload  = function() {
-      const jsonResponse = xhrPost.response;
-      console.log(jsonResponse)
-    };
-    xhrPost.send(formData)
+    const res = await fetch(`${url}/set_project`, {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      body: formData,
+    });
+
+    const data = await checkResponse(res);
+    console.log(data);
+    dispatch(getProjects());
+    return fulfillWithValue(data);
   }
-)
+);
+
+export const delProject = createAsyncThunk(
+  "projectManagement/setProject",
+  async (id: number, { fulfillWithValue, dispatch }) => {
+    const res = await fetch(`${url}/del_project`, {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    });
+
+    const data = await checkResponse(res);
+    console.log(data);
+    dispatch(getProjects());
+    return fulfillWithValue(data);
+  }
+);
 
 export const projectManagementSlice = createSlice({
   name: "projectManagement",

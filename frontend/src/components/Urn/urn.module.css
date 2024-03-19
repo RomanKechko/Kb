@@ -12,3 +12,6 @@
   cursor: pointer;
   z-index: 3;
 }
+.urn:hover {
+  opacity: 0.6;
+}
