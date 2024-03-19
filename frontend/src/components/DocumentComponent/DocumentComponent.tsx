@@ -3,11 +3,11 @@ import { FC, useEffect, useRef } from "react";
 import style from "./DocumentComponent.module.css";
 
 interface IDocumentComponent {
-  image: string;
+  image: string | undefined;
 }
 
-const DocumentComponent: FC /* <IDocumentComponent> */ = (/* props */) => {
-  /*   const { image } = props; */
+const DocumentComponent: FC<IDocumentComponent> = ({ image }) => {
+  console.log(image);
   const viewer = useRef<HTMLDivElement>(null);
   const pdf =
     "https://pdftron.s3.amazonaws.com/downloads/pl/demo-annotated.pdf";
@@ -18,7 +18,7 @@ const DocumentComponent: FC /* <IDocumentComponent> */ = (/* props */) => {
         WebViewer(
           {
             path: "/webviewer/lib",
-            initialDoc: /* `${image}` */ "/doc/Word.docx",
+            initialDoc: `${image}`,
           },
           viewer.current
         ).then((instance) => {

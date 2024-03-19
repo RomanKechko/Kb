@@ -8,6 +8,9 @@ import Link from "next/link";
 import { IData } from "@/utils/interface";
 import pdf from "../../images/pdf.png";
 import Image from "next/image";
+import word from "../../images/word.png";
+import DocumentComponent from "../DocumentComponent/DocumentComponent";
+
 type SwiperProps = {
   projectData: IData;
   slideRef: React.RefObject<SwiperRef>;
@@ -58,6 +61,8 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 ></iframe>
               </Link>
             </SwiperSlide>
+          ) : item === "word" ? (
+            ""
           ) : item === "gif" ? (
             <SwiperSlide key={index}>
               <Link href={`/${project}/${item}`} className="link">
@@ -124,21 +129,9 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 />
               </SwiperSlide>
             ) : item === "gif" ? (
-              <SwiperSlide
-                key={index}
-                onMouseEnter={() =>
-                  slideRef.current && slideRef.current.swiper.slideTo(index)
-                }
-                className="swiperrrr"
-              >
-                <img
-                  src={images[item as keyof typeof images]}
-                  alt={item}
-                  width={400}
-                  height={400}
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </SwiperSlide>
+              ""
+            ) : item === "word" ? (
+              ""
             ) : item === "video" ? (
               <SwiperSlide
                 key={index}

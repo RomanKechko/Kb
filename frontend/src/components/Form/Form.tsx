@@ -24,7 +24,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
   const [missingGif, setMissingGif] = useState(false);
   const [mainPicture, setMainPicture] = useState(false);
   const [customValidity, setCustomValidity] = useState("");
-
+  console.log(projectData);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { name, price, deadline, complexity, description, images } =

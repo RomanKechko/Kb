@@ -11,7 +11,7 @@ const ProductComponent: FC = () => {
   const data: IData[] = useAppSelector(
     (state) => state.projects?.projectsData as IData[]
   );
-  data;
+  console.log(data);
   return (
     <>
       {data?.map((item: IData) => (

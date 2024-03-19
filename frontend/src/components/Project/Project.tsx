@@ -10,6 +10,7 @@ import SwiperComponent from "../Swipers/Swipers";
 import { SwiperRef } from "swiper/react";
 import { useAppSelector } from "@/services/hooks";
 import { IData } from "@/utils/interface";
+import DocumentComponent from "../DocumentComponent/DocumentComponent";
 
 interface ParamTypes {
   project: string;

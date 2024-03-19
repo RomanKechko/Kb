@@ -84,11 +84,13 @@ const ModalComponent: FC = () => {
               className={style.direction}
             />
           </button>
-          {modalId === "pdf" || modalId === "video" || modalId === "word" ? (
-            <iframe src={`http://${src!}`} className={style.iframe}></iframe>
+          {modalId === "pdf" || modalId === "video" ? (
+            <iframe src={src!} className={style.iframe}></iframe>
+          ) : modalId === "word" ? (
+            ""
           ) : modalId === "gif" ? (
             <img
-              src={`http://${src!}`}
+              src={src!}
               alt={modalId}
               className={style.modal__image}
               width={800}
@@ -96,7 +98,7 @@ const ModalComponent: FC = () => {
             />
           ) : (
             <img
-              src={`http://${src!}`}
+              src={src!}
               alt={modalId}
               className={style.modal__image}
               width={800}
