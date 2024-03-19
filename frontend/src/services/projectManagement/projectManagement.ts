@@ -36,7 +36,7 @@ export const setProject = createAsyncThunk(
     });
 
     const data = await checkResponse(res);
-    console.log(data);
+    data;
     dispatch(getProjects());
     return fulfillWithValue(data);
   }
@@ -59,7 +59,7 @@ export const delProject = createAsyncThunk(
     });
 
     const data = await checkResponse(res);
-    console.log(data);
+    data;
     dispatch(getProjects());
     return fulfillWithValue(data);
   }

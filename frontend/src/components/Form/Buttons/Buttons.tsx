@@ -3,11 +3,17 @@ import style from "./Buttons.module.css";
 
 interface IButtons {
   logout: () => void;
-  missingFile: boolean;
   missingGif: boolean;
+  mainPicture: boolean;
+  customValidity: string;
 }
 
-const Buttons: FC<IButtons> = ({ logout, missingFile, missingGif }) => {
+const Buttons: FC<IButtons> = ({
+  logout,
+  missingGif,
+  mainPicture,
+  customValidity,
+}) => {
   return (
     <div className={style.container}>
       <div className={style.pseudo_container}></div>
@@ -15,18 +21,21 @@ const Buttons: FC<IButtons> = ({ logout, missingFile, missingGif }) => {
         <button
           type="submit"
           className={style.button}
-          disabled={missingFile || missingGif ? true : false}
+          disabled={
+            mainPicture || missingGif || customValidity !== "" ? true : false
+          }
         >
           Отправить данные
         </button>
-        {missingFile && (
-          <p className={style.form_error}>
-            Необходимо загрузить хотя бы один файл
-          </p>
-        )}
+
         {missingGif && (
           <p className={style.form_error}>
             Отсутствует gif или картинка gif'ки
+          </p>
+        )}
+        {mainPicture && (
+          <p className={style.form_error}>
+            Отсутствует основная картинка проекта
           </p>
         )}
       </div>

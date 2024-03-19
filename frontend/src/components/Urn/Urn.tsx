@@ -12,7 +12,7 @@ function UrnComponent({ id }: IUrnComponentProps) {
   const auth = useAppSelector((state) => state.user.isAuth);
   function deleteElement() {
     dispatch(delProject(id));
-    console.log(" Не удалил, хах");
+    (" Не удалил, хах");
   }
 
   return (

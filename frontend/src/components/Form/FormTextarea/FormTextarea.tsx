@@ -1,12 +1,13 @@
-import style from './FormTextarea.module.css'
-import React, { FC } from 'react'
+import style from "./FormTextarea.module.css";
+import React, { FC } from "react";
 
 interface IFormTextareaProps {
-  title: string
-  id: string
-  name: string
-  value: string
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement>
+  title: string;
+  id: string;
+  name: string;
+  value: string;
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  customValidity: string;
 }
 
 const FormTextarea: FC<IFormTextareaProps> = ({
@@ -14,13 +15,17 @@ const FormTextarea: FC<IFormTextareaProps> = ({
   id,
   name,
   value,
-  onChange
+  onChange,
+  customValidity,
 }) => {
   return (
     <li className={style.form__item}>
       <label htmlFor={id} className={style.form_label}>
         {title}:
       </label>
+      {customValidity && name === customValidity && (
+        <p className={style.form_error}>Поле должно быть заполнено</p>
+      )}
       <textarea
         id={id}
         name={name}
@@ -28,10 +33,9 @@ const FormTextarea: FC<IFormTextareaProps> = ({
         onChange={onChange}
         className={style.form__input}
         autoComplete="off"
-        required={true}
       />
     </li>
-  )
-}
+  );
+};
 
-export default FormTextarea
+export default FormTextarea;

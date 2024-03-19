@@ -31,3 +31,10 @@
   outline: none;
   cursor: pointer;
 }
+
+.form_error {
+  color: rgb(231, 19, 19);
+  position: absolute;
+  transform: translateY(37px);
+  font-size: 18px;
+}

@@ -21,7 +21,7 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         projectData={projectData}
       />
       <FormFileInput
-        title={"Добавить первое изображение"}
+        title={`Добавить основное изображение`}
         id={"image_1"}
         name={"image_1"}
         accept={".jpeg, .png"}

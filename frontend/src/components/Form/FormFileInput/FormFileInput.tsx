@@ -139,7 +139,14 @@ const FormFileInput: FC<IFormFileInputProps> = ({
         onDragLeave={handleLeave}
         onDrop={(e) => handleDrop(name, e)}
       >
-        <p className={style.form_text}>{title}:</p>
+        {title === "Добавить основное изображение" ? (
+          <p className={style.form_text}>
+            Добавить <i>основное</i> изображение:
+          </p>
+        ) : (
+          <p className={style.form_text}>{title}:</p>
+        )}
+
         <div className={style.form_container}>
           {typeFile ? (
             <>

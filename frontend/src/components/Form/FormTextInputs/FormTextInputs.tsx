@@ -1,56 +1,63 @@
-import React, { FC } from 'react'
-import FormInput from '@/components/Form/FormInput/FormInput'
-import FormTextarea from '@/components/Form/FormTextarea/FormTextarea'
-import { TProjectData } from '@/utils/type'
+import React, { FC } from "react";
+import FormInput from "@/components/Form/FormInput/FormInput";
+import FormTextarea from "@/components/Form/FormTextarea/FormTextarea";
+import { TProjectData } from "@/utils/type";
 
 interface IFormFileInputProps {
-  projectData: TProjectData
-  dataEntry: React.ChangeEventHandler
+  projectData: TProjectData;
+  dataEntry: React.ChangeEventHandler;
+  customValidity: string;
 }
 
 const FormTextInputs: FC<IFormFileInputProps> = ({
   dataEntry,
-  projectData
+  projectData,
+  customValidity,
 }) => {
   return (
     <>
       <FormInput
-        id={'name'}
-        name={'name'}
+        id={"name"}
+        name={"name"}
         onChange={dataEntry}
         value={projectData.name}
-        title={'Наименование'}
+        title={"Наименование"}
+        customValidity={customValidity}
       />
       <FormInput
-        id={'price'}
-        name={'price'}
+        id={"price"}
+        name={"price"}
         onChange={dataEntry}
         value={projectData.price}
-        title={'Стоимость'}
+        title={"Стоимость"}
+        customValidity={customValidity}
       />
       <FormInput
-        id={'deadline'}
-        name={'deadline'}
+        id={"deadline"}
+        name={"deadline"}
         onChange={dataEntry}
         value={projectData.deadline}
-        title={'Срок выполнения'}
+        title={"Срок выполнения"}
+        customValidity={customValidity}
       />
       <FormInput
-        id={'complexity'}
-        name={'complexity'}
+        id={"complexity"}
+        name={"complexity"}
         onChange={dataEntry}
         value={projectData.complexity}
-        title={'Сложность'}
+        title={"Сложность"}
+        customValidity={customValidity}
       />
       <FormTextarea
-        id={'description'}
-        name={'description'}
+        id={"description"}
+        name={"description"}
         onChange={dataEntry}
         value={projectData.description}
-        title={'Описание'}
+        title={"Описание"}
+        customValidity={customValidity}
       />
     </>
-  )
-}
+  );
+};
 
-export default FormTextInputs
+export default FormTextInputs;
