@@ -6,7 +6,8 @@ import { Swiper as SwiperInterface } from "swiper";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { IData } from "@/utils/interface";
-
+import pdf from "../../images/pdf.png";
+import Image from "next/image";
 type SwiperProps = {
   projectData: IData;
   slideRef: React.RefObject<SwiperRef>;
@@ -114,12 +115,12 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 }
                 className="swiperrrr"
               >
-                <img
-                  src={images[item as keyof typeof images]}
+                <Image
+                  src={pdf}
                   alt={item}
                   width={400}
                   height={400}
-                  style={{ width: "43%", height: "auto" }}
+                  style={{ width: "23%", height: "auto" }}
                 />
               </SwiperSlide>
             ) : item === "gif" ? (

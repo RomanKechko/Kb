@@ -1,20 +1,18 @@
 "use client";
-import { useAppDispatch, useAppSelector } from '@/services/hooks'
-import style from "./urn.module.css";
-import { delProject } from '@/services/projectManagement/projectManagement'
+import { useAppDispatch, useAppSelector } from "@/services/hooks";
+import style from "./Urn.module.css";
+import { delProject } from "@/services/projectManagement/projectManagement";
 
 interface IUrnComponentProps {
-  id: number
+  id: number;
 }
 
-function UrnComponent({
-  id
-}: IUrnComponentProps) {
+function UrnComponent({ id }: IUrnComponentProps) {
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state) => state.user.isAuth);
   function deleteElement() {
-    dispatch(delProject(id))
-    console.log(" Не удалил, хах");
+    dispatch(delProject(id));
+    (" Не удалил, хах");
   }
 
   return (

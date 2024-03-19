@@ -20,7 +20,7 @@ type ProjectComponentType = {
 };
 const ProjectComponent: FC<ProjectComponentType> = ({}) => {
   const { project } = useParams<{ project: string }>() as ParamTypes;
-  console.log(project);
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const modalId = searchParams.get("modalId");

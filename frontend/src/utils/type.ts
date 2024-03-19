@@ -26,6 +26,7 @@ export type TProjectData = {
   complexity: string;
   description: string;
   images: TImages;
+  [key: string]: string | TImages;
 };
 
 export type TImages = {

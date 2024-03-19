@@ -21,18 +21,35 @@ const Form: FC<IFromProps> = ({ logout }) => {
     description: "",
     images: {},
   });
-  const [missingFile, setMissingFile] = useState(false);
   const [missingGif, setMissingGif] = useState(false);
-  console.log(projectData);
+  const [mainPicture, setMainPicture] = useState(false);
+  const [customValidity, setCustomValidity] = useState("");
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { name, price, deadline, complexity, description, images } =
       projectData;
     if (!name || !price || !deadline || !complexity || !description) {
+      const requiredFields = [
+        "description",
+        "complexity",
+        "deadline",
+        "price",
+        "name",
+      ];
+      requiredFields.forEach((item, index) => {
+        `Element at index ${index}: ${item}`;
+        if (projectData[item] === "") {
+          `Setting custom validity for ${item}`;
+          setCustomValidity(item);
+        }
+      });
+
       return;
     }
-    if (Object.values(images).length === 0) {
-      setMissingFile(true);
+
+    if (!Object.keys(images).includes("image_1")) {
+      setMainPicture(true);
       return;
     }
     if (
@@ -42,7 +59,9 @@ const Form: FC<IFromProps> = ({ logout }) => {
       setMissingGif(true);
       return;
     }
+
     dispatch(setProject(projectData));
+
     setProjectData({
       name: "",
       price: "",
@@ -65,20 +84,28 @@ const Form: FC<IFromProps> = ({ logout }) => {
 
   useEffect(() => {
     let timerId: ReturnType<typeof setTimeout>;
-    if (missingFile) {
-      timerId = setTimeout(() => setMissingFile(false), 2000);
-    }
+
     if (missingGif) {
       timerId = setTimeout(() => setMissingGif(false), 2000);
     }
+    if (mainPicture) {
+      timerId = setTimeout(() => setMainPicture(false), 2000);
+    }
+    if (customValidity) {
+      timerId = setTimeout(() => setCustomValidity(""), 1000);
+    }
     return () => clearTimeout(timerId);
-  }, [missingFile, missingGif]);
+  }, [, customValidity, missingGif, mainPicture]);
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <div className={style.container_form}>
         <ul className={style.form__inputs}>
-          <FormTextInputs projectData={projectData} dataEntry={dataEntry} />
+          <FormTextInputs
+            projectData={projectData}
+            dataEntry={dataEntry}
+            customValidity={customValidity}
+          />
         </ul>
         <ul
           className={style.form__inputs}
@@ -94,8 +121,9 @@ const Form: FC<IFromProps> = ({ logout }) => {
       </div>
       <Buttons
         logout={logout}
-        missingFile={missingFile}
         missingGif={missingGif}
+        mainPicture={mainPicture}
+        customValidity={customValidity}
       />
     </form>
   );

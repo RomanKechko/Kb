@@ -17,7 +17,7 @@ class ApiController extends AbstractController
      * @return JsonResponse
      */
     #[Route("/api/v1/set_project", name: "set_project_app", methods: ["POST"])]
-    #[IsGranted('ROLE_USER')]
+  
     public function setProject(Request $request, ApiService $apiService): JsonResponse
     {
         $data = $request->request->all();

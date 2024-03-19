@@ -54,14 +54,15 @@ export interface IData {
   deadline: string;
   complexity: string;
   description: string;
-  images: {
-    video?: "";
-    image_1?: "";
-    image_2?: "";
-    image_3?: "";
-    gif?: "";
-    gif_image?: "";
-    pdf?: "";
-    word?: "";
-  };
+  images: IDataImage;
+}
+export interface IDataImage {
+  video?: "";
+  image_1?: "";
+  image_2?: "";
+  image_3?: "";
+  gif?: "";
+  gif_image?: "";
+  pdf?: "";
+  word?: "";
 }

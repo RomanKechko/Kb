@@ -33,6 +33,7 @@
 
 .button:disabled {
   background-color: rgba(245, 0, 0, 0.4);
+  color: rgb(255, 255, 255);
 }
 .form_error {
   position: absolute;

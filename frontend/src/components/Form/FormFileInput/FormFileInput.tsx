@@ -22,7 +22,6 @@ const FormFileInput: FC<IFormFileInputProps> = ({
   const [dragActive, setDragActive] = useState(false);
   const [formatError, setFormatError] = useState(false);
   const [typeFile, setTypeFile] = useState("");
-  console.log(typeFile);
 
   function handleFileInput(key: string) {
     return function (e: React.ChangeEvent<HTMLInputElement>) {
@@ -140,7 +139,14 @@ const FormFileInput: FC<IFormFileInputProps> = ({
         onDragLeave={handleLeave}
         onDrop={(e) => handleDrop(name, e)}
       >
-        <p className={style.form_text}>{title}:</p>
+        {title === "Добавить основное изображение" ? (
+          <p className={style.form_text}>
+            Добавить <i>основное</i> изображение:
+          </p>
+        ) : (
+          <p className={style.form_text}>{title}:</p>
+        )}
+
         <div className={style.form_container}>
           {typeFile ? (
             <>

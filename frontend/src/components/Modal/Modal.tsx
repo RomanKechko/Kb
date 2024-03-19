@@ -10,6 +10,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import left from "../../images/left.png";
 import right from "../../images/right.png";
+import { useAppSelector } from "@/services/hooks";
+import { IData, IDataImage } from "@/utils/interface";
 
 interface ParamTypes {
   project: string;
@@ -22,13 +24,19 @@ const ModalComponent: FC = () => {
     project: string;
     modalId: string;
   }>() as ParamTypes;
-  const ingredientId = data.findIndex((item) => item._id === project);
-  const [images, setImages] = useState(data[ingredientId].images);
+  const data: IData[] = useAppSelector(
+    (state) => state.projects?.projectsData as IData[]
+  );
+  const projectId = data.findIndex((item) => item._id === project);
+
+  const [images, setImages] = useState(data[projectId].images as IDataImage);
+
   const [src, setSrc] = useState(images[modalId as keyof typeof images]);
+
   useEffect(() => {
-    const ingredient = data[ingredientId];
-    setImages(ingredient.images);
-    setSrc(ingredient.images[modalId as keyof typeof ingredient.images]);
+    const projectData = data[projectId];
+    setImages(projectData.images);
+    setSrc(projectData.images[modalId as keyof typeof projectData.images]);
   }, [project, modalId]);
 
   function onClose() {
@@ -36,18 +44,18 @@ const ModalComponent: FC = () => {
   }
 
   function next() {
-    const imagesKeys = Object.keys(images);
-    let nextIndex = (imagesKeys.indexOf(modalId) + 1) % imagesKeys.length;
-    router.push(`/${project}/${imagesKeys[nextIndex]}`);
+    const fileKeys = Object.keys(images);
+    let nextIndex = (fileKeys.indexOf(modalId) + 1) % fileKeys.length;
+    router.push(`/${project}/${fileKeys[nextIndex]}`);
   }
-  function previous() {
-    const imagesKeys = Object.keys(images);
 
+  function previous() {
+    const fileKeys = Object.keys(images);
     let nextIndex =
-      imagesKeys.indexOf(modalId) - 1 < 0
-        ? imagesKeys.length - 1
-        : imagesKeys.indexOf(modalId) - 1;
-    router.push(`/${project}/${imagesKeys[nextIndex]}`);
+      fileKeys.indexOf(modalId) - 1 < 0
+        ? fileKeys.length - 1
+        : fileKeys.indexOf(modalId) - 1;
+    router.push(`/${project}/${fileKeys[nextIndex]}`);
   }
 
   useEffect(() => {
@@ -64,7 +72,7 @@ const ModalComponent: FC = () => {
 
   return (
     <>
-      <div className={`${style.modal}`}>
+      <div className={style.modal}>
         <button onClick={onClose} className={style.modal__cross}>
           <Image src={cross} alt="cross" className={style.cross__image} />
         </button>
@@ -76,33 +84,25 @@ const ModalComponent: FC = () => {
               className={style.direction}
             />
           </button>
-          {modalId === "pdf" ? (
-            <iframe src={src!} className={style.iframe}></iframe>
+          {modalId === "pdf" || modalId === "video" || modalId === "word" ? (
+            <iframe src={`http://${src!}`} className={style.iframe}></iframe>
           ) : modalId === "gif" ? (
-            <Image
-              src={src!}
-
+            <img
+              src={`http://${src!}`}
               alt={modalId}
               className={style.modal__image}
               width={800}
               height={800}
             />
-
-          ) : modalId === "video" ? (
-            <iframe
-              src={src!}
-              allowFullScreen
-              className={style.iframe}
-            ></iframe>
           ) : (
-            <Image
-              src={src!}
+            <img
+              src={`http://${src!}`}
               alt={modalId}
               className={style.modal__image}
               width={800}
               height={800}
             />
-          )}{" "}
+          )}
           <button className={style.button} onClick={next}>
             <Image
               src={right}

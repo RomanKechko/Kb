@@ -8,9 +8,10 @@ import UrnComponent from "../Urn/Urn";
 import { IData } from "@/utils/interface";
 
 const ProductComponent: FC = () => {
-  const data = useAppSelector((state) => state.projects.projectsData);
-  console.log(data);
-
+  const data: IData[] = useAppSelector(
+    (state) => state.projects?.projectsData as IData[]
+  );
+  data;
   return (
     <>
       {data?.map((item: IData) => (
@@ -25,7 +26,7 @@ const ProductComponent: FC = () => {
             />
             <p className={style.description}>{item.name}</p>
           </Link>
-          <UrnComponent  id={item.id}/>
+          <UrnComponent id={item.id} />
         </li>
       ))}
     </>
