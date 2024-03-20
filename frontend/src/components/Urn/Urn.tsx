@@ -1,22 +1,34 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/services/hooks";
+import { useAppSelector } from "@/services/hooks";
 import style from "./Urn.module.css";
-import { delProject } from "@/services/projectManagement/projectManagement";
+import { useState } from "react";
+import ModalMessage from "../ModalMessage/ModalMessage";
 
 interface IUrnComponentProps {
   id: number;
 }
 
 function UrnComponent({ id }: IUrnComponentProps) {
-  const dispatch = useAppDispatch();
+  const [deleteProject, setDeleteProject] = useState(false);
+
   const auth = useAppSelector((state) => state.user.isAuth);
-  function deleteElement() {
-    dispatch(delProject(id));
-    (" Не удалил, хах");
-  }
 
   return (
-    auth && <button className={style.urn} onClick={deleteElement}></button>
+    auth && (
+      <>
+        <button
+          className={style.urn}
+          onClick={() => setDeleteProject(true)}
+        ></button>
+        {deleteProject && (
+          <ModalMessage
+            deleteProject={deleteProject}
+            id={id}
+            setDeleteProject={setDeleteProject}
+          />
+        )}
+      </>
+    )
   );
 }
 export default UrnComponent;
