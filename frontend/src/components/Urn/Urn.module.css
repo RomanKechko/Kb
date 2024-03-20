@@ -1,7 +1,7 @@
 .urn {
   position: absolute;
-  top: 40px;
-  right: 20px;
+  bottom: 10px;
+  right: 30px;
   background-image: url(../../images/urn.svg);
   background-repeat: no-repeat;
   background-size: cover;

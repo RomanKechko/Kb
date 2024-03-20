@@ -3,9 +3,10 @@ import React, { FC, useEffect, useState } from "react";
 import { TProjectData } from "@/utils/type";
 import FormTextInputs from "@/components/Form/FormTextInputs/FormTextInputs";
 import FormFileInputs from "@/components/Form/FormFileInputs/FormFileInputs";
-import { useAppDispatch } from "@/services/hooks";
+import { useAppDispatch, useAppSelector } from "@/services/hooks";
 import { setProject } from "@/services/projectManagement/projectManagement";
 import Buttons from "./Buttons/Buttons";
+import ModalMessage from "../ModalMessage/ModalMessage";
 
 interface IFromProps {
   logout: () => void;
@@ -13,6 +14,12 @@ interface IFromProps {
 
 const Form: FC<IFromProps> = ({ logout }) => {
   const dispatch = useAppDispatch();
+  const sendingStatus = useAppSelector(
+    (state) => state.projectManagement.sendingStatus
+  );
+  const sendingError = useAppSelector(
+    (state) => state.projectManagement.sendingError
+  );
   const [projectData, setProjectData] = useState<TProjectData>({
     name: "",
     price: "",
@@ -24,7 +31,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
   const [missingGif, setMissingGif] = useState(false);
   const [mainPicture, setMainPicture] = useState(false);
   const [customValidity, setCustomValidity] = useState("");
-  console.log(projectData);
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { name, price, deadline, complexity, description, images } =
@@ -37,6 +44,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
         "price",
         "name",
       ];
+
       requiredFields.forEach((item, index) => {
         `Element at index ${index}: ${item}`;
         if (projectData[item] === "") {
@@ -44,7 +52,6 @@ const Form: FC<IFromProps> = ({ logout }) => {
           setCustomValidity(item);
         }
       });
-
       return;
     }
 
@@ -52,6 +59,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
       setMainPicture(true);
       return;
     }
+
     if (
       Object.keys(images).includes("gif-image") !==
       Object.keys(images).includes("gif")
@@ -98,34 +106,42 @@ const Form: FC<IFromProps> = ({ logout }) => {
   }, [, customValidity, missingGif, mainPicture]);
 
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
-      <div className={style.container_form}>
-        <ul className={style.form__inputs}>
-          <FormTextInputs
-            projectData={projectData}
-            dataEntry={dataEntry}
-            customValidity={customValidity}
-          />
-        </ul>
-        <ul
-          className={style.form__inputs}
-          style={{
-            counterReset: `list-number 5`,
-          }}
-        >
-          <FormFileInputs
-            setProjectData={setProjectData}
-            projectData={projectData}
-          />
-        </ul>
-      </div>
-      <Buttons
-        logout={logout}
-        missingGif={missingGif}
-        mainPicture={mainPicture}
-        customValidity={customValidity}
-      />
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className={style.form}>
+        <div className={style.container_form}>
+          <ul className={style.form__inputs}>
+            <FormTextInputs
+              projectData={projectData}
+              dataEntry={dataEntry}
+              customValidity={customValidity}
+            />
+          </ul>
+          <ul
+            className={style.form__inputs}
+            style={{
+              counterReset: `list-number 5`,
+            }}
+          >
+            <FormFileInputs
+              setProjectData={setProjectData}
+              projectData={projectData}
+            />
+          </ul>
+        </div>
+        <Buttons
+          logout={logout}
+          missingGif={missingGif}
+          mainPicture={mainPicture}
+          customValidity={customValidity}
+        />
+      </form>
+      {(sendingStatus || sendingError) && (
+        <ModalMessage
+          sendingStatus={sendingStatus}
+          sendingError={sendingError}
+        />
+      )}
+    </>
   );
 };
 

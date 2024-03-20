@@ -68,14 +68,6 @@ const FormFileInputs: FC<IFormFileInputProps> = ({
         setProjectData={setProjectData}
         projectData={projectData}
       />
-      <FormFileInput
-        title={"Добавить word"}
-        id={"word"}
-        name={"word"}
-        accept={".doc, .docx"}
-        setProjectData={setProjectData}
-        projectData={projectData}
-      />
     </>
   );
 };

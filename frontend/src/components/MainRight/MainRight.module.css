@@ -7,7 +7,8 @@
   box-sizing: border-box;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-auto-rows: 300px;
   gap: 30px 33px;
   flex-wrap: wrap;

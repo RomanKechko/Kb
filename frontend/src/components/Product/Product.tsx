@@ -21,8 +21,6 @@ const ProductComponent: FC = () => {
               src={item.images.image_1}
               alt={item.name}
               className={style.image}
-              width={800}
-              height={800}
             />
             <p className={style.description}>{item.name}</p>
           </Link>

@@ -5,13 +5,17 @@ import { TProjectData } from "@/utils/type";
 import { getProjects } from "../projects/projectsSlice";
 
 interface IListState {
-  status: IStatusSetProject | null;
-  loading: boolean;
+  sendingStatus: boolean;
+  loadingProgect: boolean;
+  sendingError: boolean;
+  deletionError: boolean;
 }
 
 const initialState: IListState = {
-  status: null,
-  loading: false,
+  sendingStatus: false,
+  loadingProgect: false,
+  sendingError: false,
+  deletionError: false,
 };
 
 export const setProject = createAsyncThunk(
@@ -36,14 +40,14 @@ export const setProject = createAsyncThunk(
     });
 
     const data = await checkResponse(res);
-    data;
+
     dispatch(getProjects());
     return fulfillWithValue(data);
   }
 );
 
 export const delProject = createAsyncThunk(
-  "projectManagement/setProject",
+  "projectManagement/delProject",
   async (id: number, { fulfillWithValue, dispatch }) => {
     const res = await fetch(`${url}/del_project`, {
       method: "POST",
@@ -59,7 +63,7 @@ export const delProject = createAsyncThunk(
     });
 
     const data = await checkResponse(res);
-    data;
+
     dispatch(getProjects());
     return fulfillWithValue(data);
   }
@@ -68,19 +72,30 @@ export const delProject = createAsyncThunk(
 export const projectManagementSlice = createSlice({
   name: "projectManagement",
   initialState,
-  reducers: {},
+  reducers: {
+    serverResponseAgreement: (state) => {
+      state.sendingStatus = false;
+      state.sendingError = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(setProject.pending, (state) => {
-      state.loading = true;
+      state.loadingProgect = true;
     });
+
     builder.addCase(setProject.fulfilled, (state) => {
-      // state.status = action.payload
-      state.loading = false;
+      state.sendingStatus = true;
+      state.loadingProgect = false;
     });
+
     builder.addCase(setProject.rejected, (state) => {
-      state.loading = false;
+      state.loadingProgect = false;
+      state.sendingError = true;
+    });
+    builder.addCase(delProject.rejected, (state) => {
+      state.deletionError = true;
     });
   },
 });
-export const {} = projectManagementSlice.actions;
+export const { serverResponseAgreement } = projectManagementSlice.actions;
 export default projectManagementSlice.reducer;

@@ -24,6 +24,9 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(
     null
   );
+
+  console.log(projectData);
+
   const onThumbsSwiper = useCallback(
     (swiper: SwiperInterface) => {
       if (swiper !== null) {
@@ -32,8 +35,14 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
     },
     [setThumbsSwiper]
   );
-
+  console.log(slideRef.current);
   const number = Object.keys(projectData.images).length;
+
+  // При наведении мыши на gif-картинку - перелистывает на гиф
+  const gifImage = Object.keys(projectData.images).findIndex(
+    (item) => item === "gif"
+  );
+
   return (
     <div className="container_bottom">
       <Swiper
@@ -43,16 +52,18 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
         thumbs={{
           swiper: thumbsSwiper,
         }}
-        modules={[FreeMode, Navigation, Autoplay, Thumbs]}
+        modules={[FreeMode, Navigation, /*  Autoplay, */ Thumbs]}
         className="mySwiper2"
-        autoplay={{
+        /*    autoplay={{
           delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
-        }}
+        }} */
       >
         {Object.keys(images).map((item: string, index: number) =>
-          item === "pdf" ? (
+          item === "word" || item === "gif-image" ? (
+            ""
+          ) : item === "pdf" ? (
             <SwiperSlide key={index}>
               <Link href={`/${project}/${item}`} className="link">
                 <iframe
@@ -61,8 +72,6 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 ></iframe>
               </Link>
             </SwiperSlide>
-          ) : item === "word" ? (
-            ""
           ) : item === "gif" ? (
             <SwiperSlide key={index}>
               <Link href={`/${project}/${item}`} className="link">
@@ -112,7 +121,9 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
       >
         <>
           {Object.keys(images).map((item: string, index: number) =>
-            item === "pdf" ? (
+            item === "word" || item === "gif" ? (
+              ""
+            ) : item === "pdf" ? (
               <SwiperSlide
                 key={index}
                 onMouseEnter={() =>
@@ -125,13 +136,24 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                   alt={item}
                   width={400}
                   height={400}
-                  style={{ width: "23%", height: "auto" }}
+                  style={{ width: "60%", height: "auto" }}
                 />
               </SwiperSlide>
-            ) : item === "gif" ? (
-              ""
-            ) : item === "word" ? (
-              ""
+            ) : item === "gif-image" ? (
+              <SwiperSlide
+                key={index}
+                onMouseEnter={() =>
+                  slideRef.current && slideRef.current.swiper.slideTo(gifImage)
+                }
+                className="swiperrrr"
+              >
+                <img
+                  src={images[item as keyof typeof images]}
+                  alt={item}
+                  width={400}
+                  height={400}
+                />
+              </SwiperSlide>
             ) : item === "video" ? (
               <SwiperSlide
                 key={index}
@@ -144,8 +166,8 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                   src={images[item as keyof typeof images]}
                   allow="fullscreen"
                   className="swiper_iframe"
-                  width="480"
-                  height="480"
+                  width="400"
+                  height="400"
                 ></iframe>
               </SwiperSlide>
             ) : (

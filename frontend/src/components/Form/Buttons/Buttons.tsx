@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import style from "./Buttons.module.css";
+import { useAppSelector } from "@/services/hooks";
 
 interface IButtons {
   logout: () => void;
@@ -14,6 +15,10 @@ const Buttons: FC<IButtons> = ({
   mainPicture,
   customValidity,
 }) => {
+  const loading = useAppSelector(
+    (state) => state.projectManagement.loadingProgect
+  );
+  console.log(loading);
   return (
     <div className={style.container}>
       <div className={style.pseudo_container}></div>
@@ -25,7 +30,7 @@ const Buttons: FC<IButtons> = ({
             mainPicture || missingGif || customValidity !== "" ? true : false
           }
         >
-          Отправить данные
+          {loading ? "Данные отправляются" : "Отправить данные"}
         </button>
 
         {missingGif && (

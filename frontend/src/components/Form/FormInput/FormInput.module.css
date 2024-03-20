@@ -31,6 +31,14 @@
   outline: none;
   cursor: pointer;
 }
+.form__input:hover {
+  border: 2px solid black;
+  cursor: auto;
+}
+.form__input:focus {
+  border: 2px solid black;
+  cursor: auto;
+}
 
 .form_error {
   color: rgb(231, 19, 19);
