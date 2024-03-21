@@ -36,9 +36,9 @@ const ModalMessage: FC<IModalMessageProps> = (props) => {
     } = item;
     if (sendingStatus || sendingError || deletionError) {
       dispatch(serverResponseAgreement());
+      setDeleteProject && setDeleteProject(false);
     } else if (deleteProject) {
       dispatch(delProject(id as number));
-      setDeleteProject && setDeleteProject(false);
     }
   }
 
@@ -51,7 +51,9 @@ const ModalMessage: FC<IModalMessageProps> = (props) => {
       >
         {(sendingStatus && "Проект загружен на сервер") ||
           (sendingError && "Возникла ошибка при загрузке") ||
-          (deleteProject && "Вы уверены, что хотите удалить проект?") ||
+          (deleteProject &&
+            !deletionError &&
+            "Вы уверены, что хотите удалить проект?") ||
           (deletionError && "Возникла ошибка при удалении")}
       </p>
       {(sendingStatus || sendingError || deletionError) && (
@@ -62,7 +64,7 @@ const ModalMessage: FC<IModalMessageProps> = (props) => {
           ок
         </button>
       )}
-      {deleteProject && (
+      {deleteProject && !deletionError && (
         <div className={style.modal_container_button}>
           <button
             onClick={() => closeModal(props)}

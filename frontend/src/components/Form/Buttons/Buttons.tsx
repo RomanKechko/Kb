@@ -18,7 +18,7 @@ const Buttons: FC<IButtons> = ({
   const loading = useAppSelector(
     (state) => state.projectManagement.loadingProgect
   );
-  console.log(loading);
+
   return (
     <div className={style.container}>
       <div className={style.pseudo_container}></div>

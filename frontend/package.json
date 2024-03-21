@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@pdftron/webviewer": "^10.7.2",
     "@reduxjs/toolkit": "^2.2.1",
     "next": "14.1.0",
     "react": "^18",

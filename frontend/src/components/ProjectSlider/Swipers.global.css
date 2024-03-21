@@ -49,9 +49,9 @@
 }
 .mySwiper1 .swiper-slide img {
   display: block;
-
+  width: 100%;
   height: 85%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .link {
@@ -72,6 +72,10 @@
   transform: translateY(35px);
 }
 
+.mySwiper1 .swiper-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
 .mySwiper1 {
   width: 100%;
   height: 20%;

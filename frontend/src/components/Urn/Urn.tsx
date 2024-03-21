@@ -1,7 +1,7 @@
 "use client";
 import { useAppSelector } from "@/services/hooks";
 import style from "./Urn.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalMessage from "../ModalMessage/ModalMessage";
 
 interface IUrnComponentProps {
@@ -10,12 +10,17 @@ interface IUrnComponentProps {
 
 function UrnComponent({ id }: IUrnComponentProps) {
   const [deleteProject, setDeleteProject] = useState(false);
-
   const auth = useAppSelector((state) => state.user.isAuth);
+  const [deletionError, setDeletionError] = useState(false);
 
-  const deletionError = useAppSelector(
+  const Error = useAppSelector(
     (state) => state.projectManagement.deletionError
   );
+  useEffect(() => {
+    if (Error === true && deleteProject === true) {
+      setDeletionError(true);
+    }
+  }, [deleteProject, Error]);
   return (
     auth && (
       <>
@@ -23,7 +28,7 @@ function UrnComponent({ id }: IUrnComponentProps) {
           className={style.urn}
           onClick={() => setDeleteProject(true)}
         ></button>
-        {(deleteProject || deletionError) && (
+        {deleteProject && (
           <ModalMessage
             deleteProject={deleteProject}
             id={id}

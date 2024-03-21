@@ -16,7 +16,7 @@
 
 .mySwiper0 .swiper-slide img {
   display: block;
-  width: 90%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -38,6 +38,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 .mySwiper0 .active_link {
   text-decoration: none;
@@ -47,8 +48,10 @@
   border: 1px solid rgb(0, 0, 0);
   height: 99%;
   border-radius: 10px;
+  overflow: hidden;
 }
 .mySwiper0 .link:hover {
   border: 1px solid rgb(0, 0, 0);
   border-radius: 10px;
+  overflow: hidden;
 }

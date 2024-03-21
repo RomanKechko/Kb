@@ -27,11 +27,17 @@ const ModalComponent: FC = () => {
   const data: IData[] = useAppSelector(
     (state) => state.projects?.projectsData as IData[]
   );
+
   const projectId = data.findIndex((item) => item._id === project);
-
   const [images, setImages] = useState(data[projectId].images as IDataImage);
-
   const [src, setSrc] = useState(images[modalId as keyof typeof images]);
+
+  //100% карточки модалки идут по порялку
+  const renderOrder = ["gif", "image_1", "image_2", "image_3", "pdf", "video"];
+  const sortedKeys = Object.keys(images).sort((a, b) => {
+    return renderOrder.indexOf(a) - renderOrder.indexOf(b);
+  });
+  //100% карточки модалки идут по порялку
 
   useEffect(() => {
     const projectData = data[projectId];
@@ -44,13 +50,15 @@ const ModalComponent: FC = () => {
   }
 
   function next() {
-    const fileKeys = Object.keys(images);
+    //исключаю из массива gif-image и продолжаю переключение
+    const fileKeys = sortedKeys.filter((key) => key !== "gif-image");
     let nextIndex = (fileKeys.indexOf(modalId) + 1) % fileKeys.length;
     router.push(`/${project}/${fileKeys[nextIndex]}`);
   }
 
   function previous() {
-    const fileKeys = Object.keys(images);
+    //исключаю из массива gif-image и продолжаю переключение
+    const fileKeys = sortedKeys.filter((key) => key !== "gif-image");
     let nextIndex =
       fileKeys.indexOf(modalId) - 1 < 0
         ? fileKeys.length - 1
@@ -84,18 +92,8 @@ const ModalComponent: FC = () => {
               className={style.direction}
             />
           </button>
-          {modalId === "pdf" || modalId === "video" ? (
+          {modalId === "pdf" ? (
             <iframe src={src!} className={style.iframe}></iframe>
-          ) : modalId === "word" ? (
-            ""
-          ) : modalId === "gif" ? (
-            <img
-              src={src!}
-              alt={modalId}
-              className={style.modal__image}
-              width={800}
-              height={800}
-            />
           ) : (
             <img
               src={src!}
