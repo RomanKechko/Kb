@@ -49,7 +49,7 @@ export const setProject = createAsyncThunk(
 export const delProject = createAsyncThunk(
   "projectManagement/delProject",
   async (id: number, { fulfillWithValue, dispatch }) => {
-    const res = await fetch(`${url}/del_projec`, {
+    const res = await fetch(`${url}/del_project`, {
       method: "POST",
       mode: "cors",
       credentials: "include",
