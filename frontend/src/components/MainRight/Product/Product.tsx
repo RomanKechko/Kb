@@ -4,9 +4,8 @@ import { FC } from "react";
 import style from "./Product.module.css";
 import Link from "next/link";
 import { useAppSelector } from "@/services/hooks";
-import UrnComponent from "../Urn/Urn";
+import UrnComponent from "./Urn/Urn";
 import { IData } from "@/utils/interface";
-import ModalMessage from "../ModalMessage/ModalMessage";
 
 const ProductComponent: FC = () => {
   const data: IData[] = useAppSelector(

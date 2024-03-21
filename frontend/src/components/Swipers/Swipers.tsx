@@ -1,10 +1,10 @@
 "use client";
 
-import ProjectFeedComponent from "../ProjectFeed/ProjectFeed";
+import ProjectFeedComponent from "./ProjectFeed/ProjectFeed";
 import { FC } from "react";
 import { Ingredient } from "@/utils/type";
 import { SwiperRef } from "swiper/react";
-import ProjectSliderComponent from "../ProjectSlider/ProjectSlider";
+import ProjectSliderComponent from "./ProjectSlider/ProjectSlider";
 import style from "./Swipers.module.css";
 import { IData } from "@/utils/interface";
 type SwiperProps = {

@@ -2,7 +2,7 @@
 import { useAppSelector } from "@/services/hooks";
 import style from "./Urn.module.css";
 import { useEffect, useState } from "react";
-import ModalMessage from "../ModalMessage/ModalMessage";
+import ModalMessage from "../../../ModalMessage/ModalMessage";
 
 interface IUrnComponentProps {
   id: number;

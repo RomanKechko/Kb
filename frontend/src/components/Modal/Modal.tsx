@@ -4,7 +4,7 @@ import React, { FC, useEffect, useState } from "react";
 import { data } from "@/data";
 import style from "./Modal.module.css";
 import cross from "../../images/cross-white.png";
-import ModalOverlayComponent from "../ModalOverlay/ModalOverlay";
+import ModalOverlayComponent from "./ModalOverlay/ModalOverlay";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

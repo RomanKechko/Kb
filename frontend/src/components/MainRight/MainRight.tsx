@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
 import style from "./MainRight.module.css";
-import ProductComponent from "../Product/Product";
+import ProductComponent from "./Product/Product";
 import { useAppDispatch } from "@/services/hooks";
 
 const MainRightComponent: FC = () => {

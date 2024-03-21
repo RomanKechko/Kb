@@ -6,7 +6,7 @@ import { Swiper as SwiperInterface } from "swiper";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { IData } from "@/utils/interface";
-import pdf from "../../images/pdf.png";
+import pdf from "../../../images/pdf.png";
 import Image from "next/image";
 import word from "../../images/word.png";
 
