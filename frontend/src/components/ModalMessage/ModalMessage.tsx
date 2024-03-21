@@ -41,7 +41,8 @@ const ModalMessage: FC<IModalMessageProps> = (props) => {
       dispatch(delProject(id as number));
     }
   }
-
+  console.log("в модалке deleteProject", deleteProject);
+  console.log("в модалке deletionError", deletionError);
   return (
     <div className={style.modal_container}>
       <p
