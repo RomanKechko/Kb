@@ -76,6 +76,7 @@ export const projectManagementSlice = createSlice({
     serverResponseAgreement: (state) => {
       state.sendingStatus = false;
       state.sendingError = false;
+      state.deletionError = false;
     },
   },
   extraReducers: (builder) => {

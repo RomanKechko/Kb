@@ -12,19 +12,33 @@ interface IModalMessageProps {
   deleteProject?: boolean;
   setDeleteProject?: (value: boolean) => void;
   id?: number;
+  deletionError?: boolean;
 }
 
 const ModalMessage: FC<IModalMessageProps> = (props) => {
-  const { sendingStatus, sendingError, deleteProject, setDeleteProject } =
-    props;
+  const {
+    sendingStatus,
+    sendingError,
+    deleteProject,
+    setDeleteProject,
+    deletionError,
+  } = props;
   const dispatch = useAppDispatch();
 
   function closeModal(item: IModalMessageProps) {
-    const { sendingStatus, sendingError, deleteProject, id } = item;
-    if (sendingStatus || sendingError) {
+    const {
+      sendingStatus,
+      sendingError,
+      deleteProject,
+      setDeleteProject,
+      id,
+      deletionError,
+    } = item;
+    if (sendingStatus || sendingError || deletionError) {
       dispatch(serverResponseAgreement());
     } else if (deleteProject) {
       dispatch(delProject(id as number));
+      setDeleteProject && setDeleteProject(false);
     }
   }
 
@@ -37,9 +51,10 @@ const ModalMessage: FC<IModalMessageProps> = (props) => {
       >
         {(sendingStatus && "Проект загружен на сервер") ||
           (sendingError && "Возникла ошибка при загрузке") ||
-          (deleteProject && "Вы уверены, что хотите удалить проект?")}
+          (deleteProject && "Вы уверены, что хотите удалить проект?") ||
+          (deletionError && "Возникла ошибка при удалении")}
       </p>
-      {(sendingStatus || sendingError) && (
+      {(sendingStatus || sendingError || deletionError) && (
         <button
           onClick={() => closeModal(props)}
           className={style.modal_button}

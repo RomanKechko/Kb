@@ -6,12 +6,13 @@ import Link from "next/link";
 import { useAppSelector } from "@/services/hooks";
 import UrnComponent from "../Urn/Urn";
 import { IData } from "@/utils/interface";
+import ModalMessage from "../ModalMessage/ModalMessage";
 
 const ProductComponent: FC = () => {
   const data: IData[] = useAppSelector(
     (state) => state.projects?.projectsData as IData[]
   );
-  console.log(data);
+
   return (
     <>
       {data?.map((item: IData) => (

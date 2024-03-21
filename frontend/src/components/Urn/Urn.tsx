@@ -13,6 +13,9 @@ function UrnComponent({ id }: IUrnComponentProps) {
 
   const auth = useAppSelector((state) => state.user.isAuth);
 
+  const deletionError = useAppSelector(
+    (state) => state.projectManagement.deletionError
+  );
   return (
     auth && (
       <>
@@ -20,11 +23,12 @@ function UrnComponent({ id }: IUrnComponentProps) {
           className={style.urn}
           onClick={() => setDeleteProject(true)}
         ></button>
-        {deleteProject && (
+        {(deleteProject || deletionError) && (
           <ModalMessage
             deleteProject={deleteProject}
             id={id}
             setDeleteProject={setDeleteProject}
+            deletionError={deletionError}
           />
         )}
       </>
