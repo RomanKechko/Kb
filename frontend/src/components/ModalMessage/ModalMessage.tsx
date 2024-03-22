@@ -15,34 +15,25 @@ interface IModalMessageProps {
   deletionError?: boolean;
 }
 
-const ModalMessage: FC<IModalMessageProps> = (props) => {
-  const {
-    sendingStatus,
-    sendingError,
-    deleteProject,
-    setDeleteProject,
-    deletionError,
-  } = props;
+const ModalMessage: FC<IModalMessageProps> = ({
+  sendingStatus,
+  sendingError,
+  deleteProject,
+  setDeleteProject,
+  deletionError,
+  id,
+}) => {
   const dispatch = useAppDispatch();
 
-  function closeModal(item: IModalMessageProps) {
-    const {
-      sendingStatus,
-      sendingError,
-      deleteProject,
-      setDeleteProject,
-      id,
-      deletionError,
-    } = item;
+  function closeModal() {
     if (sendingStatus || sendingError || deletionError) {
       dispatch(serverResponseAgreement());
       setDeleteProject && setDeleteProject(false);
-    } else if (deleteProject) {
-      dispatch(delProject(id as number));
+    } else if (deleteProject && id) {
+      dispatch(delProject(id));
     }
   }
-  console.log("в модалке deleteProject", deleteProject);
-  console.log("в модалке deletionError", deletionError);
+
   return (
     <div className={style.modal_container}>
       <p
@@ -58,19 +49,13 @@ const ModalMessage: FC<IModalMessageProps> = (props) => {
           (deletionError && "Возникла ошибка при удалении")}
       </p>
       {(sendingStatus || sendingError || deletionError) && (
-        <button
-          onClick={() => closeModal(props)}
-          className={style.modal_button}
-        >
+        <button onClick={closeModal} className={style.modal_button}>
           ок
         </button>
       )}
       {deleteProject && !deletionError && (
         <div className={style.modal_container_button}>
-          <button
-            onClick={() => closeModal(props)}
-            className={style.modal_button}
-          >
+          <button onClick={closeModal} className={style.modal_button}>
             Да
           </button>
           <button

@@ -12,18 +12,14 @@ function UrnComponent({ id }: IUrnComponentProps) {
   const [deleteProject, setDeleteProject] = useState(false);
   const auth = useAppSelector((state) => state.user.isAuth);
   const [deletionError, setDeletionError] = useState(false);
-  console.log("deleteProject: ", deleteProject);
   const Error = useAppSelector(
     (state) => state.projectManagement.deletionError
   );
-  console.log("Error: ", Error);
+
   useEffect(() => {
-    if (Error === true && deleteProject === true) {
-      setDeletionError(true);
-    } else {
-      setDeletionError(false);
-    }
+    setDeletionError(Error && deleteProject);
   }, [deleteProject, Error]);
+
   return (
     auth && (
       <>

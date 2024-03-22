@@ -1,4 +1,3 @@
-import { IStatusSetProject } from "@/utils/interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import checkResponse, { url } from "@/utils/chek-response";
 import { TProjectData } from "@/utils/type";

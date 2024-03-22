@@ -1,7 +1,5 @@
 "use client";
 import React, { FC, useEffect, useState } from "react";
-
-import { data } from "@/data";
 import style from "./Modal.module.css";
 import cross from "../../images/cross-white.png";
 import ModalOverlayComponent from "./ModalOverlay/ModalOverlay";

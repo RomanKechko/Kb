@@ -8,7 +8,6 @@ import Link from "next/link";
 import { IData } from "@/utils/interface";
 import pdf from "../../../images/pdf.png";
 import Image from "next/image";
-import word from "../../images/word.png";
 
 type SwiperProps = {
   projectData: IData;
@@ -34,6 +33,7 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
   );
 
   const number = Object.keys(projectData.images).length;
+
   //100% карточки модалки идут по порялку
   const renderOrder = ["gif", "image_1", "image_2", "image_3", "pdf", "video"];
   const sortedKeys = Object.keys(images).sort((a, b) => {
@@ -57,13 +57,13 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
         thumbs={{
           swiper: thumbsSwiper,
         }}
-        modules={[FreeMode, Navigation, /*  Autoplay, */ Thumbs]}
+        modules={[FreeMode, Navigation, Autoplay, Thumbs]}
         className="mySwiper2"
-        /*    autoplay={{
+        autoplay={{
           delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
-        }} */
+        }}
       >
         {sortedKeys.map((item: string, index: number) =>
           item === "gif-image" ? (

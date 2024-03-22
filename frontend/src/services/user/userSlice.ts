@@ -72,8 +72,8 @@ export const authUserRequest = createAsyncThunk(
       },
       body: JSON.stringify(dataLogin),
     });
-
-    return fulfillWithValue(data.ok);
+    const responseData = await checkResponse(data);
+    return fulfillWithValue(responseData);
   }
 );
 export const logoutUserRequest = createAsyncThunk(

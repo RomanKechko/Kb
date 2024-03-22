@@ -36,6 +36,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
     e.preventDefault();
     const { name, price, deadline, complexity, description, images } =
       projectData;
+    //кастомная валидация
     if (!name || !price || !deadline || !complexity || !description) {
       const requiredFields = [
         "description",
@@ -45,16 +46,14 @@ const Form: FC<IFromProps> = ({ logout }) => {
         "name",
       ];
 
-      requiredFields.forEach((item, index) => {
-        `Element at index ${index}: ${item}`;
+      requiredFields.forEach((item) => {
         if (projectData[item] === "") {
-          `Setting custom validity for ${item}`;
           setCustomValidity(item);
         }
       });
       return;
     }
-
+    //кастомная валидация
     if (!Object.keys(images).includes("image_1")) {
       setMainPicture(true);
       return;

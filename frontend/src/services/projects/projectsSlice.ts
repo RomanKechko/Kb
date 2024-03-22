@@ -1,5 +1,5 @@
 import checkResponse from "@/utils/chek-response";
-import { IData, IProject, IdataProject } from "@/utils/interface";
+import { IData } from "@/utils/interface";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { url } from "@/utils/chek-response";
 
@@ -45,6 +45,7 @@ export const projectsSlice = createSlice({
       })
       .addCase(getProjects.rejected, (state) => {
         state.downloadError = true;
+        state.isDataCheck = false;
       });
   },
 });

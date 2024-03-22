@@ -1,13 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./Login.module.css";
-import { useAppDispatch, useAppSelector } from "@/services/hooks";
-import {
-  authUserRequest,
-  currentUserRequest,
-  logoutUserRequest,
-} from "@/services/user/userSlice";
+import { useAppDispatch } from "@/services/hooks";
+import { authUserRequest } from "@/services/user/userSlice";
 
 const Login = () => {
   const [userData, setUserData] = useState<{
