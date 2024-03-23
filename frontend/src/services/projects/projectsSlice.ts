@@ -1,54 +1,53 @@
-import checkResponse from "@/utils/chek-response";
-import { IData } from "@/utils/interface";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { url } from "@/utils/chek-response";
+import checkResponse from '@/utils/chek-response'
+import { IData } from '@/utils/interface'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { url } from '@/utils/chek-response'
 
 interface IListState {
   projectsData: IData[] | null;
   isDataCheck: boolean;
   downloadError: boolean;
 }
+
 const initialState: IListState = {
   projectsData: null,
   isDataCheck: false,
-  downloadError: false,
-};
+  downloadError: false
+}
 
 export const getProjects = createAsyncThunk(
-  "projects/getProjects",
+  'projects/getProjects',
   async (_, { fulfillWithValue }) => {
     const res = await fetch(`${url}/get_projects`, {
-      method: "GET",
-      mode: "cors",
-      credentials: "include",
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
 
-    const data: IData[] = await checkResponse(res);
+    const data: IData[] = await checkResponse(res)
 
-    return fulfillWithValue(data);
+    return fulfillWithValue(data)
   }
-);
+)
 
 export const projectsSlice = createSlice({
-  name: "projects",
+  name: 'projects',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(getProjects.fulfilled, (state, action) => {
-        state.projectsData = action.payload;
-        state.isDataCheck = true;
-      })
-      .addCase(getProjects.rejected, (state) => {
-        state.downloadError = true;
-        state.isDataCheck = false;
-      });
-  },
-});
+    builder.addCase(getProjects.fulfilled, (state, action) => {
+      state.projectsData = action.payload
+      state.isDataCheck = true
+    }).addCase(getProjects.rejected, (state) => {
+      state.downloadError = true
+      state.isDataCheck = false
+    })
+  }
+})
 
-export const {} = projectsSlice.actions;
-export default projectsSlice.reducer;
+export const {} = projectsSlice.actions
+export default projectsSlice.reducer

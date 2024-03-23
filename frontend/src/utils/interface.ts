@@ -14,12 +14,13 @@ export interface IProject {
     gif?: {};
     gif_image?: {};
     pdf?: {};
-    word?: {};
   };
 }
-export interface IdataProject {
+
+export interface IDataProject {
   data: IProject[];
 }
+
 export interface IStatusSetProject {
   success: boolean;
   message: string;
@@ -28,24 +29,26 @@ export interface IStatusSetProject {
 interface RefreshTokenPayload {
   token: string | null;
 }
+
 export interface IOptions {
   method: string;
   mode?: string;
   credentials?: string;
   headers?:
     | {
-        [name: string]: string;
-      }
+    [name: string]: string;
+  }
     | {
-        Authorization: string | null;
-        "Content-Type": "application/json;charset=utf-8";
-      }
+    Authorization: string | null;
+    'Content-Type': 'application/json;charset=utf-8';
+  }
     | {
-        Authorization: string | null;
-      };
+    Authorization: string | null;
+  };
 
   body?: string | RefreshTokenPayload;
 }
+
 export interface IData {
   id: number;
   _id: string;
@@ -56,13 +59,13 @@ export interface IData {
   description: string;
   images: IDataImage;
 }
+
 export interface IDataImage {
-  video?: "";
-  image_1?: "";
-  image_2?: "";
-  image_3?: "";
-  gif?: "";
-  gif_image?: "";
-  pdf?: "";
-  word?: "";
+  video?: '';
+  image_1?: '';
+  image_2?: '';
+  image_3?: '';
+  gif?: '';
+  gif_image?: '';
+  pdf?: '';
 }

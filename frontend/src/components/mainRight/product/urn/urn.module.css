@@ -1,0 +1,18 @@
+.urn {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  background-image: url('../../../../images/urn.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 18px;
+  height: 19px;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  z-index: 3;
+}
+
+.urn:hover {
+  opacity: 0.6;
+}

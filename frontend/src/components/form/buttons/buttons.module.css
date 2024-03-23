@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pseudo_container {
+  width: 200px;
+  height: 80px;
+  background-color: rgb(160, 174, 205);
+}
+
+.pseudo_container_button {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.button {
+  display: block;
+  width: 400px;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgb(138, 149, 173);
+  border: 2px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: rgb(255, 255, 255);
+  box-shadow: 7px 5px 5px rgb(0, 0, 0);
+}
+
+.button:disabled {
+  background-color: rgba(245, 0, 0, 0.4);
+  color: rgb(255, 255, 255);
+}
+
+.form_error {
+  position: absolute;
+  top: -40px;
+  width: 100%;
+  text-align: center;
+  color: rgb(231, 19, 19);
+  font-size: 18px;
+}
+
+.button_exit {
+  display: block;
+  width: 200px;
+  height: 80px;
+  font-size: 20px;
+  background-color: rgb(138, 149, 173);
+  border: 2px solid black;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.button_exit:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: rgb(255, 255, 255);
+  box-shadow: 7px 5px 5px rgb(0, 0, 0);
+}

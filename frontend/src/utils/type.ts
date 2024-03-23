@@ -6,19 +6,6 @@ export type Images = {
   video?: string;
 };
 
-export type Ingredient = {
-  _id: string;
-  name: string;
-  type: string;
-  calories: number;
-  carbohydrates: number;
-  proteins: number;
-  fat: number;
-  price: number;
-  __v: number;
-  images: Images;
-};
-
 export type TProjectData = {
   name: string;
   price: string;
@@ -36,6 +23,5 @@ export type TImages = {
   video?: File;
   pdf?: File;
   gif?: File;
-  "gif-image"?: File;
-  word?: File;
+  'gif-image'?: File;
 };
