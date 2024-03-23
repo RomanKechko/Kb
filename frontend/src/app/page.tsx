@@ -1,14 +1,14 @@
-import styles from "./page.module.css";
-import MainLeftComponent from "@/components/MainLeft/MainLeft";
-import MainRightComponent from "@/components/MainRight/MainRight";
+import styles from './page.module.css'
+import MainLeft from '@/components/mainLeft/mainLeft'
+import MainRight from '@/components/mainRight/mainRight'
 
-export default function Home() {
+export default function Home () {
   return (
     <>
       <main className={styles.main}>
-        <MainLeftComponent />
-        <MainRightComponent />
+        <MainLeft/>
+        <MainRight/>
       </main>
     </>
-  );
+  )
 }

@@ -1,12 +1,7 @@
-import { FC } from "react";
-import ModalComponent from "@/components/Modal/Modal";
+import Modal from '@/components/modal/modal'
 
-const ModalPage: FC = () => {
+export default function ModalPage () {
   return (
-    <>
-      <ModalComponent />
-    </>
-  );
+    <Modal/>
+  )
 };
-
-export default ModalPage;

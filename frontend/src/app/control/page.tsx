@@ -1,13 +1,11 @@
-import Auth from "@/components/Auth/Auth";
-import Login from "@/components/Login/Login";
-import { FC } from "react";
+import Auth from '@/components/auth/auth'
+import Login from '@/components/login/login'
+import { FC } from 'react'
 
-const ProjectPage: FC = () => {
+export default function ProjectPage () {
   return (
-    <Auth redirectUrl="/project-addition" isAuthPage={true}>
-      <Login />
+    <Auth redirectUrl='/project-addition' isAuthPage={true}>
+      <Login/>
     </Auth>
-  );
+  )
 };
-
-export default ProjectPage;
