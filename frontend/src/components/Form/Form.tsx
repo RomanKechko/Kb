@@ -1,108 +1,108 @@
-import style from "./Form.module.css";
-import React, { FC, useEffect, useState } from "react";
-import { TProjectData } from "@/utils/type";
-import FormTextInputs from "@/components/Form/FormTextInputs/FormTextInputs";
-import FormFileInputs from "@/components/Form/FormFileInputs/FormFileInputs";
-import { useAppDispatch, useAppSelector } from "@/services/hooks";
-import { setProject } from "@/services/projectManagement/projectManagement";
-import Buttons from "./Buttons/Buttons";
-import ModalMessage from "../ModalMessage/ModalMessage";
+import style from './Form.module.css'
+import React, { FC, useEffect, useState } from 'react'
+import { TProjectData } from '@/utils/type'
+import FormTextInputs from '@/components/Form/FormTextInputs/FormTextInputs'
+import FormFileInputs from '@/components/Form/FormFileInputs/FormFileInputs'
+import { useAppDispatch, useAppSelector } from '@/services/hooks'
+import { setProject } from '@/services/projectManagement/projectManagement'
+import Buttons from './Buttons/Buttons'
+import ModalMessage from '../ModalMessage/ModalMessage'
 
 interface IFromProps {
-  logout: () => void;
+  logout: () => void
 }
 
 const Form: FC<IFromProps> = ({ logout }) => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const sendingStatus = useAppSelector(
-    (state) => state.projectManagement.sendingStatus
-  );
+    state => state.projectManagement.sendingStatus
+  )
   const sendingError = useAppSelector(
-    (state) => state.projectManagement.sendingError
-  );
+    state => state.projectManagement.sendingError
+  )
   const [projectData, setProjectData] = useState<TProjectData>({
-    name: "",
-    price: "",
-    deadline: "",
-    complexity: "",
-    description: "",
-    images: {},
-  });
-  const [missingGif, setMissingGif] = useState(false);
-  const [mainPicture, setMainPicture] = useState(false);
-  const [customValidity, setCustomValidity] = useState("");
+    name: '',
+    price: '',
+    deadline: '',
+    complexity: '',
+    description: '',
+    images: {}
+  })
+  const [missingGif, setMissingGif] = useState(false)
+  const [mainPicture, setMainPicture] = useState(false)
+  const [customValidity, setCustomValidity] = useState('')
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
     const { name, price, deadline, complexity, description, images } =
-      projectData;
+      projectData
     //кастомная валидация
     if (!name || !price || !deadline || !complexity || !description) {
       const requiredFields = [
-        "description",
-        "complexity",
-        "deadline",
-        "price",
-        "name",
-      ];
+        'description',
+        'complexity',
+        'deadline',
+        'price',
+        'name'
+      ]
 
-      requiredFields.forEach((item) => {
-        if (projectData[item] === "") {
-          setCustomValidity(item);
+      requiredFields.forEach(item => {
+        if (projectData[item] === '') {
+          setCustomValidity(item)
         }
-      });
-      return;
+      })
+      return
     }
     //кастомная валидация
-    if (!Object.keys(images).includes("image_1")) {
-      setMainPicture(true);
-      return;
+    if (!Object.keys(images).includes('image_1')) {
+      setMainPicture(true)
+      return
     }
 
     if (
-      Object.keys(images).includes("gif-image") !==
-      Object.keys(images).includes("gif")
+      Object.keys(images).includes('gif-image') !==
+      Object.keys(images).includes('gif')
     ) {
-      setMissingGif(true);
-      return;
+      setMissingGif(true)
+      return
     }
 
-    dispatch(setProject(projectData));
+    dispatch(setProject(projectData))
 
     setProjectData({
-      name: "",
-      price: "",
-      deadline: "",
-      complexity: "",
-      description: "",
-      images: {},
-    });
+      name: '',
+      price: '',
+      deadline: '',
+      complexity: '',
+      description: '',
+      images: {}
+    })
   }
 
-  function dataEntry(
+  function dataEntry (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    const { name, value } = e.currentTarget;
+    const { name, value } = e.currentTarget
     setProjectData({
       ...projectData,
-      [name]: value,
-    });
+      [name]: value
+    })
   }
 
   useEffect(() => {
-    let timerId: ReturnType<typeof setTimeout>;
+    let timerId: ReturnType<typeof setTimeout>
 
     if (missingGif) {
-      timerId = setTimeout(() => setMissingGif(false), 2000);
+      timerId = setTimeout(() => setMissingGif(false), 2000)
     }
     if (mainPicture) {
-      timerId = setTimeout(() => setMainPicture(false), 2000);
+      timerId = setTimeout(() => setMainPicture(false), 2000)
     }
     if (customValidity) {
-      timerId = setTimeout(() => setCustomValidity(""), 1000);
+      timerId = setTimeout(() => setCustomValidity(''), 1000)
     }
-    return () => clearTimeout(timerId);
-  }, [, customValidity, missingGif, mainPicture]);
+    return () => clearTimeout(timerId)
+  }, [, customValidity, missingGif, mainPicture])
 
   return (
     <>
@@ -118,7 +118,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
           <ul
             className={style.form__inputs}
             style={{
-              counterReset: `list-number 5`,
+              counterReset: `list-number 5`
             }}
           >
             <FormFileInputs
@@ -141,7 +141,7 @@ const Form: FC<IFromProps> = ({ logout }) => {
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form

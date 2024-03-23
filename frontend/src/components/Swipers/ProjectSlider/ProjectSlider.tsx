@@ -89,6 +89,19 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                 ></iframe>
               </Link>
             </SwiperSlide>
+          ) : item === "video" ? (
+            <SwiperSlide key={index}>
+              <Link href={`/${project}/${item}`} className="link">
+                <video
+                  src={images[item as keyof typeof images]}
+                  autoPlay
+                  muted
+                  /* controls */
+                  loop
+                  className="swiper_iframe"
+                ></video>
+              </Link>
+            </SwiperSlide>
           ) : (
             <SwiperSlide key={index} className="swiperrrr">
               <Link href={`/${project}/${item}`} className="link">
@@ -148,6 +161,20 @@ const ProjectSliderComponent: FC<SwiperProps> = ({ projectData, slideRef }) => {
                   width={400}
                   height={400}
                   style={{ width: "60%", height: "auto" }}
+                />
+              </SwiperSlide>
+            ) : item === "video" ? (
+              <SwiperSlide
+                key={index}
+                onMouseEnter={() =>
+                  slideRef.current && slideRef.current.swiper.slideTo(index)
+                }
+                className="swiperrrr"
+              >
+                <iframe
+                  src={images[item as keyof typeof images]}
+                  width={400}
+                  height={400}
                 />
               </SwiperSlide>
             ) : (

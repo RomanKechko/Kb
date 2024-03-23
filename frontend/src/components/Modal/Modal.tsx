@@ -92,6 +92,15 @@ const ModalComponent: FC = () => {
           </button>
           {modalId === "pdf" ? (
             <iframe src={src!} className={style.iframe}></iframe>
+          ) : modalId === "video" ? (
+            <video
+              src={src!}
+              autoPlay
+              muted
+              /*      controls */
+              loop
+              className={style.video}
+            ></video>
           ) : (
             <img
               src={src!}
