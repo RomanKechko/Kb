@@ -7,16 +7,14 @@ import React, { useEffect } from 'react'
 import style from './userUpdate.module.css'
 
 interface IUserUpdateProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
-export default function UserUpdate ({
-  children
-}: IUserUpdateProps) {
-  const isAuthCheck = useAppSelector((state) => state.user.isAuthCheck)
+export default function UserUpdate ({ children }: IUserUpdateProps) {
+  const isAuthCheck = useAppSelector(state => state.user.isAuthCheck)
   const dispatch = useAppDispatch()
-  const isDataCheck = useAppSelector((state) => state.projects.isDataCheck)
-  const downloadError = useAppSelector((state) => state.projects.downloadError)
+  const isDataCheck = useAppSelector(state => state.projects.isDataCheck)
+  const downloadError = useAppSelector(state => state.projects.downloadError)
 
   useEffect(() => {
     dispatch(currentUserRequest())

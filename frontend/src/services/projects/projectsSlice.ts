@@ -10,9 +10,10 @@ interface IListState {
 }
 
 const initialState: IListState = {
-  projectsData: null,
-  isDataCheck: false,
+  projectsData:[],
+  isDataCheck: true,
   downloadError: false
+  
 }
 
 export const getProjects = createAsyncThunk(
@@ -37,7 +38,14 @@ export const getProjects = createAsyncThunk(
 export const projectsSlice = createSlice({
   name: 'projects',
   initialState,
-  reducers: {},
+  reducers: {
+    reorderStuffing: (state, action) => {
+      const { from, to } = action.payload;
+      const [movedElement] = state.projectsData!.splice(from, 1);
+      state.projectsData!.splice(to, 0, movedElement);
+      
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getProjects.fulfilled, (state, action) => {
       state.projectsData = action.payload
@@ -49,5 +57,5 @@ export const projectsSlice = createSlice({
   }
 })
 
-export const {} = projectsSlice.actions
+export const {reorderStuffing} = projectsSlice.actions
 export default projectsSlice.reducer

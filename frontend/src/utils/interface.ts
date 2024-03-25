@@ -69,3 +69,14 @@ export interface IDataImage {
   gif_image?: '';
   pdf?: '';
 }
+export interface IColletedPropsDrag {
+  isDragging: boolean;
+}
+
+export interface IColletedPropsDrop {
+  handlerId: string;
+}
+export interface IDragItemProject{
+  project: IData;
+  index: number;
+}

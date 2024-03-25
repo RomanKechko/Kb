@@ -39,9 +39,7 @@ export default function ModalMessage ({
       <div className={style.modal_container}>
         <p
           className={
-            deleteProject
-              ? `${style.modal_text_delete}`
-              : `${style.modal_text}`
+            deleteProject ? `${style.modal_text_delete}` : `${style.modal_text}`
           }
         >
           {(sendingStatus && 'Проект загружен на сервер') ||
