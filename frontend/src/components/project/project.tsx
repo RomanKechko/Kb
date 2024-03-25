@@ -12,7 +12,7 @@ import { useAppSelector } from '@/services/hooks'
 import { IData } from '@/utils/interface'
 
 interface ParamTypes {
-  project: string;
+  project: string
 }
 
 export default function ProjectComponent () {
@@ -22,11 +22,11 @@ export default function ProjectComponent () {
   const searchParams = useSearchParams()
   const modalId = searchParams.get('modalId')
   const data: IData[] = useAppSelector(
-    (state) => state.projects?.projectsData as IData[]
+    state => state.projects?.projectsData as IData[]
   )
 
   const [currentIndex, setCurrentIndex] = useState(
-    data.findIndex((item) => item._id === project)
+    data.findIndex(item => item._id === project)
   )
 
   const slideRef = useRef<SwiperRef>(null)
@@ -35,12 +35,12 @@ export default function ProjectComponent () {
   useEffect(() => {
     window.scrollTo({ top: 0 })
 
-    setCurrentIndex(data.findIndex((item) => item._id === project))
+    setCurrentIndex(data.findIndex(item => item._id === project))
     if (slideRef.current) {
       const slider = slideRef.current
       if (modalId) {
         slider.swiper.slideTo(
-          Object.keys(projectData.images).findIndex((item) => item === modalId),
+          Object.keys(projectData.images).findIndex(item => item === modalId),
           0
         )
       } else {
@@ -90,7 +90,7 @@ export default function ProjectComponent () {
           </p>
           <p className={style.text}>Сложность: {projectData.complexity}</p>
           <p className={style.description}>
-            Детали выполнения заказа: <br/>
+            Детали выполнения заказа: <br />
             {projectData.description}
           </p>
         </article>
@@ -98,15 +98,15 @@ export default function ProjectComponent () {
 
       <section className={style.container__right}>
         <button onClick={previous} className={style.button}>
-          <Image src={left} alt='стрелка влево' className={style.direction}/>
+          <Image src={left} alt='стрелка влево' className={style.direction} />
         </button>
 
-        <SwiperComponent projectData={projectData} slideRef={slideRef}/>
+        <SwiperComponent projectData={projectData} slideRef={slideRef} />
 
         <button onClick={next} className={style.button}>
-          <Image src={right} alt='стрелка вправо' className={style.direction}/>
+          <Image src={right} alt='стрелка вправо' className={style.direction} />
         </button>
       </section>
     </>
   )
-};
+}

@@ -22,7 +22,7 @@
 }
 
 .list:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgb(216, 220, 223, 0.6);
   transform: scale(1.195);
 }
 

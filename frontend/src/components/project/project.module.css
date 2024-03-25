@@ -1,9 +1,11 @@
 .container__left {
   box-sizing: border-box;
   padding: 0 20px 0;
-  max-width: 20%;
+  max-width: 20.1%;
   width: 100%;
   margin: 0;
+  background-color: rgb(0, 0, 0);
+  border-right: 3px solid rgb(216, 220, 223);
 }
 
 .title {
@@ -33,15 +35,16 @@
 
 .container__right {
   display: flex;
-  width: 80%;
+  width: 100%;
   height: calc(100vh - 80px);
+  box-sizing: border-box;
 }
 
 .button {
   height: calc(100vh - 80px);
-  width: 70px;
+  width: 65px;
   border: none;
-  background-color: rgb(160, 174, 205);
+  background-color: rgb(127, 127, 127);
   cursor: pointer;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -51,7 +54,7 @@
 }
 
 .button:hover {
-  background-color: rgb(144, 156, 182);
+  background-color: rgb(216, 220, 223);
 }
 
 .direction {
