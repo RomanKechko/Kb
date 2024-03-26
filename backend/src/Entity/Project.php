@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
 {
+
     /**
      * @var int
      */
@@ -42,6 +43,12 @@ class Project
      */
     #[ORM\Column(length: 255)]
     private string $complexity;
+
+    /**
+     * @var string
+     */
+    #[ORM\Column(length: 255)]
+    private string $category;
 
     /**
      * @var string
@@ -84,6 +91,7 @@ class Project
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName(string $name): static
@@ -103,6 +111,7 @@ class Project
 
     /**
      * @param string $price
+     *
      * @return $this
      */
     public function setPrice(string $price): static
@@ -122,6 +131,7 @@ class Project
 
     /**
      * @param string $deadline
+     *
      * @return $this
      */
     public function setDeadline(string $deadline): static
@@ -141,11 +151,32 @@ class Project
 
     /**
      * @param string $complexity
+     *
      * @return $this
      */
     public function setComplexity(string $complexity): static
     {
         $this->complexity = $complexity;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     *
+     * @return $this
+     */
+    public function setCategory(string $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
@@ -160,6 +191,7 @@ class Project
 
     /**
      * @param string $description
+     *
      * @return $this
      */
     public function setDescription(string $description): static
@@ -179,6 +211,7 @@ class Project
 
     /**
      * @param string $urlName
+     *
      * @return $this
      */
     public function setUrlName(string $urlName): static
@@ -198,6 +231,7 @@ class Project
 
     /**
      * @param File $file
+     *
      * @return $this
      */
     public function addFile(File $file): static
@@ -209,4 +243,5 @@ class Project
 
         return $this;
     }
+
 }
