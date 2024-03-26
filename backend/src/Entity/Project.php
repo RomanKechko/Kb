@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Project
 {
 
@@ -19,6 +20,12 @@ class Project
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private int $id;
+
+    /**
+     * @var int
+     */
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private int $projectOrder;
 
     /**
      * @var string
@@ -242,6 +249,24 @@ class Project
         }
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrder(): int
+    {
+        return $this->projectOrder ?? $this->getId();
+    }
+
+    /**
+     * @param int $order
+     *
+     * @return void
+     */
+    public function setOrder(int $order): void
+    {
+        $this->projectOrder = $order;
     }
 
 }
