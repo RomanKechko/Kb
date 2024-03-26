@@ -1,0 +1,74 @@
+.container_dropdown {
+  padding: 5px 0 0 20px;
+  display: flex;
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.title {
+  padding-top: 10px;
+}
+.container_lists {
+  padding-left: 10px;
+}
+.button {
+  font-size: 22px;
+  list-style-type: none;
+  width: 220px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 4px;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: rgb(57, 216, 216);
+  padding: 10px 0 10px 0;
+}
+.button:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.lists {
+  position: relative;
+  list-style-type: none;
+  width: 220px;
+  border: 1px solid black;
+  border-radius: 4px;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lists_active {
+  opacity: 1;
+}
+
+.list {
+  text-align: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  background-color: rgb(57, 216, 216);
+  padding: 10px 0 10px 0;
+}
+.list:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.list:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.list:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  transform: scale(1.03);
+}
