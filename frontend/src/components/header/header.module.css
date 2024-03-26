@@ -60,6 +60,7 @@
 
 .link:hover {
   background-color: rgb(128, 128, 128);
+  color: rgb(0, 0, 0);
 }
 
 .logo {

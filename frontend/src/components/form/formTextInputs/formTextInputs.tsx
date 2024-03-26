@@ -2,11 +2,12 @@ import React from 'react'
 import FormInput from '@/components/form/formInput/formInput'
 import FormTextarea from '@/components/form/formTextarea/formTextarea'
 import { TProjectData } from '@/utils/type'
+import FormSelect from '../formSelect/formSelect'
 
 interface IFormFileInputProps {
-  projectData: TProjectData;
-  dataEntry: React.ChangeEventHandler;
-  customValidity: string;
+  projectData: TProjectData
+  dataEntry: React.ChangeEventHandler
+  customValidity: string
 }
 
 export default function FormTextInputs ({
@@ -16,6 +17,13 @@ export default function FormTextInputs ({
 }: IFormFileInputProps) {
   return (
     <>
+      <FormSelect
+        id={'category'}
+        name={'category'}
+        onChange={dataEntry}
+        value={projectData.category}
+        title={'Категория проекта'}
+      />
       <FormInput
         id={'name'}
         name={'name'}
@@ -58,4 +66,4 @@ export default function FormTextInputs ({
       />
     </>
   )
-};
+}

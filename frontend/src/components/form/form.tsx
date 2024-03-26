@@ -22,8 +22,10 @@ export default function Form () {
     deadline: '',
     complexity: '',
     description: '',
+    category: 'ordinary',
     images: {}
   })
+
   const [missingGif, setMissingGif] = useState(false)
   const [mainPicture, setMainPicture] = useState(false)
   const [customValidity, setCustomValidity] = useState('')
@@ -71,6 +73,7 @@ export default function Form () {
       deadline: '',
       complexity: '',
       description: '',
+      category: '',
       images: {}
     })
   }
@@ -114,7 +117,7 @@ export default function Form () {
           <ul
             className={style.form__inputs}
             style={{
-              counterReset: `list-number 5`
+              counterReset: `list-number 6`
             }}
           >
             <FormFileInputs

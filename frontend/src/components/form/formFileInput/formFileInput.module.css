@@ -28,7 +28,7 @@
 
 .form_text::before {
   counter-increment: list-number;
-  content: counter(list-number) ". ";
+  content: counter(list-number) '. ';
 }
 
 .form_container {
@@ -92,7 +92,7 @@
 
 .form_urn {
   position: absolute;
-  background-image: url("../../../images/urn.svg");
+  background-image: url('../../../images/urn.svg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 18px;

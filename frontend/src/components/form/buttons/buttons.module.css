@@ -7,7 +7,7 @@
 .pseudo_container {
   width: 200px;
   height: 80px;
-  background-color: rgb(160, 174, 205);
+  opacity: 0;
 }
 
 .pseudo_container_button {

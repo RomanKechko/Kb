@@ -12,6 +12,7 @@ export type TProjectData = {
   deadline: string;
   complexity: string;
   description: string;
+  category: string;
   images: TImages;
   [key: string]: string | TImages;
 };
