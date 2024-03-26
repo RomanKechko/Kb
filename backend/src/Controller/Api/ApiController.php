@@ -19,6 +19,7 @@ class ApiController extends AbstractController
      * @return JsonResponse
      */
     #[Route("/api/v1/set_project", name: "set_project_app", methods: ["POST"])]
+    #[IsGranted('ROLE_USER')]
     public function setProject(
         Request $request,
         ApiService $apiService
@@ -78,6 +79,29 @@ class ApiController extends AbstractController
         return new JsonResponse([
             'success' => true,
             'message' => 'project deleted',
+        ]);
+    }
+
+    /**
+     * @param ApiService $apiService
+     * @param Request    $request
+     *
+     * @return JsonResponse
+     */
+    #[Route("/api/v1/change_order", name: "change_order_app", methods: ["POST"])]
+    #[IsGranted('ROLE_USER')]
+    public function changeOrder(
+        ApiService $apiService,
+        Request $request
+    ): JsonResponse {
+        $newOrder = $request->toArray();
+
+        $apiService->checkOrders($newOrder);
+        $apiService->changeOrder($newOrder);
+
+        return new JsonResponse([
+            'success' => true,
+            'message' => 'order changed',
         ]);
     }
 

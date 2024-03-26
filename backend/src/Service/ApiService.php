@@ -364,6 +364,7 @@ class ApiService
         $json['complexity'] = $project->getComplexity();
         $json['category'] = $project->getCategory();
         $json['description'] = $project->getDescription();
+        $json['order'] = $project->getOrder();
 
         $images = [];
 
@@ -417,6 +418,48 @@ class ApiService
         rmdir('api/v1/projects/'.$project->getUrlName());
 
         $this->em->remove($project);
+        $this->em->flush();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return void
+     */
+    public function checkOrders(array $data): void
+    {
+        foreach ($data as $id) {
+            if (!is_int($id)) {
+                throw new BadRequestHttpException('invalid order, ids must be integer');
+            }
+        }
+
+        if (count($data)
+            != count($this->projectRepository->findBy(['id' => array_keys($data)]))
+            || count($data) != count($this->projectRepository->findAll())
+        ) {
+            throw new BadRequestHttpException('invalid ids');
+        }
+
+        if (count(array_unique($data)) != count($data)) {
+            throw new BadRequestHttpException('invalid order, ids must be unique');
+        }
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return void
+     */
+    public function changeOrder(array $data): void
+    {
+        $projects = $this->projectRepository->findAll();
+
+        foreach ($projects as $project) {
+            $project->setOrder($data[$project->getId()]);
+            $this->em->persist($project);
+        }
+
         $this->em->flush();
     }
 
