@@ -28,7 +28,7 @@ export default function FormSelect ({
         value={value}
         onChange={onChange}
       >
-        <option value='ordinary'>Обычная</option>
+        <option value='ordinary'>Крупное</option>
         <option value='maf'>МАФ</option>
       </select>
     </li>

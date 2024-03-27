@@ -49,13 +49,11 @@
 
 .iframe {
   width: 100%;
-  /*   transform: translateY(2px); */
 }
 
 .video {
   width: calc(100% - 110px);
   object-fit: cover;
-  /*   transform: translateY(2px); */
 }
 
 .container {
@@ -66,7 +64,7 @@
 .button {
   width: 55px;
   border: none;
-  background-color: rgb(160, 174, 205);
+  background-color: rgb(127, 127, 127);
   cursor: pointer;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -84,7 +82,7 @@
 }
 
 .button:hover {
-  background-color: rgb(144, 156, 182);
+  background-color: rgb(107, 107, 107);
 }
 
 .direction {

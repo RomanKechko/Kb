@@ -38,11 +38,30 @@ export default function Project () {
     setCurrentIndex(data.findIndex(item => item._id === project))
     if (slideRef.current) {
       const slider = slideRef.current
+      const renderOrder = [
+        'video',
+        'gif',
+        'gif-image',
+        'image_1',
+        'image_2',
+        'image_3',
+        'pdf'
+      ]
+      const sortedKeys = Object.keys(projectData.images).sort((a, b) => {
+        return renderOrder.indexOf(a) - renderOrder.indexOf(b)
+      })
       if (modalId) {
-        slider.swiper.slideTo(
-          Object.keys(projectData.images).findIndex(item => item === modalId),
-          0
-        )
+        if (modalId !== 'video' && modalId !== 'gif') {
+          slider.swiper.slideTo(
+            sortedKeys.findIndex(item => item === modalId) - 1,
+            0
+          )
+        } else {
+          slider.swiper.slideTo(
+            sortedKeys.findIndex(item => item === modalId),
+            0
+          )
+        }
       } else {
         slider.swiper.slideTo(0, 0)
       }

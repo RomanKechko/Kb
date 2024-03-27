@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { IData } from '@/utils/interface'
 import pdf from '../../../images/pdf.png'
 import Image from 'next/image'
-
+import video from '@/images/videoBadge.png'
 interface ISwiperProps {
   projectData: IData
   slideRef: React.RefObject<SwiperRef>
@@ -35,7 +35,15 @@ export default function ProjectSlider ({ projectData, slideRef }: ISwiperProps) 
   const number = Object.keys(projectData.images).length
 
   //100% карточки модалки идут по порялку
-  const renderOrder = ['video', 'gif', 'image_1', 'image_2', 'image_3', 'pdf']
+  const renderOrder = [
+    'video',
+    'gif',
+    'gif-image',
+    'image_1',
+    'image_2',
+    'image_3',
+    'pdf'
+  ]
   const sortedKeys = Object.keys(images).sort((a, b) => {
     return renderOrder.indexOf(a) - renderOrder.indexOf(b)
   })
@@ -135,7 +143,8 @@ export default function ProjectSlider ({ projectData, slideRef }: ISwiperProps) 
               <SwiperSlide
                 key={index}
                 onMouseEnter={() =>
-                  slideRef.current && slideRef.current.swiper.slideTo(index)
+                  slideRef.current &&
+                  slideRef.current.swiper.slideTo(index - indexToSlide)
                 }
                 className='swiperrrr'
               >
@@ -160,7 +169,7 @@ export default function ProjectSlider ({ projectData, slideRef }: ISwiperProps) 
                   alt={item}
                   width={400}
                   height={400}
-                  style={{ width: '60%', height: 'auto' }}
+                  style={{ width: '60%', height: '100% ' }}
                 />
               </SwiperSlide>
             ) : item === 'video' ? (
@@ -171,11 +180,13 @@ export default function ProjectSlider ({ projectData, slideRef }: ISwiperProps) 
                 }
                 className='swiperrrr'
               >
-                <iframe
-                  src={images[item as keyof typeof images]}
+                <Image
+                  src={video}
+                  alt={item}
                   width={400}
                   height={400}
-                />
+                  style={{ width: '60%', height: '100% ' }}
+                ></Image>
               </SwiperSlide>
             ) : (
               <SwiperSlide

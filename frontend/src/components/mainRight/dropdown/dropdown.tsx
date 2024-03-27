@@ -31,14 +31,17 @@ export default function Dropdown () {
           {categoriesTranslate[listValue]}
         </button>
         <ul className={`${style.lists} ${openList ? style.lists_active : ''}`}>
-          {categories.map(category => (
-            <li
-              onClick={() => handleDropdownClick(category)}
-              className={style.list}
-            >
-              {categoriesTranslate[category]}
-            </li>
-          ))}
+          {categories.map(
+            category =>
+              category !== listValue && (
+                <li
+                  onClick={() => handleDropdownClick(category)}
+                  className={style.list}
+                >
+                  {categoriesTranslate[category]}
+                </li>
+              )
+          )}
         </ul>
       </div>
     </div>

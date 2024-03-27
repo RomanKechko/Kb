@@ -27,7 +27,7 @@ export default function Modal () {
   )
 
   const projectId = data.findIndex(item => item._id === project)
-  console.log(projectId, data)
+
   const [images, setImages] = useState(data[projectId].images as IDataImage)
   const [src, setSrc] = useState(images[modalId as keyof typeof images])
 
