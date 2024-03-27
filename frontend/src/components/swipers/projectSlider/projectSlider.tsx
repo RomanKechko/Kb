@@ -10,23 +10,18 @@ import pdf from '../../../images/pdf.png'
 import Image from 'next/image'
 
 interface ISwiperProps {
-  projectData: IData;
-  slideRef: React.RefObject<SwiperRef>;
+  projectData: IData
+  slideRef: React.RefObject<SwiperRef>
 }
 
 interface ParamTypes {
-  project: string;
+  project: string
 }
 
-export default function ProjectSlider ({
-  projectData,
-  slideRef
-}: ISwiperProps) {
+export default function ProjectSlider ({ projectData, slideRef }: ISwiperProps) {
   const { project } = useParams<{ project: string }>() as ParamTypes
   const images = projectData.images
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(
-    null
-  )
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(null)
 
   const onThumbsSwiper = useCallback(
     (swiper: SwiperInterface) => {
@@ -40,14 +35,14 @@ export default function ProjectSlider ({
   const number = Object.keys(projectData.images).length
 
   //100% карточки модалки идут по порялку
-  const renderOrder = ['gif', 'image_1', 'image_2', 'image_3', 'pdf', 'video']
+  const renderOrder = ['video', 'gif', 'image_1', 'image_2', 'image_3', 'pdf']
   const sortedKeys = Object.keys(images).sort((a, b) => {
     return renderOrder.indexOf(a) - renderOrder.indexOf(b)
   })
   //100% карточки модалки идут по порялку
 
   //Проверка существования gif и смещение слайдера на 1
-  const indexSwiper: number = sortedKeys.findIndex((item) =>
+  const indexSwiper: number = sortedKeys.findIndex(item =>
     item === 'gif' ? 1 : 0
   )
   const indexToSlide = indexSwiper >= 0 ? 1 : 0
