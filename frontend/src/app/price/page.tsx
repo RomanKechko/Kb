@@ -1,14 +1,11 @@
-import { FC } from "react";
-import style from "./page.module.css";
+import style from './page.module.css'
 
-const ProjectPage: FC = () => {
+export default function ProjectPage () {
   return (
     <>
       <div className={style.container}>
         <h1 className={style.title}>Раздел в разработке</h1>
       </div>
     </>
-  );
-};
-
-export default ProjectPage;
+  )
+}

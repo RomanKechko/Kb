@@ -6,33 +6,23 @@ export type Images = {
   video?: string;
 };
 
-export type Ingredient = {
-  _id: string;
-  name: string;
-  type: string;
-  calories: number;
-  carbohydrates: number;
-  proteins: number;
-  fat: number;
-  price: number;
-  __v: number;
-  images: Images;
-};
-
 export type TProjectData = {
   name: string;
   price: string;
   deadline: string;
   complexity: string;
   description: string;
-  images: Timages;
+  category: string;
+  images: TImages;
+  [key: string ]: string | TImages  ;
 };
-export type Timages = {
-  image_1?: object;
-  image_2?: object;
-  image_3?: object;
-  video?: object;
-  pdf?: object;
-  gif?: object;
-  word?: object;
+
+export type TImages = {
+  image_1?: File;
+  image_2?: File;
+  image_3?: File;
+  video?: File;
+  pdf?: File;
+  gif?: File;
+  'gif-image'?: File;
 };

@@ -1,5 +1,5 @@
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -17,6 +17,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "gifki.su",
+      },
+      {
+        protocol: "http",
+        hostname: "127.0.0.1:8000",
       },
     ],
   },

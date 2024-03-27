@@ -1,12 +1,10 @@
-import Auth from "@/components/Auth/Auth";
-import ProjectAddition from "@/components/ProjectAddition/ProjectAddition";
+import Auth from '@/components/auth/auth'
+import ProjectAddition from '@/components/projectAddition/projectAddition'
 
-export default function ProjectAdditipnPage() {
+export default function ProjectAdditionPage () {
   return (
-    <>
-      <Auth redirectUrl="/control">
-        <ProjectAddition />
-      </Auth>
-    </>
-  );
+    <Auth redirectUrl='/control'>
+      <ProjectAddition/>
+    </Auth>
+  )
 }

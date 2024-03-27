@@ -1,21 +1,58 @@
-interface RefreshTokenPayload {
-  token: string | null;
+export interface IData {
+  id: number
+  _id: string
+  name: string
+  price: string
+  deadline: string
+  complexity: string
+  description: string
+  category: 'maf' | 'ordinary' | 'all'
+  order: number
+  images: IDataImage
 }
+
+export interface IDataImage {
+  video?: ''
+  image_1?: ''
+  image_2?: ''
+  image_3?: ''
+  gif?: ''
+  gif_image?: ''
+  pdf?: ''
+}
+export interface IStatusSetProject {
+  success: boolean
+  message: string
+}
+
+interface RefreshTokenPayload {
+  token: string | null
+}
+
 export interface IOptions {
-  method: string;
-  mode?: string;
-  credentials?: string;
+  method: string
+  mode?: string
+  credentials?: string
   headers?:
     | {
-        [name: string]: string;
+        [name: string]: string
       }
     | {
-        Authorization: string | null;
-        "Content-Type": "application/json;charset=utf-8";
+        Authorization: string | null
+        'Content-Type': 'application/json;charset=utf-8'
       }
     | {
-        Authorization: string | null;
-      };
+        Authorization: string | null
+      }
 
-  body?: string | RefreshTokenPayload;
+  body?: string | RefreshTokenPayload
+}
+
+export interface IColletedPropsDrag {
+  isDragging: boolean
+}
+
+export interface IDragItemProject {
+  project: IData
+  index: number
 }

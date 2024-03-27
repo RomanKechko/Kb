@@ -1,15 +1,12 @@
-import { FC } from "react";
-import style from "./page.module.css";
-import ProjectComponent from "@/components/Project/Project";
+import style from './page.module.css'
+import Project from '@/components/project/project'
 
-const ProjectPage: FC = () => {
+export default function () {
   return (
     <>
       <main className={style.container}>
-        <ProjectComponent />
+        <Project/>
       </main>
     </>
-  );
+  )
 };
-
-export default ProjectPage;
