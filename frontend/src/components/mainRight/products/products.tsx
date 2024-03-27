@@ -1,7 +1,7 @@
 'use client'
 
 import { useAppSelector } from '@/services/hooks'
-import { IData, IProject } from '@/utils/interface'
+import { IData } from '@/utils/interface'
 
 import Product from './product/product'
 
@@ -9,7 +9,6 @@ export default function ProductComponent () {
   const data: IData[] = useAppSelector(
     state => state.projects?.projectsData as IData[]
   )
-  console.log(data)
 
   return (
     <>

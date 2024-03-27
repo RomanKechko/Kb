@@ -8,7 +8,7 @@ import Link from 'next/link'
 import React, { useRef } from 'react'
 import style from './product.module.css'
 import { useDrag, useDrop } from 'react-dnd'
-import { useAppDispatch } from '@/services/hooks'
+import { useAppDispatch, useAppSelector } from '@/services/hooks'
 import { reorderStuffing, setOrder } from '@/services/projects/projectsSlice'
 import UrnComponent from '@/components/mainRight/products/product/urn/urn'
 
@@ -20,6 +20,8 @@ interface IItemProps {
 export default function Product ({ project, index }: IItemProps) {
   const ref = useRef<HTMLLIElement>(null)
   const dispatch = useAppDispatch()
+
+  const isAuth = useAppSelector(state => state.user.isAuth)
 
   const [{ handlerId }, dropRef] = useDrop<
     IDragItemProject,
@@ -74,8 +76,9 @@ export default function Product ({ project, index }: IItemProps) {
       isDragging: monitor.isDragging()
     })
   })
+  const isAuthCheckRef = isAuth ? ref : null
 
-  dragRef(dropRef(ref))
+  dragRef(dropRef(isAuthCheckRef))
 
   const opacity = isDragging ? 0.3 : 1
   return (
