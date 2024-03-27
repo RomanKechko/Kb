@@ -32,6 +32,7 @@ export default function FormTextInputs ({
         title={'Наименование'}
         customValidity={customValidity}
       />
+
       <FormInput
         id={'price'}
         name={'price'}
@@ -56,6 +57,7 @@ export default function FormTextInputs ({
         title={'Сложность'}
         customValidity={customValidity}
       />
+
       <FormTextarea
         id={'description'}
         name={'description'}

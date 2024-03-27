@@ -2,18 +2,20 @@ import checkResponse from '@/utils/chek-response'
 import { IData } from '@/utils/interface'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { url } from '@/utils/chek-response'
+import { RootState } from '../store'
 
 interface IListState {
-  projectsData: IData[] | null;
-  isDataCheck: boolean;
-  downloadError: boolean;
+  projectsData: IData[]
+  isDataCheck: boolean
+  downloadError: boolean
+  orderData: { [key: number]: number }
 }
 
 const initialState: IListState = {
-  projectsData:[],
-  isDataCheck: true,
+  projectsData: [],
+  orderData: {},
+  isDataCheck: false,
   downloadError: false
-  
 }
 
 export const getProjects = createAsyncThunk(
@@ -30,32 +32,61 @@ export const getProjects = createAsyncThunk(
     })
 
     const data: IData[] = await checkResponse(res)
+    function sortByOrder (a: IData, b: IData) {
+      const diff = a.order - b.order
+      return -diff
+    }
 
-    return fulfillWithValue(data)
+    const sortedData = structuredClone(data).sort((a, b) => sortByOrder(a, b))
+    return fulfillWithValue(sortedData)
   }
 )
 
+export const setOrder = createAsyncThunk(
+  'projects/setOrder',
+  async (_, { fulfillWithValue, getState }) => {
+    const state = getState() as RootState
+    const res = await fetch(`${url}/change_order`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(state.projects.orderData)
+    })
+  }
+)
 export const projectsSlice = createSlice({
   name: 'projects',
   initialState,
   reducers: {
     reorderStuffing: (state, action) => {
-      const { from, to } = action.payload;
-      const [movedElement] = state.projectsData!.splice(from, 1);
-      state.projectsData!.splice(to, 0, movedElement);
-      
-    },
+      const { from, to } = action.payload
+      const [movedElement] = state.projectsData.splice(from, 1)
+      state.projectsData.splice(to, 0, movedElement)
+      const lenghtArray = state.projectsData.length
+      let data: { [key: number]: number } = {}
+      for (let i = 0; i < lenghtArray; i++) {
+        state.projectsData[i].order = lenghtArray - 1 - i
+        data[state.projectsData[i].id] = lenghtArray - 1 - i
+      }
+      state.orderData = data
+    }
   },
-  extraReducers: (builder) => {
-    builder.addCase(getProjects.fulfilled, (state, action) => {
-      state.projectsData = action.payload
-      state.isDataCheck = true
-    }).addCase(getProjects.rejected, (state) => {
-      state.downloadError = true
-      state.isDataCheck = false
-    })
+  extraReducers: builder => {
+    builder
+      .addCase(getProjects.fulfilled, (state, action) => {
+        state.projectsData = action.payload
+        state.isDataCheck = true
+      })
+      .addCase(getProjects.rejected, state => {
+        state.downloadError = true
+        state.isDataCheck = false
+      })
   }
 })
 
-export const {reorderStuffing} = projectsSlice.actions
+export const { reorderStuffing } = projectsSlice.actions
 export default projectsSlice.reducer

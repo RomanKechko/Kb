@@ -10,9 +10,10 @@ export default function ProductComponent () {
     state => state.projects?.projectsData as IData[]
   )
   console.log(data)
+
   return (
     <>
-      {data?.map((project: IData, index: number) => (
+      {data.map((project: IData, index: number) => (
         <Product project={project} index={index} key={project._id} />
       ))}
     </>

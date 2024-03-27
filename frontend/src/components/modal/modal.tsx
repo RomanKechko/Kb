@@ -12,21 +12,22 @@ import { useAppSelector } from '@/services/hooks'
 import { IData, IDataImage } from '@/utils/interface'
 
 interface ParamTypes {
-  project: string;
-  modalId: string;
+  project: string
+  modalId: string
 }
 
 export default function Modal () {
   const router = useRouter()
   const { project, modalId } = useParams<{
-    project: string;
-    modalId: string;
+    project: string
+    modalId: string
   }>() as ParamTypes
   const data: IData[] = useAppSelector(
-    (state) => state.projects?.projectsData as IData[]
+    state => state.projects.projectsData as IData[]
   )
 
-  const projectId = data.findIndex((item) => item._id === project)
+  const projectId = data.findIndex(item => item._id === project)
+  console.log(projectId, data)
   const [images, setImages] = useState(data[projectId].images as IDataImage)
   const [src, setSrc] = useState(images[modalId as keyof typeof images])
 
@@ -49,14 +50,14 @@ export default function Modal () {
 
   function next () {
     //исключаю из массива gif-image и продолжаю переключение
-    const fileKeys = sortedKeys.filter((key) => key !== 'gif-image')
+    const fileKeys = sortedKeys.filter(key => key !== 'gif-image')
     let nextIndex = (fileKeys.indexOf(modalId) + 1) % fileKeys.length
     router.push(`/${project}/${fileKeys[nextIndex]}`)
   }
 
   function previous () {
     //исключаю из массива gif-image и продолжаю переключение
-    const fileKeys = sortedKeys.filter((key) => key !== 'gif-image')
+    const fileKeys = sortedKeys.filter(key => key !== 'gif-image')
     let nextIndex =
       fileKeys.indexOf(modalId) - 1 < 0
         ? fileKeys.length - 1
@@ -80,7 +81,7 @@ export default function Modal () {
     <>
       <div className={style.modal}>
         <button onClick={onClose} className={style.modal__cross}>
-          <Image src={cross} alt='cross' className={style.cross__image}/>
+          <Image src={cross} alt='cross' className={style.cross__image} />
         </button>
         <div className={style.container}>
           <button className={style.button} onClick={previous}>
@@ -120,7 +121,7 @@ export default function Modal () {
         </div>
       </div>
 
-      <ModalOverlay closeModal={onClose}/>
+      <ModalOverlay closeModal={onClose} />
     </>
   )
-};
+}

@@ -9,7 +9,7 @@ import React, { useRef } from 'react'
 import style from './product.module.css'
 import { useDrag, useDrop } from 'react-dnd'
 import { useAppDispatch } from '@/services/hooks'
-import { reorderStuffing } from '@/services/projects/projectsSlice'
+import { reorderStuffing, setOrder } from '@/services/projects/projectsSlice'
 import UrnComponent from '@/components/mainRight/products/product/urn/urn'
 
 interface IItemProps {
@@ -57,6 +57,7 @@ export default function Product ({ project, index }: IItemProps) {
       }
       dispatch(reorderStuffing({ from: dragIndex, to: hoverIndex }))
       item.index = hoverIndex
+      dispatch(setOrder())
     }
   })
 

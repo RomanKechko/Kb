@@ -20,7 +20,7 @@ export default function UserUpdate ({ children }: IUserUpdateProps) {
     dispatch(currentUserRequest())
     dispatch(getProjects())
   }, [])
-
+  console.log(isDataCheck)
   return !isAuthCheck || !isDataCheck ? (
     <h2 className={style.title}>loading...</h2>
   ) : downloadError ? (

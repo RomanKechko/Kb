@@ -2,12 +2,12 @@ import style from './formInput.module.css'
 import React from 'react'
 
 interface IFormInputProps {
-  title: string;
-  id: string;
-  name: string;
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  customValidity: string;
+  title: string
+  id: string
+  name: string
+  value: string | number
+  onChange: React.ChangeEventHandler<HTMLInputElement>
+  customValidity: string
 }
 
 export default function FormInput ({
@@ -36,4 +36,4 @@ export default function FormInput ({
       />
     </li>
   )
-};
+}

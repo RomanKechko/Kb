@@ -26,12 +26,15 @@ export default function Form () {
     images: {}
   })
 
+  console.log(projectData)
+
   const [missingGif, setMissingGif] = useState(false)
   const [mainPicture, setMainPicture] = useState(false)
   const [customValidity, setCustomValidity] = useState('')
 
   function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    console.log(123)
     const { name, price, deadline, complexity, description, images } =
       projectData
     //кастомная валидация
@@ -73,7 +76,7 @@ export default function Form () {
       deadline: '',
       complexity: '',
       description: '',
-      category: '',
+      category: 'ordinary',
       images: {}
     })
   }

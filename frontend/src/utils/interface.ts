@@ -57,6 +57,7 @@ export interface IData {
   deadline: string;
   complexity: string;
   description: string;
+  order: number;
   images: IDataImage;
 }
 

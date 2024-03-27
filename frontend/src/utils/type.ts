@@ -14,7 +14,7 @@ export type TProjectData = {
   description: string;
   category: string;
   images: TImages;
-  [key: string]: string | TImages;
+  [key: string ]: string | TImages  ;
 };
 
 export type TImages = {
