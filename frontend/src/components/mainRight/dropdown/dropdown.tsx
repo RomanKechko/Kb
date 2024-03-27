@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import style from './dropdown.module.css'
+import { useAppDispatch } from '@/services/hooks'
+import { projectFilter } from '@/services/projects/projectsSlice'
 
 const categories = ['maf', 'ordinary', 'all']
 export type categoriesType = typeof categories[number]
 
 export default function Dropdown () {
+  const dispatch = useAppDispatch()
   const categoriesTranslate: { [key in categoriesType]: string } = {
     all: 'Все',
     maf: 'МАФ',
-    ordinary: 'Обычные проекты'
+    ordinary: 'Крупное'
   }
 
   const [listValue, setListValue] = useState<categoriesType>('all')
@@ -17,6 +20,7 @@ export default function Dropdown () {
   const handleDropdownClick = (value: categoriesType) => {
     setListValue(value)
     setOpenList(!openList)
+    dispatch(projectFilter(value))
   }
 
   return (

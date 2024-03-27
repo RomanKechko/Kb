@@ -9,13 +9,15 @@ interface IListState {
   isDataCheck: boolean
   downloadError: boolean
   orderData: { [key: number]: number }
+  projectСategory: 'maf' | 'ordinary' | 'all'
 }
 
 const initialState: IListState = {
   projectsData: [],
   orderData: {},
   isDataCheck: false,
-  downloadError: false
+  downloadError: false,
+  projectСategory: 'all'
 }
 
 export const getProjects = createAsyncThunk(
@@ -62,7 +64,7 @@ export const projectsSlice = createSlice({
   name: 'projects',
   initialState,
   reducers: {
-    reorderStuffing: (state, action) => {
+    reorderProject: (state, action) => {
       const { from, to } = action.payload
       const [movedElement] = state.projectsData.splice(from, 1)
       state.projectsData.splice(to, 0, movedElement)
@@ -73,6 +75,9 @@ export const projectsSlice = createSlice({
         data[state.projectsData[i].id] = lenghtArray - 1 - i
       }
       state.orderData = data
+    },
+    projectFilter: (state, action) => {
+      state.projectСategory = action.payload
     }
   },
   extraReducers: builder => {
@@ -88,5 +93,5 @@ export const projectsSlice = createSlice({
   }
 })
 
-export const { reorderStuffing } = projectsSlice.actions
+export const { reorderProject, projectFilter } = projectsSlice.actions
 export default projectsSlice.reducer

@@ -1,15 +1,10 @@
-import {
-  IData,
-  IColletedPropsDrag,
-  IColletedPropsDrop,
-  IDragItemProject
-} from '@/utils/interface'
+import { IData, IColletedPropsDrag, IDragItemProject } from '@/utils/interface'
 import Link from 'next/link'
 import React, { useRef } from 'react'
 import style from './product.module.css'
 import { useDrag, useDrop } from 'react-dnd'
 import { useAppDispatch, useAppSelector } from '@/services/hooks'
-import { reorderStuffing, setOrder } from '@/services/projects/projectsSlice'
+import { reorderProject, setOrder } from '@/services/projects/projectsSlice'
 import UrnComponent from '@/components/mainRight/products/product/urn/urn'
 
 interface IItemProps {
@@ -20,7 +15,6 @@ interface IItemProps {
 export default function Product ({ project, index }: IItemProps) {
   const ref = useRef<HTMLLIElement>(null)
   const dispatch = useAppDispatch()
-
   const isAuth = useAppSelector(state => state.user.isAuth)
 
   const [{ handlerId }, dropRef] = useDrop<
@@ -57,7 +51,7 @@ export default function Product ({ project, index }: IItemProps) {
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
       }
-      dispatch(reorderStuffing({ from: dragIndex, to: hoverIndex }))
+      dispatch(reorderProject({ from: dragIndex, to: hoverIndex }))
       item.index = hoverIndex
       dispatch(setOrder())
     }
@@ -76,8 +70,8 @@ export default function Product ({ project, index }: IItemProps) {
       isDragging: monitor.isDragging()
     })
   })
-  const isAuthCheckRef = isAuth ? ref : null
 
+  const isAuthCheckRef = isAuth ? ref : null
   dragRef(dropRef(isAuthCheckRef))
 
   const opacity = isDragging ? 0.3 : 1

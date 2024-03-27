@@ -6,6 +6,7 @@ export interface IData {
   deadline: string
   complexity: string
   description: string
+  category: 'maf' | 'ordinary' | 'all'
   order: number
   images: IDataImage
 }
@@ -51,9 +52,6 @@ export interface IColletedPropsDrag {
   isDragging: boolean
 }
 
-export interface IColletedPropsDrop {
-  handlerId: string
-}
 export interface IDragItemProject {
   project: IData
   index: number
