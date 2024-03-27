@@ -1,7 +1,7 @@
-import ModalComponent from '@/components/modal/modal'
+import Modal from '@/components/modal/modal'
 
 export default function ModalPage () {
   return (
-    <ModalComponent/>
+    <Modal/>
   )
 };

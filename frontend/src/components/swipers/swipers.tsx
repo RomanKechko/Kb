@@ -1,9 +1,9 @@
 'use client'
 
-import ProjectFeedComponent from '@/components/swipers/projectFeed/projectFeed'
+import ProjectFeed from '@/components/swipers/projectFeed/projectFeed'
 import React from 'react'
 import { SwiperRef } from 'swiper/react'
-import ProjectSliderComponent from '@/components/swipers/projectSlider/projectSlider'
+import ProjectSlider from '@/components/swipers/projectSlider/projectSlider'
 import style from './swipers.module.css'
 import { IData } from '@/utils/interface'
 
@@ -18,8 +18,8 @@ export default function Swiper ({
 }: ISwiperProps) {
   return (
     <div className={style.block}>
-      <ProjectFeedComponent/>
-      <ProjectSliderComponent projectData={projectData} slideRef={slideRef}/>
+      <ProjectFeed/>
+      <ProjectSlider projectData={projectData} slideRef={slideRef}/>
     </div>
   )
 }

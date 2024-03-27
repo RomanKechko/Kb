@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/header/header'
 import StoreProvider from '@/services/storeProvider'
-import UserUpdateComponent from '@/components/userUpdate/userUpdate'
+import UserUpdate from '@/components/userUpdate/userUpdate'
 import React from 'react'
 
 export const metadata: Metadata = {
@@ -19,10 +19,10 @@ export default function RootLayout ({
     <html lang='en'>
       <body className='body'>
         <StoreProvider>
-          <UserUpdateComponent>
+          <UserUpdate>
             <Header />
             {children}
-          </UserUpdateComponent>
+          </UserUpdate>
         </StoreProvider>
       </body>
     </html>

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import style from './modal.module.css'
 import cross from '../../images/cross-white.png'
-import ModalOverlayComponent from '@/components/modal/modalOverlay/modalOverlay'
+import ModalOverlay from '@/components/modal/modalOverlay/modalOverlay'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -120,7 +120,7 @@ export default function Modal () {
         </div>
       </div>
 
-      <ModalOverlayComponent closeModal={onClose}/>
+      <ModalOverlay closeModal={onClose}/>
     </>
   )
 };

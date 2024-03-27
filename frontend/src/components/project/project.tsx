@@ -6,7 +6,7 @@ import right from '../../images/right.png'
 import { notFound, useParams, useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import SwiperComponent from '@/components/swipers/swipers'
+import Swiper from '@/components/swipers/swipers'
 import { SwiperRef } from 'swiper/react'
 import { useAppSelector } from '@/services/hooks'
 import { IData } from '@/utils/interface'
@@ -15,7 +15,7 @@ interface ParamTypes {
   project: string
 }
 
-export default function ProjectComponent () {
+export default function Project () {
   const { project } = useParams<{ project: string }>() as ParamTypes
 
   const router = useRouter()
@@ -101,7 +101,7 @@ export default function ProjectComponent () {
           <Image src={left} alt='стрелка влево' className={style.direction} />
         </button>
 
-        <SwiperComponent projectData={projectData} slideRef={slideRef} />
+        <Swiper projectData={projectData} slideRef={slideRef} />
 
         <button onClick={next} className={style.button}>
           <Image src={right} alt='стрелка вправо' className={style.direction} />
