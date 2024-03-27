@@ -47,7 +47,6 @@ class ApiService
             'complexity',
             'description',
             'category',
-            'asd',
         ];
         foreach ($requiredFields as $field) {
             if (!isset($data[$field])) {
