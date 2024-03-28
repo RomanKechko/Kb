@@ -41,7 +41,9 @@
   -ms-user-select: none;
   user-select: none;
 }
-
+.modal__cross:hover {
+  opacity: 0.6;
+}
 .cross__image {
   width: 30px;
   height: 30px;

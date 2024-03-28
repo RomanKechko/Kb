@@ -62,7 +62,13 @@ export default function Modal () {
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      e.key === 'Escape' && onClose()
+      if (e.key === 'Escape') {
+        onClose()
+      } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+        previous()
+      } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+        next()
+      }
     }
 
     document.addEventListener('keydown', handleEsc)
