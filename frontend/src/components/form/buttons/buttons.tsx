@@ -33,7 +33,7 @@ export default function Buttons ({
       <div className={style.pseudo_container_button}>
         <button
           type='submit'
-          className={style.button}
+          className={loading ? style.button_loading : style.button}
           disabled={mainPicture || missingGif || customValidity !== ''}
         >
           {loading ? 'Данные отправляются' : 'Отправить данные'}
