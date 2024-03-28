@@ -31,7 +31,7 @@ export default function Header () {
               href='/'
               className={pathname === '/' ? styles.active_link : styles.link}
             >
-              <p>Библиотека проектов</p>
+              <p className={styles.link_text}>Библиотека проектов</p>
             </Link>
             <Link
               href='/price'
@@ -39,7 +39,7 @@ export default function Header () {
                 pathname === '/price' ? styles.active_link : styles.link
               }
             >
-              <p> Прайс</p>
+              <p className={styles.link_text}> Прайс</p>
             </Link>{' '}
             {Auth && (
               <>
@@ -51,7 +51,7 @@ export default function Header () {
                       : styles.link
                   }
                 >
-                  Кабинет
+                  <p className={styles.link_text}> Кабинет</p>
                 </Link>
               </>
             )}

@@ -53,6 +53,8 @@
   z-index: 2;
   margin: 16px 10px 0 0;
   height: 28px;
+  transform: scale(1);
+  transition: transform 0.2s ease;
 }
 
 .form_span_active {
@@ -62,6 +64,8 @@
 .form_span:hover {
   background-color: rgb(57, 216, 216);
   box-shadow: 1px 1px 5px rgb(0, 0, 0);
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
 }
 
 .form_span_active:hover {
