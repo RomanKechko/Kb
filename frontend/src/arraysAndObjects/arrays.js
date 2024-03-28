@@ -49,8 +49,8 @@ export const arrayFormTextInput = [
     title: 'Категория проекта'
   },
   {
-    id: '"name"',
-    name: '"name"',
+    id: 'name',
+    name: 'name',
     title: 'Наименование'
   },
   {
