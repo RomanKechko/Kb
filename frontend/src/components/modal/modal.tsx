@@ -10,20 +10,15 @@ import { useRouter } from 'next/navigation'
 import left from '../../images/left.png'
 import right from '../../images/right.png'
 import { useAppSelector } from '@/services/hooks'
-import { IData, IDataImage } from '@/utils/interface'
+import { IData, IDataImage, ParamTypesModal } from '@/utils/interface'
 import { renderOrder } from '@/arraysAndObjects/arrays'
-
-interface ParamTypes {
-  project: string
-  modalId: string
-}
 
 export default function Modal () {
   const router = useRouter()
   const { project, modalId } = useParams<{
     project: string
     modalId: string
-  }>() as ParamTypes
+  }>() as ParamTypesModal
   const data: IData[] = useAppSelector(
     state => state.projects.projectsData as IData[]
   )

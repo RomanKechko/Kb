@@ -2,6 +2,7 @@ import React from 'react'
 import FormFileInput from '@/components/form/formFileInput/formFileInput'
 import { TProjectData } from '@/utils/type'
 import { arrayFormFileInput } from '@/arraysAndObjects/arrays'
+
 interface IFormFileInputProps {
   setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>
   projectData: TProjectData
@@ -13,8 +14,9 @@ export default function FormFileInputs ({
 }: IFormFileInputProps) {
   return (
     <>
-      {arrayFormFileInput.map(item => (
+      {arrayFormFileInput.map((item, index) => (
         <FormFileInput
+          key={index}
           title={item.title}
           id={item.id}
           name={item.name}

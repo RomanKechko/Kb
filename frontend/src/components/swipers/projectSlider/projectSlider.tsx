@@ -5,7 +5,7 @@ import { Navigation, Autoplay, FreeMode, Thumbs } from 'swiper/modules'
 import { Swiper as SwiperInterface } from 'swiper'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
-import { IData } from '@/utils/interface'
+import { IData, ParamTypes } from '@/utils/interface'
 import pdf from '../../../images/pdf.png'
 import Image from 'next/image'
 import video from '@/images/videoBadge.png'
@@ -15,12 +15,10 @@ interface ISwiperProps {
   slideRef: React.RefObject<SwiperRef>
 }
 
-interface ParamTypes {
-  project: string
-}
-
 export default function ProjectSlider ({ projectData, slideRef }: ISwiperProps) {
-  const { project } = useParams<{ project: string }>() as ParamTypes
+  const { project } = useParams<{
+    project: string
+  }>() as ParamTypes
   const images = projectData.images
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInterface | null>(null)
 

@@ -2,7 +2,7 @@ import { useAppSelector } from '@/services/hooks'
 import { IData } from '@/utils/interface'
 import Product from './product/product'
 
-export default function ProductComponent () {
+export default function Products () {
   const data: IData[] = useAppSelector(
     state => state.projects?.projectsData as IData[]
   )
