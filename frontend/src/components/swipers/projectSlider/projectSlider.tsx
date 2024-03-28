@@ -9,6 +9,7 @@ import { IData } from '@/utils/interface'
 import pdf from '../../../images/pdf.png'
 import Image from 'next/image'
 import video from '@/images/videoBadge.png'
+
 interface ISwiperProps {
   projectData: IData
   slideRef: React.RefObject<SwiperRef>

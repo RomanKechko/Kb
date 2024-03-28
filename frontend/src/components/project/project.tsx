@@ -119,9 +119,7 @@ export default function Project () {
         <button onClick={previous} className={style.button}>
           <Image src={left} alt='стрелка влево' className={style.direction} />
         </button>
-
         <Swiper projectData={projectData} slideRef={slideRef} />
-
         <button onClick={next} className={style.button}>
           <Image src={right} alt='стрелка вправо' className={style.direction} />
         </button>

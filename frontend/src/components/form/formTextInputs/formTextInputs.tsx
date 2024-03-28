@@ -24,6 +24,7 @@ export default function FormTextInputs ({
         value={projectData.category}
         title={'Категория проекта'}
       />
+
       <FormInput
         id={'name'}
         name={'name'}
@@ -41,6 +42,7 @@ export default function FormTextInputs ({
         title={'Стоимость'}
         customValidity={customValidity}
       />
+
       <FormInput
         id={'deadline'}
         name={'deadline'}
@@ -49,6 +51,7 @@ export default function FormTextInputs ({
         title={'Срок выполнения'}
         customValidity={customValidity}
       />
+
       <FormInput
         id={'complexity'}
         name={'complexity'}

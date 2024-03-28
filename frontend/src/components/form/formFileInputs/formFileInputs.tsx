@@ -21,6 +21,7 @@ export default function FormFileInputs ({
         setProjectData={setProjectData}
         projectData={projectData}
       />
+
       <FormFileInput
         title={'Добавить gif'}
         id={'gif'}
@@ -29,6 +30,7 @@ export default function FormFileInputs ({
         setProjectData={setProjectData}
         projectData={projectData}
       />
+
       <FormFileInput
         title={'Добавить картинку гифки'}
         id={'gif-image'}
@@ -37,6 +39,7 @@ export default function FormFileInputs ({
         setProjectData={setProjectData}
         projectData={projectData}
       />
+
       <FormFileInput
         title={`Добавить основное изображение`}
         id={'image_1'}
@@ -45,6 +48,7 @@ export default function FormFileInputs ({
         setProjectData={setProjectData}
         projectData={projectData}
       />
+
       <FormFileInput
         title={'Добавить второе изображение'}
         id={'image_2'}
@@ -53,6 +57,7 @@ export default function FormFileInputs ({
         setProjectData={setProjectData}
         projectData={projectData}
       />
+
       <FormFileInput
         title={'Добавить третье изображение'}
         id={'image_3'}
@@ -61,6 +66,7 @@ export default function FormFileInputs ({
         setProjectData={setProjectData}
         projectData={projectData}
       />
+
       <FormFileInput
         title={'Добавить pdf'}
         id={'pdf'}

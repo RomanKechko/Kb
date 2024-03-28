@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useEffect, useState } from 'react'
 import style from './modal.module.css'
 import cross from '../../images/cross-white.png'
@@ -27,7 +28,6 @@ export default function Modal () {
   )
 
   const projectId = data.findIndex(item => item._id === project)
-
   const [images, setImages] = useState(data[projectId].images as IDataImage)
   const [src, setSrc] = useState(images[modalId as keyof typeof images])
 
@@ -98,7 +98,6 @@ export default function Modal () {
               src={src!}
               autoPlay
               muted
-              /*      controls */
               loop
               className={style.video}
             ></video>

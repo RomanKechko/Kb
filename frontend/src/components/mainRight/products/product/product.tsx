@@ -32,11 +32,14 @@ export default function Product ({ project, index }: IItemProps) {
       if (!ref.current) {
         return
       }
+
       const dragIndex = item.index
       const hoverIndex = index
+
       if (dragIndex === hoverIndex) {
         return
       }
+
       const hoverBoundingRect = ref.current?.getBoundingClientRect()
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
@@ -44,13 +47,14 @@ export default function Product ({ project, index }: IItemProps) {
       const hoverClientY: number = clientOffset
         ? clientOffset.y - hoverBoundingRect.top
         : 0
+
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return
       }
-
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
       }
+
       dispatch(reorderProject({ from: dragIndex, to: hoverIndex }))
       item.index = hoverIndex
       dispatch(setOrder())
@@ -91,7 +95,6 @@ export default function Product ({ project, index }: IItemProps) {
           />
           <p className={style.description}>{project.name}</p>
         </Link>
-
         <UrnComponent id={project.id} />
       </li>
     </>
