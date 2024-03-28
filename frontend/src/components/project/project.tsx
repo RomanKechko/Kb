@@ -9,11 +9,8 @@ import Image from 'next/image'
 import Swiper from '@/components/swipers/swipers'
 import { SwiperRef } from 'swiper/react'
 import { useAppSelector } from '@/services/hooks'
-import { IData } from '@/utils/interface'
-
-interface ParamTypes {
-  project: string
-}
+import { IData, ParamTypes } from '@/utils/interface'
+import { renderOrder } from '@/arraysAndObjects/arrays'
 
 export default function Project () {
   const { project } = useParams<{ project: string }>() as ParamTypes
@@ -38,30 +35,18 @@ export default function Project () {
     setCurrentIndex(data.findIndex(item => item._id === project))
     if (slideRef.current) {
       const slider = slideRef.current
-      const renderOrder = [
-        'video',
-        'gif',
-        'gif-image',
-        'image_1',
-        'image_2',
-        'image_3',
-        'pdf'
-      ]
-      const sortedKeys = Object.keys(projectData.images).sort((a, b) => {
-        return renderOrder.indexOf(a) - renderOrder.indexOf(b)
-      })
+
+      const sortedKeys = Object.keys(projectData.images)
+        .filter(item => item !== 'gif-image')
+        .sort((a, b) => {
+          return renderOrder.indexOf(a) - renderOrder.indexOf(b)
+        })
+      console.log('sortedKeys', sortedKeys)
       if (modalId) {
-        if (modalId !== 'video' && modalId !== 'gif') {
-          slider.swiper.slideTo(
-            sortedKeys.findIndex(item => item === modalId) - 1,
-            0
-          )
-        } else {
-          slider.swiper.slideTo(
-            sortedKeys.findIndex(item => item === modalId),
-            0
-          )
-        }
+        slider.swiper.slideTo(
+          sortedKeys.findIndex(item => item === modalId),
+          0
+        )
       } else {
         slider.swiper.slideTo(0, 0)
       }
@@ -119,9 +104,7 @@ export default function Project () {
         <button onClick={previous} className={style.button}>
           <Image src={left} alt='стрелка влево' className={style.direction} />
         </button>
-
         <Swiper projectData={projectData} slideRef={slideRef} />
-
         <button onClick={next} className={style.button}>
           <Image src={right} alt='стрелка вправо' className={style.direction} />
         </button>

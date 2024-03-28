@@ -4,17 +4,17 @@ import { useAppDispatch, useAppSelector } from '@/services/hooks'
 import { useRouter } from 'next/navigation'
 import { logoutUserRequest } from '@/services/user/userSlice'
 
-interface IButtons {
-  missingGif: boolean;
-  mainPicture: boolean;
-  customValidity: string;
+interface IButtonsProps {
+  missingGif: boolean
+  mainPicture: boolean
+  customValidity: string
 }
 
 export default function Buttons ({
   missingGif,
   mainPicture,
   customValidity
-}: IButtons) {
+}: IButtonsProps) {
   const router = useRouter()
   const dispatch = useAppDispatch()
 
@@ -24,7 +24,7 @@ export default function Buttons ({
   }
 
   const loading = useAppSelector(
-    (state) => state.projectManagement.loadingProject
+    state => state.projectManagement.loadingProject
   )
 
   return (
@@ -33,10 +33,8 @@ export default function Buttons ({
       <div className={style.pseudo_container_button}>
         <button
           type='submit'
-          className={style.button}
-          disabled={
-            mainPicture || missingGif || customValidity !== ''
-          }
+          className={loading ? style.button_loading : style.button}
+          disabled={mainPicture || missingGif || customValidity !== ''}
         >
           {loading ? 'Данные отправляются' : 'Отправить данные'}
         </button>
@@ -57,4 +55,4 @@ export default function Buttons ({
       </button>
     </div>
   )
-};
+}

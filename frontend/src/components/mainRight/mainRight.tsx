@@ -1,4 +1,5 @@
 'use client'
+
 import style from './mainRight.module.css'
 import Product from '@/components/mainRight/products/products'
 import { DndProvider } from 'react-dnd'

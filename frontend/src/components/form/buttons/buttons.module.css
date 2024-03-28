@@ -26,10 +26,18 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
+.button_loading {
+  display: block;
+  width: 400px;
+  height: 40px;
+  font-size: 20px;
+  background-color: rgb(251, 255, 0);
+  border: 2px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}
 .button:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-  color: rgb(255, 255, 255);
+  background-color: rgb(57, 216, 216);
   box-shadow: 7px 5px 5px rgb(0, 0, 0);
 }
 
@@ -59,7 +67,6 @@
 }
 
 .button_exit:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-  color: rgb(255, 255, 255);
+  background-color: rgb(57, 216, 216);
   box-shadow: 7px 5px 5px rgb(0, 0, 0);
 }

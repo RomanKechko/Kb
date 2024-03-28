@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useEffect, useState } from 'react'
 import style from './modal.module.css'
 import cross from '../../images/cross-white.png'
@@ -9,30 +10,24 @@ import { useRouter } from 'next/navigation'
 import left from '../../images/left.png'
 import right from '../../images/right.png'
 import { useAppSelector } from '@/services/hooks'
-import { IData, IDataImage } from '@/utils/interface'
-
-interface ParamTypes {
-  project: string
-  modalId: string
-}
+import { IData, IDataImage, ParamTypesModal } from '@/utils/interface'
+import { renderOrder } from '@/arraysAndObjects/arrays'
 
 export default function Modal () {
   const router = useRouter()
   const { project, modalId } = useParams<{
     project: string
     modalId: string
-  }>() as ParamTypes
+  }>() as ParamTypesModal
   const data: IData[] = useAppSelector(
     state => state.projects.projectsData as IData[]
   )
 
   const projectId = data.findIndex(item => item._id === project)
-
   const [images, setImages] = useState(data[projectId].images as IDataImage)
   const [src, setSrc] = useState(images[modalId as keyof typeof images])
 
   //100% карточки модалки идут по порялку
-  const renderOrder = ['gif', 'image_1', 'image_2', 'image_3', 'pdf', 'video']
   const sortedKeys = Object.keys(images).sort((a, b) => {
     return renderOrder.indexOf(a) - renderOrder.indexOf(b)
   })
@@ -67,7 +62,13 @@ export default function Modal () {
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      e.key === 'Escape' && onClose()
+      if (e.key === 'Escape') {
+        onClose()
+      } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+        previous()
+      } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+        next()
+      }
     }
 
     document.addEventListener('keydown', handleEsc)
@@ -98,7 +99,6 @@ export default function Modal () {
               src={src!}
               autoPlay
               muted
-              /*      controls */
               loop
               className={style.video}
             ></video>

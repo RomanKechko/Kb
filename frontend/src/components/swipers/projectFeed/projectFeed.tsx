@@ -1,4 +1,5 @@
 'use client'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import './projectFeed.global.css'
 import Link from 'next/link'
@@ -9,7 +10,7 @@ import { useAppSelector } from '@/services/hooks'
 export default function ProjectFeed () {
   const pathname = usePathname()
   const data: IData[] = useAppSelector(
-    (state) => state.projects?.projectsData as IData[]
+    state => state.projects?.projectsData as IData[]
   )
 
   return (
@@ -33,4 +34,4 @@ export default function ProjectFeed () {
       </Swiper>
     </div>
   )
-};
+}

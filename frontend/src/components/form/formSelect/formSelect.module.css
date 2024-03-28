@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+.form_select:hover {
+  border: 2px solid rgb(0, 0, 0);
+}
+
 .form_select:focus {
   border: 2px solid rgb(0, 0, 0);
 }

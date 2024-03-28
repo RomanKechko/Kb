@@ -56,3 +56,10 @@ export interface IDragItemProject {
   project: IData
   index: number
 }
+export interface ParamTypesModal {
+  project: string
+  modalId: string
+}
+export interface ParamTypes {
+  project: string
+}

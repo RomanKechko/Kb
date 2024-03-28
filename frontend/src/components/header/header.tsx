@@ -1,14 +1,15 @@
-"use client";
-import styles from "./header.module.css";
-import Link from "next/link";
-import image from "../../images/logo.png";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useAppSelector } from "@/services/hooks";
+'use client'
+
+import styles from './header.module.css'
+import Link from 'next/link'
+import image from '../../images/logo.png'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { useAppSelector } from '@/services/hooks'
 
 export default function Header () {
-  const pathname = usePathname();
-  const Auth = useAppSelector((state) => state.user.isAuth);
+  const pathname = usePathname()
+  const Auth = useAppSelector(state => state.user.isAuth)
 
   return (
     <header>
@@ -18,7 +19,7 @@ export default function Header () {
             <Image
               priority={true}
               src={image}
-              alt="КБГлобал"
+              alt='КБГлобал'
               width={306}
               height={71}
               className={styles.logo}
@@ -27,43 +28,43 @@ export default function Header () {
 
           <div className={styles.link__row}>
             <Link
-              href="/"
-              className={pathname === "/" ? styles.active_link : styles.link}
+              href='/'
+              className={pathname === '/' ? styles.active_link : styles.link}
             >
-              <p>Библиотека проектов</p>
+              <p className={styles.link_text}>Библиотека проектов</p>
             </Link>
             <Link
-              href="/price"
+              href='/price'
               className={
-                pathname === "/price" ? styles.active_link : styles.link
+                pathname === '/price' ? styles.active_link : styles.link
               }
             >
-              <p> Прайс</p>
-            </Link>{" "}
+              <p className={styles.link_text}> Прайс</p>
+            </Link>{' '}
             {Auth && (
               <>
                 <Link
-                  href="/project-addition"
+                  href='/project-addition'
                   className={
-                    pathname === "/project-addition"
+                    pathname === '/project-addition'
                       ? styles.active_link
                       : styles.link
                   }
                 >
-                  Кабинет
+                  <p className={styles.link_text}> Кабинет</p>
                 </Link>
               </>
             )}
             <span
               className={
-                pathname === "/price" || pathname === "/project-addition"
+                pathname === '/price' || pathname === '/project-addition'
                   ? styles.trait
-                  : ""
+                  : ''
               }
             ></span>
           </div>
         </div>
       </nav>
     </header>
-  );
-};
+  )
+}

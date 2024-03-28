@@ -18,6 +18,7 @@ export default function FormInput ({
   onChange,
   customValidity
 }: IFormInputProps) {
+  console.log('name', name)
   return (
     <li className={style.form__item}>
       <label htmlFor={id} className={style.form_label}>

@@ -3,12 +3,12 @@ import style from './formFileInput.module.css'
 import React, { useEffect, useState } from 'react'
 
 interface IFormFileInputProps {
-  title: string;
-  id: string;
-  name: string;
-  accept: string;
-  setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>;
-  projectData: TProjectData;
+  title: string
+  id: string
+  name: string
+  accept: string
+  setProjectData: React.Dispatch<React.SetStateAction<TProjectData>>
+  projectData: TProjectData
 }
 
 export default function FormFileInput ({
@@ -28,7 +28,7 @@ export default function FormFileInput ({
       const file = e.target.files?.[0]
 
       if (file) {
-        setProjectData((prevState) => ({
+        setProjectData(prevState => ({
           ...prevState,
           images: { ...prevState.images, [key]: file }
         }))
@@ -55,7 +55,7 @@ export default function FormFileInput ({
     AVI = 'video/x-msvideo',
     PDF = 'application/pdf',
     DOC = 'application/msword',
-    DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
   }
 
   function handleDrop (key: string, e: React.DragEvent<HTMLLabelElement>) {
@@ -64,8 +64,8 @@ export default function FormFileInput ({
     const file = e.dataTransfer.files[0]
 
     if (file) {
-      const allowedFormats = accept.split(',').map((format) => format.trim())
-      const allowedMIMETypes = allowedFormats.map((format) => {
+      const allowedFormats = accept.split(',').map(format => format.trim())
+      const allowedMIMETypes = allowedFormats.map(format => {
         switch (format) {
           case '.jpeg':
           case '.jpg':
@@ -88,8 +88,9 @@ export default function FormFileInput ({
             return ''
         }
       })
+
       if (allowedMIMETypes.includes(file.type as AllowedMimeTypes)) {
-        setProjectData((prevState) => ({
+        setProjectData(prevState => ({
           ...prevState,
           images: { ...prevState.images, [key]: file }
         }))
@@ -119,7 +120,7 @@ export default function FormFileInput ({
       if (projectData.images[key as keyof TImages]?.name === typeFile) {
         const updatedImages = { ...projectData.images }
         delete updatedImages[key as keyof TImages]
-        setProjectData((prevState) => ({
+        setProjectData(prevState => ({
           ...prevState,
           images: updatedImages
         }))
@@ -138,7 +139,7 @@ export default function FormFileInput ({
         onDragEnter={handleDrag}
         onDragOver={handleDrag}
         onDragLeave={handleLeave}
-        onDrop={(e) => handleDrop(name, e)}
+        onDrop={e => handleDrop(name, e)}
       >
         {title === 'Добавить основное изображение' ? (
           <p className={style.form_text}>
