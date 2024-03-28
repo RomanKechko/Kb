@@ -9,7 +9,7 @@ import { IData } from '@/utils/interface'
 import pdf from '../../../images/pdf.png'
 import Image from 'next/image'
 import video from '@/images/videoBadge.png'
-
+import { renderOrderWithGifImage } from '@/arraysAndObjects/arrays'
 interface ISwiperProps {
   projectData: IData
   slideRef: React.RefObject<SwiperRef>
@@ -36,17 +36,11 @@ export default function ProjectSlider ({ projectData, slideRef }: ISwiperProps) 
   const number = Object.keys(projectData.images).length
 
   //100% карточки модалки идут по порялку
-  const renderOrder = [
-    'video',
-    'gif',
-    'gif-image',
-    'image_1',
-    'image_2',
-    'image_3',
-    'pdf'
-  ]
+
   const sortedKeys = Object.keys(images).sort((a, b) => {
-    return renderOrder.indexOf(a) - renderOrder.indexOf(b)
+    return (
+      renderOrderWithGifImage.indexOf(a) - renderOrderWithGifImage.indexOf(b)
+    )
   })
   //100% карточки модалки идут по порялку
 

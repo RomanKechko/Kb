@@ -10,7 +10,7 @@ import Swiper from '@/components/swipers/swipers'
 import { SwiperRef } from 'swiper/react'
 import { useAppSelector } from '@/services/hooks'
 import { IData } from '@/utils/interface'
-
+import { renderOrder } from '@/arraysAndObjects/arrays'
 interface ParamTypes {
   project: string
 }
@@ -38,30 +38,18 @@ export default function Project () {
     setCurrentIndex(data.findIndex(item => item._id === project))
     if (slideRef.current) {
       const slider = slideRef.current
-      const renderOrder = [
-        'video',
-        'gif',
-        'gif-image',
-        'image_1',
-        'image_2',
-        'image_3',
-        'pdf'
-      ]
-      const sortedKeys = Object.keys(projectData.images).sort((a, b) => {
-        return renderOrder.indexOf(a) - renderOrder.indexOf(b)
-      })
+
+      const sortedKeys = Object.keys(projectData.images)
+        .filter(item => item !== 'gif-image')
+        .sort((a, b) => {
+          return renderOrder.indexOf(a) - renderOrder.indexOf(b)
+        })
+      console.log('sortedKeys', sortedKeys)
       if (modalId) {
-        if (modalId !== 'video' && modalId !== 'gif') {
-          slider.swiper.slideTo(
-            sortedKeys.findIndex(item => item === modalId) - 1,
-            0
-          )
-        } else {
-          slider.swiper.slideTo(
-            sortedKeys.findIndex(item => item === modalId),
-            0
-          )
-        }
+        slider.swiper.slideTo(
+          sortedKeys.findIndex(item => item === modalId),
+          0
+        )
       } else {
         slider.swiper.slideTo(0, 0)
       }

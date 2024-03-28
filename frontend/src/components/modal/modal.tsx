@@ -11,6 +11,7 @@ import left from '../../images/left.png'
 import right from '../../images/right.png'
 import { useAppSelector } from '@/services/hooks'
 import { IData, IDataImage } from '@/utils/interface'
+import { renderOrder } from '@/arraysAndObjects/arrays'
 
 interface ParamTypes {
   project: string
@@ -32,7 +33,6 @@ export default function Modal () {
   const [src, setSrc] = useState(images[modalId as keyof typeof images])
 
   //100% карточки модалки идут по порялку
-  const renderOrder = ['gif', 'image_1', 'image_2', 'image_3', 'pdf', 'video']
   const sortedKeys = Object.keys(images).sort((a, b) => {
     return renderOrder.indexOf(a) - renderOrder.indexOf(b)
   })

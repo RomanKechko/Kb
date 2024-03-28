@@ -42,3 +42,21 @@ export const arrayFormFileInput = [
     accept: '.pdf'
   }
 ]
+
+export const renderOrder = [
+  'video',
+  'gif',
+  'image_1',
+  'image_2',
+  'image_3',
+  'pdf'
+]
+export const renderOrderWithGifImage = [
+  'video',
+  'gif',
+  'gif-image',
+  'image_1',
+  'image_2',
+  'image_3',
+  'pdf'
+]
