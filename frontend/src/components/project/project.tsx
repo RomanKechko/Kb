@@ -11,6 +11,7 @@ import { SwiperRef } from 'swiper/react'
 import { useAppSelector } from '@/services/hooks'
 import { IData } from '@/utils/interface'
 import { renderOrder } from '@/arraysAndObjects/arrays'
+
 interface ParamTypes {
   project: string
 }

@@ -42,7 +42,44 @@ export const arrayFormFileInput = [
     accept: '.pdf'
   }
 ]
+export const arrayFormTextInput = [
+  {
+    id: 'category',
+    name: 'category',
 
+    title: 'Категория проекта'
+  },
+  {
+    id: 'name',
+    name: 'name',
+
+    title: 'Наименование'
+  },
+  {
+    id: 'price',
+    name: 'price',
+
+    title: 'Стоимость'
+  },
+  {
+    id: 'deadline',
+    name: 'deadline',
+
+    title: 'Срок выполнения'
+  },
+  {
+    id: 'complexity',
+    name: 'complexity',
+
+    title: 'Сложность'
+  },
+  {
+    id: 'description',
+    name: 'description',
+
+    title: 'Описание'
+  }
+]
 export const renderOrder = [
   'video',
   'gif',
