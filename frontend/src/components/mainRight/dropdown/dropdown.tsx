@@ -32,11 +32,12 @@ export default function Dropdown () {
         </button>
         <ul className={`${style.lists} ${openList ? style.lists_active : ''}`}>
           {categories.map(
-            category =>
+            (category, index) =>
               category !== listValue && (
                 <li
                   onClick={() => handleDropdownClick(category)}
                   className={style.list}
+                  key={index}
                 >
                   {categoriesTranslate[category]}
                 </li>

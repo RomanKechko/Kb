@@ -1,3 +1,7 @@
+import FormSelect from '@/components/form/formSelect/formSelect'
+import FormTextarea from '@/components/form/formTextarea/formTextarea'
+import FormInput from '@/components/form/formInput/formInput'
+
 export const arrayFormFileInput = [
   {
     title: 'Добавить видео',
@@ -46,32 +50,38 @@ export const arrayFormTextInput = [
   {
     id: 'category',
     name: 'category',
-    title: 'Категория проекта'
+    title: 'Категория проекта',
+    tag: FormSelect
   },
   {
     id: 'name',
     name: 'name',
-    title: 'Наименование'
+    title: 'Наименование',
+    tag: FormInput
   },
   {
     id: 'price',
     name: 'price',
-    title: 'Стоимость'
+    title: 'Стоимость',
+    tag: FormInput
   },
   {
     id: 'deadline',
     name: 'deadline',
-    title: 'Срок выполнения'
+    title: 'Срок выполнения',
+    tag: FormInput
   },
   {
     id: 'complexity',
     name: 'complexity',
-    title: 'Сложность'
+    title: 'Сложность',
+    tag: FormInput
   },
   {
     id: 'description',
     name: 'description',
-    title: 'Описание'
+    title: 'Описание',
+    tag: FormTextarea
   }
 ]
 export const renderOrder = [

@@ -9,7 +9,7 @@ interface IListState {
   isDataCheck: boolean
   downloadError: boolean
   orderData: { [key: number]: number }
-  projectСategory: 'maf' | 'ordinary' | 'all'
+  projectCategory: 'maf' | 'ordinary' | 'all'
 }
 
 const initialState: IListState = {
@@ -17,7 +17,7 @@ const initialState: IListState = {
   orderData: {},
   isDataCheck: false,
   downloadError: false,
-  projectСategory: 'all'
+  projectCategory: 'all'
 }
 
 export const getProjects = createAsyncThunk(
@@ -46,7 +46,7 @@ export const getProjects = createAsyncThunk(
 
 export const setOrder = createAsyncThunk(
   'projects/setOrder',
-  async (_, { fulfillWithValue, getState }) => {
+  async (_, { getState }) => {
     const state = getState() as RootState
     const res = await fetch(`${url}/change_order`, {
       method: 'POST',
@@ -68,16 +68,16 @@ export const projectsSlice = createSlice({
       const { from, to } = action.payload
       const [movedElement] = state.projectsData.splice(from, 1)
       state.projectsData.splice(to, 0, movedElement)
-      const lenghtArray = state.projectsData.length
+      const lengthArray = state.projectsData.length
       let data: { [key: number]: number } = {}
-      for (let i = 0; i < lenghtArray; i++) {
-        state.projectsData[i].order = lenghtArray - 1 - i
-        data[state.projectsData[i].id] = lenghtArray - 1 - i
+      for (let i = 0; i < lengthArray; i++) {
+        state.projectsData[i].order = lengthArray - 1 - i
+        data[state.projectsData[i].id] = lengthArray - 1 - i
       }
       state.orderData = data
     },
     projectFilter: (state, action) => {
-      state.projectСategory = action.payload
+      state.projectCategory = action.payload
     }
   },
   extraReducers: builder => {

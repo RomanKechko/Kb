@@ -4,18 +4,18 @@ import Product from './product/product'
 
 export default function Products () {
   const data: IData[] = useAppSelector(
-    state => state.projects?.projectsData as IData[]
+    state => state.projects.projectsData
   )
-  const projectСategory = useAppSelector(
-    state => state.projects.projectСategory
+  const projectCategory = useAppSelector(
+    state => state.projects.projectCategory
   )
   return (
     <>
       {data.map(
         (project: IData, index: number) =>
-          (project.category === projectСategory ||
-            projectСategory === 'all') && (
-            <Product project={project} index={index} key={project._id} />
+          (project.category === projectCategory ||
+            projectCategory === 'all') && (
+            <Product project={project} index={index} key={project.id} />
           )
       )}
     </>

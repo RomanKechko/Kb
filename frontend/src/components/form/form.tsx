@@ -46,7 +46,7 @@ export default function Form () {
       ]
 
       requiredFields.forEach(item => {
-        if (projectData[item] === '') {
+        if (projectData[item as keyof TProjectData] === '') {
           setCustomValidity(item)
         }
       })

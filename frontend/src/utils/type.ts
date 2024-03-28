@@ -1,10 +1,4 @@
-export type Images = {
-  image?: string
-  image_mobile?: string
-  image_large?: string
-  pdf?: string
-  video?: string
-}
+import { categoriesType } from '@/components/mainRight/dropdown/dropdown'
 
 export type TProjectData = {
   name: string
@@ -12,12 +6,11 @@ export type TProjectData = {
   deadline: string
   complexity: string
   description: string
-  category: string
-  images: TImages
-  [key: string]: string | TImages
+  category: categoriesType
+  images: TFormImages
 }
 
-export type TImages = {
+export type TFormImages = {
   image_1?: File
   image_2?: File
   image_3?: File
@@ -26,6 +19,9 @@ export type TImages = {
   gif?: File
   'gif-image'?: File
 }
-export type TarrayFormFileInput = {
-  [key: string]: string
+
+export type TImages = 'video' | 'image_1' | 'image_2' | 'image_3' | 'gif' | 'gif_image' | 'pdf';
+
+export type TDataImage = {
+  [name in TImages]?: string
 }

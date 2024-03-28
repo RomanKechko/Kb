@@ -1,4 +1,4 @@
-import { TProjectData, TImages } from '@/utils/type'
+import { TProjectData, TFormImages } from '@/utils/type'
 import style from './formFileInput.module.css'
 import React, { useEffect, useState } from 'react'
 
@@ -117,9 +117,9 @@ export default function FormFileInput ({
 
   function handleDeleteFile () {
     for (const key in projectData.images) {
-      if (projectData.images[key as keyof TImages]?.name === typeFile) {
+      if (projectData.images[key as keyof TFormImages]?.name === typeFile) {
         const updatedImages = { ...projectData.images }
-        delete updatedImages[key as keyof TImages]
+        delete updatedImages[key as keyof TFormImages]
         setProjectData(prevState => ({
           ...prevState,
           images: updatedImages

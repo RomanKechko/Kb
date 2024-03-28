@@ -1,4 +1,5 @@
 import style from './formSelect.module.css'
+import React from 'react'
 
 interface IFormSelectProps {
   title: string
@@ -12,7 +13,6 @@ export default function FormSelect ({
   id,
   name,
   value,
-
   onChange
 }: IFormSelectProps) {
   return (

@@ -10,22 +10,23 @@ import { useRouter } from 'next/navigation'
 import left from '../../images/left.png'
 import right from '../../images/right.png'
 import { useAppSelector } from '@/services/hooks'
-import { IData, IDataImage, ParamTypesModal } from '@/utils/interface'
+import { IData, ParamTypesModal } from '@/utils/interface'
 import { renderOrder } from '@/arraysAndObjects/arrays'
+import { TImages } from '@/utils/type'
 
 export default function Modal () {
   const router = useRouter()
-  const { project, modalId } = useParams<{
+  const { project, modalId} = useParams<{
     project: string
-    modalId: string
+    modalId: TImages
   }>() as ParamTypesModal
   const data: IData[] = useAppSelector(
     state => state.projects.projectsData as IData[]
   )
 
   const projectId = data.findIndex(item => item._id === project)
-  const [images, setImages] = useState(data[projectId].images as IDataImage)
-  const [src, setSrc] = useState(images[modalId as keyof typeof images])
+  const [images, setImages] = useState(data[projectId].images)
+  const [src, setSrc] = useState(images[modalId])
 
   //100% карточки модалки идут по порялку
   const sortedKeys = Object.keys(images).sort((a, b) => {
@@ -36,7 +37,7 @@ export default function Modal () {
   useEffect(() => {
     const projectData = data[projectId]
     setImages(projectData.images)
-    setSrc(projectData.images[modalId as keyof typeof projectData.images])
+    setSrc(projectData.images[modalId])
   }, [project, modalId])
 
   function onClose () {
@@ -93,10 +94,10 @@ export default function Modal () {
             />
           </button>
           {modalId === 'pdf' ? (
-            <iframe src={src!} className={style.iframe}></iframe>
+            <iframe src={src} className={style.iframe}></iframe>
           ) : modalId === 'video' ? (
             <video
-              src={src!}
+              src={src}
               autoPlay
               muted
               loop
@@ -104,7 +105,7 @@ export default function Modal () {
             ></video>
           ) : (
             <img
-              src={src!}
+              src={src}
               alt={modalId}
               className={style.modal__image}
               width={800}

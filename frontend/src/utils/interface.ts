@@ -1,3 +1,6 @@
+import { categoriesType } from '@/components/mainRight/dropdown/dropdown'
+import { TDataImage, TImages } from '@/utils/type'
+
 export interface IData {
   id: number
   _id: string
@@ -6,23 +9,9 @@ export interface IData {
   deadline: string
   complexity: string
   description: string
-  category: 'maf' | 'ordinary' | 'all'
+  category: categoriesType
   order: number
-  images: IDataImage
-}
-
-export interface IDataImage {
-  video?: ''
-  image_1?: ''
-  image_2?: ''
-  image_3?: ''
-  gif?: ''
-  gif_image?: ''
-  pdf?: ''
-}
-export interface IStatusSetProject {
-  success: boolean
-  message: string
+  images: TDataImage
 }
 
 interface RefreshTokenPayload {
@@ -35,20 +24,20 @@ export interface IOptions {
   credentials?: string
   headers?:
     | {
-        [name: string]: string
-      }
+    [name: string]: string
+  }
     | {
-        Authorization: string | null
-        'Content-Type': 'application/json;charset=utf-8'
-      }
+    Authorization: string | null
+    'Content-Type': 'application/json;charset=utf-8'
+  }
     | {
-        Authorization: string | null
-      }
+    Authorization: string | null
+  }
 
   body?: string | RefreshTokenPayload
 }
 
-export interface IColletedPropsDrag {
+export interface ICollectedPropsDrag {
   isDragging: boolean
 }
 
@@ -56,10 +45,12 @@ export interface IDragItemProject {
   project: IData
   index: number
 }
+
 export interface ParamTypesModal {
   project: string
-  modalId: string
+  modalId: TImages
 }
+
 export interface ParamTypes {
   project: string
 }

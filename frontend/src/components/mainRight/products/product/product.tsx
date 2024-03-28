@@ -1,4 +1,4 @@
-import { IData, IColletedPropsDrag, IDragItemProject } from '@/utils/interface'
+import { IData, ICollectedPropsDrag, IDragItemProject } from '@/utils/interface'
 import Link from 'next/link'
 import React, { useRef } from 'react'
 import style from './product.module.css'
@@ -64,7 +64,7 @@ export default function Product ({ project, index }: IItemProps) {
   const [{ isDragging }, dragRef] = useDrag<
     IDragItemProject,
     unknown,
-    IColletedPropsDrag
+    ICollectedPropsDrag
   >({
     type: 'project_change',
     item: (): IDragItemProject => {
